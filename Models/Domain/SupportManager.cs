@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace projecten2.Models.Domain
 {
-    public class SupportManager
+    public class SupportManager : Gebruiker
     {
     }
 }
