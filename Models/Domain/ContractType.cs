@@ -21,11 +21,7 @@ namespace projecten2.Models.Domain
         public double Prijs { get; set; }
 
         public ManierTicketAanmaken ManierTicketAanmaken { get; set; }
-<<<<<<< Updated upstream
-        public Contract Contracten { get; set; }
-=======
         public ICollection<Contract> Contracten { get; set; }
->>>>>>> Stashed changes
         #endregion
 
         #region Constructors

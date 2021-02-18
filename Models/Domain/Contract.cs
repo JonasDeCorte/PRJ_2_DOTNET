@@ -19,11 +19,8 @@ namespace projecten2.Models.Domain
 
         public Klant Klant { get; set; }
         public ContractStatus ContractStatus { get; set; }
-<<<<<<< Updated upstream
-        public Ticket Tickets { get; set; }
-=======
         public ICollection<Ticket> Tickets { get; set; }
->>>>>>> Stashed changes
+
         public ContractType ContractType {get; set;}  
         #endregion
 

@@ -7,11 +7,6 @@ namespace projecten2.Models.Domain
 {
     public class Klant : Gebruiker
     {
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
         #region Fields
         
         #endregion
@@ -21,13 +16,9 @@ namespace projecten2.Models.Domain
         public string GegevensContactPersonen { get; set; }
         public DateTime DatumRegistratie { get; set; }
 
-<<<<<<< Updated upstream
-        public Bedrijf Bedrijf { get; set; }
-        public Contract Contracten { get; set; }
-=======
+
         public ICollection<Bedrijf> Bedrijf { get; set; }
         public ICollection<Contract> Contracten { get; set; }
->>>>>>> Stashed changes
         #endregion
 
         #region Constructors
@@ -38,10 +29,5 @@ namespace projecten2.Models.Domain
 
         #endregion
 
-
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
 }

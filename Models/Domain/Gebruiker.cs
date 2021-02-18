@@ -7,11 +7,7 @@ namespace projecten2.Models.Domain
 {
     public class Gebruiker
     {
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
+
         #region Fields
 
         #endregion
@@ -24,11 +20,8 @@ namespace projecten2.Models.Domain
         public string Email { get; set; }
         public bool Status { get; set; }
 
-<<<<<<< Updated upstream
-        public Ticket Tickets { get; set; }
-=======
         public ICollection<Ticket> Tickets { get; set; }
->>>>>>> Stashed changes
+
         #endregion
 
         #region Constructors
@@ -71,9 +64,6 @@ namespace projecten2.Models.Domain
 
         }
         #endregion
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
     }
 }
