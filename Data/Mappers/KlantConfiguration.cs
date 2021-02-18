@@ -15,7 +15,7 @@ namespace projecten2.Data.Mappers
 
 
             builder.HasMany(x => x.Bedrijf).WithOne().OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(x => x.Contracten).WithOne().OnDelete(DeleteBehavior.NoAction);
+           // builder.HasMany(x => x.Contracten).WithOne().OnDelete(DeleteBehavior.NoAction);
       
     }
     }
