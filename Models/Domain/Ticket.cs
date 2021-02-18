@@ -23,7 +23,11 @@ namespace projecten2.Models.Domain
         public TicketStatus TicketStatus { get; set; }
         public Rapport Rapport { get; set; }
         public Contract Contract { get; set; }
+<<<<<<< Updated upstream
         public Bijlage Bijlages { get; set; }
+=======
+        public ICollection<Bijlage> Bijlages { get; set; }
+>>>>>>> Stashed changes
         public Bijlage Oplossing { get; set; }
         #endregion
 
