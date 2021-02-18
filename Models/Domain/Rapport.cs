@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace projecten2.Models.Domain
 {
-    public class SupportManager : Gebruiker
+    public class Rapport
     {
         #region Fields
 
         #endregion
 
         #region Properties
-        public int PersoneelsNummer { get; set; }
-        public string Adres { get; set; }
-        public DateTime ActiefSinds { get; set; }
+        public int RapportNr { get; set; }
+        public string RapportNaam { get; set; }
+        public string Beschrijving { get; set; }
+
+        public Ticket Ticket { get; set; }
         #endregion
 
         #region Constructors
@@ -22,10 +24,8 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-        public void KlantAanmaken()
-        {
 
-        }
         #endregion
+
     }
 }

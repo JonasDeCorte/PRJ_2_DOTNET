@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 
 namespace projecten2.Models.Domain
 {
-    public class SupportManager : Gebruiker
+    public class Bijlage
     {
         #region Fields
 
         #endregion
 
         #region Properties
-        public int PersoneelsNummer { get; set; }
-        public string Adres { get; set; }
-        public DateTime ActiefSinds { get; set; }
+        public string BestandType { get; set; }
+        public string Omschrijving { get; set; }
+
+        public Ticket Ticket { get; set; }
         #endregion
 
         #region Constructors
@@ -22,10 +23,8 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-        public void KlantAanmaken()
-        {
 
-        }
         #endregion
+
     }
 }

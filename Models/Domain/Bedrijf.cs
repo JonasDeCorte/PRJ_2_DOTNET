@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace projecten2.Models.Domain
 {
-    public class SupportManager : Gebruiker
+    public class Bedrijf
     {
         #region Fields
 
         #endregion
 
         #region Properties
-        public int PersoneelsNummer { get; set; }
-        public string Adres { get; set; }
-        public DateTime ActiefSinds { get; set; }
+        public int Bedrijfsnaam { get; set; }
+        public int[] Telefoonnummers { get; set; }
+        public string LandHoofdzetel { get; set; }
+        public string Straat { get; set; }
         #endregion
 
         #region Constructors
@@ -22,10 +23,7 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-        public void KlantAanmaken()
-        {
 
-        }
         #endregion
     }
 }

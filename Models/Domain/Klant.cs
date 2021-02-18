@@ -7,5 +7,27 @@ namespace projecten2.Models.Domain
 {
     public class Klant : Gebruiker
     {
+        #region Fields
+        
+        #endregion
+
+        #region Properties
+        public int KlantNummer { get; set; }
+        public string GegevensContactPersonen { get; set; }
+        public DateTime DatumRegistratie { get; set; }
+
+        public Bedrijf Bedrijf { get; set; }
+        public Contract Contracten { get; set; }
+        #endregion
+
+        #region Constructors
+
+        #endregion
+
+        #region Methods
+
+        #endregion
+
+
     }
 }
