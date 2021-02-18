@@ -12,7 +12,8 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Properties
-        public int Bedrijfsnaam { get; set; }
+        public int BedrijfsID { get; set; }
+        public string Bedrijfsnaam { get; set; }
         public int[] Telefoonnummers { get; set; }
         public string LandHoofdzetel { get; set; }
         public string Straat { get; set; }

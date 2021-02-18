@@ -12,6 +12,7 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Properties
+        public int BijlageID { get; set; }
         public string BestandType { get; set; }
         public string Omschrijving { get; set; }
 

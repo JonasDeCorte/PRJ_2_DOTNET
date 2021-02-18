@@ -17,6 +17,7 @@ namespace projecten2.Models.Domain
         public string Beschrijving { get; set; }
 
         public Ticket Ticket { get; set; }
+        public int TicketId { get; set; }
         #endregion
 
         #region Constructors

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using projecten2.Data;
 
 namespace projecten2
 {
@@ -13,6 +14,12 @@ namespace projecten2
     {
         public static void Main(string[] args)
         {
+            using (ApplicationDbContext context = new ApplicationDbContext()) {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                Console.WriteLine("Database created");
+                }
+           
             CreateHostBuilder(args).Build().Run();
         }
 

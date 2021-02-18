@@ -23,12 +23,16 @@ namespace projecten2.Models.Domain
         public TicketStatus TicketStatus { get; set; }
         public Rapport Rapport { get; set; }
         public Contract Contract { get; set; }
+
         public ICollection<Bijlage> Bijlages { get; set; }
         public Bijlage Oplossing { get; set; }
         #endregion
 
         #region Constructors
-
+        public Ticket()
+        {
+            Bijlages = new List<Bijlage>();
+        }
         #endregion
 
         #region Methods

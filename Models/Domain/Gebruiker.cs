@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace projecten2.Models.Domain
 {
-    public class Gebruiker
+    public abstract class Gebruiker
     {
 
         #region Fields
@@ -13,6 +13,7 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Properties
+        public int GebruikerID { get; set; }
         public string GebruikersNaam { get; set; }
         public string Wachtwoord { get; set; }
         public string Voornaam { get; set; }

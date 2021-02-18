@@ -16,8 +16,8 @@ namespace projecten2.Models.Domain
         public string Naam { get; set; }
         public string Status { get; set; }
         public DateTime TijdstippenTicketAanmaken { get; set; }
-        public int MaximaleAfhaaltijd { get; set; }
-        public int MinimaleAfhaaltijd { get; set; }
+        public DateTime MaximaleAfhaaltijd { get; set; }
+        public DateTime MinimaleAfhaaltijd { get; set; }
         public double Prijs { get; set; }
 
         public ManierTicketAanmaken ManierTicketAanmaken { get; set; }
