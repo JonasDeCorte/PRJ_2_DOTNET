@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using projecten2.Data.Mappers;
 using projecten2.Models.Domain;
 
 namespace projecten2.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext
     {
         
         public DbSet<Bedrijf> Bedrijven { get; set; }
@@ -22,6 +23,10 @@ namespace projecten2.Data
         public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Klant> Klanten { get; set; }
         public DbSet<SupportManager> SupportManagers { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options) {
+        }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

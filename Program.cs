@@ -14,11 +14,11 @@ namespace projecten2
     {
         public static void Main(string[] args)
         {
-            using (ApplicationDbContext context = new ApplicationDbContext()) {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-                Console.WriteLine("Database created");
-                }
+            //using (ApplicationDbContext context = new ApplicationDbContext()) {
+             //   context.Database.EnsureDeleted();
+              //  context.Database.EnsureCreated();
+              //  Console.WriteLine("Database created");
+             //   }
            
             CreateHostBuilder(args).Build().Run();
         }
