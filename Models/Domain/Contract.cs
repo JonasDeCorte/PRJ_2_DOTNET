@@ -20,7 +20,6 @@ namespace projecten2.Models.Domain
         public Klant Klant { get; set; }
         public ContractStatus ContractStatus { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
-
         public ContractType ContractType {get; set;}  
         #endregion
 
