@@ -7,5 +7,6 @@ namespace projecten2.Models.Domain
 {
     public interface IIdentityUser
     {
+       
     }
 }
