@@ -20,7 +20,17 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Constructors
+        public Bedrijf()
+        {
 
+        }
+        public Bedrijf(string Bnaam, int[] nummers, string hoofdzetel, string straat)
+        {
+          this.Bedrijfsnaam = Bnaam;
+            this.Telefoonnummers = nummers;
+            this.LandHoofdzetel = hoofdzetel;
+            this.Straat = straat;
+        }
         #endregion
 
         #region Methods

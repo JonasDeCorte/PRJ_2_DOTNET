@@ -43,12 +43,6 @@
   </Class>
   <Class Name="projecten2.Models.Domain.Ticket">
     <Position X="9" Y="3.25" Width="3.25" />
-    <AssociationLine Name="Rapport" Type="projecten2.Models.Domain.Rapport" FixedToPoint="true">
-      <Path>
-        <Point X="11.25" Y="3.25" />
-        <Point X="11.25" Y="2.18" />
-      </Path>
-    </AssociationLine>
     <AssociationLine Name="TicketStatus" Type="projecten2.Models.Domain.TicketStatus" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="12.25" Y="3.681" />
@@ -56,10 +50,10 @@
         <Point X="14" Y="2.931" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Bijlages" Type="projecten2.Models.Domain.Bijlage" FixedToPoint="true">
+    <AssociationLine Name="Rapport" Type="projecten2.Models.Domain.Rapport" FixedToPoint="true">
       <Path>
-        <Point X="12.25" Y="5.25" />
-        <Point X="13.75" Y="5.25" />
+        <Point X="11.25" Y="3.25" />
+        <Point X="11.25" Y="2.18" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Contract" Type="projecten2.Models.Domain.Contract" FixedToPoint="true">
@@ -68,16 +62,22 @@
         <Point X="10.375" Y="7.5" />
       </Path>
     </AssociationLine>
+    <AssociationLine Name="Bijlages" Type="projecten2.Models.Domain.Bijlage" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="5.25" />
+        <Point X="13.75" Y="5.25" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAgAAAAAEAAAAAAAAAQAAAAAAQAoIEAUAAA=</HashCode>
       <FileName>Models\Domain\Ticket.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Rapport" />
-      <Property Name="TicketStatus" />
-      <Property Name="Oplossing" />
-      <Property Name="Contract" />
       <Property Name="Gebruiker" />
+      <Property Name="TicketStatus" />
+      <Property Name="Rapport" />
+      <Property Name="Contract" />
+      <Property Name="Oplossing" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Bijlages" />
@@ -146,8 +146,8 @@
     <Position X="14.25" Y="7.25" Width="3.5" />
     <AssociationLine Name="Contracten" Type="projecten2.Models.Domain.Contract" FixedFromPoint="true">
       <Path>
-        <Point X="14.25" Y="8.056" />
-        <Point X="12.25" Y="8.056" />
+        <Point X="14.25" Y="8.217" />
+        <Point X="12.25" Y="8.217" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>

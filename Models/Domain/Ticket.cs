@@ -24,14 +24,26 @@ namespace projecten2.Models.Domain
         public Rapport Rapport { get; set; }
         public Contract Contract { get; set; }
 
-        public ICollection<Bijlage> Bijlages { get; set; }
+        public List<Bijlage> Bijlages { get; set; }
         public Bijlage Oplossing { get; set; }
         #endregion
 
         #region Constructors
         public Ticket()
         {
-            Bijlages = new List<Bijlage>();
+
+        }
+        public Ticket(string titel, string type, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker, Contract contract)
+        {
+            this.Titel = titel;
+            this.Type = type;
+            this.AanmaakDatum = aanmaakDatum;
+            this.Omschrijving = omschrijving;
+            this.Opmerkingen = opmerkingen;
+            this.Gebruiker = gebruiker;
+            this.Contract = contract;
+            this.TicketStatus = TicketStatus.AANGEMAAKT;
+            this.Bijlages = new List<Bijlage>();
         }
         #endregion
 

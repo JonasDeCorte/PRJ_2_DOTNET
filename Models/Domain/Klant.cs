@@ -17,12 +17,23 @@ namespace projecten2.Models.Domain
         public DateTime DatumRegistratie { get; set; }
 
 
-        public ICollection<Bedrijf> Bedrijf { get; set; }
+        public List<Bedrijf> Bedrijf { get; set; }
         public ICollection<Contract> Contracten { get; set; }
         #endregion
 
         #region Constructors
+        public Klant()
+        {
 
+        }
+        public Klant(int klantNummer, string gegevensContactPersonen, DateTime registratie)
+        {
+            this.KlantNummer = klantNummer;
+            this.GegevensContactPersonen = gegevensContactPersonen;
+            this.DatumRegistratie = registratie;
+       
+        }
+      
         #endregion
 
         #region Methods

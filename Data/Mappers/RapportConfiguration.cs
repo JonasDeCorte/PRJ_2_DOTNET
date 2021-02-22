@@ -14,8 +14,8 @@ namespace projecten2.Data.Mappers
         {
             builder.ToTable("Rapport");
             builder.HasKey(x => x.RapportNr);
-            builder.Property(x => x.RapportNaam).IsRequired().HasMaxLength(25);
-            builder.Property(x => x.Beschrijving).IsRequired().HasMaxLength(25);
+            builder.Property(x => x.RapportNaam).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Beschrijving).IsRequired().HasMaxLength(50);
         }
     }
 }

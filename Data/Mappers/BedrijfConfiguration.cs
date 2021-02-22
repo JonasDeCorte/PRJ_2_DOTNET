@@ -22,7 +22,7 @@ namespace projecten2.Data.Mappers
             builder.ToTable("Bedrijf");
             builder.HasKey(x => x.BedrijfsID);
             builder.Property(x => x.Bedrijfsnaam).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.LandHoofdzetel).IsRequired().HasMaxLength(15);
+            builder.Property(x => x.LandHoofdzetel).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Telefoonnummers).HasConversion(converter);
             builder.Property(x => x.Straat).HasMaxLength(25);
 

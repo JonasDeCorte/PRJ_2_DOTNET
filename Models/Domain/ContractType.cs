@@ -25,7 +25,19 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Constructors
+        public ContractType()
+        {
 
+        }
+        public ContractType(string naam, string status, DateTime tijdstipaanmaken, DateTime maxAfhaaltijd, DateTime minAfhaaltijd, double prijs)
+        {
+            this.Naam = naam;
+            this.Status = status;
+            this.TijdstippenTicketAanmaken = tijdstipaanmaken;
+            this.MaximaleAfhaaltijd = maxAfhaaltijd;
+            this.MinimaleAfhaaltijd = minAfhaaltijd;
+            this.Prijs = prijs;
+        }
         #endregion
 
         #region Methods

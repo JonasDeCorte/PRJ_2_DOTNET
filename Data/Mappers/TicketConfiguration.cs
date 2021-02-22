@@ -17,8 +17,8 @@ namespace projecten2.Data.Mappers
             builder.HasKey(x => x.TicketNr);
             
          
-            builder.Property(x => x.Titel).IsRequired().HasMaxLength(15);
-            builder.Property(x => x.Type).IsRequired().HasMaxLength(15);
+            builder.Property(x => x.Titel).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Type).IsRequired().HasMaxLength(50);
             builder.Property(x => x.AanmaakDatum).IsRequired();
             builder.Property(x => x.Omschrijving).IsRequired().HasMaxLength(100);
             builder.Property(x => x.Opmerkingen).IsRequired().HasMaxLength(100);

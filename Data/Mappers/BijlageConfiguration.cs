@@ -15,7 +15,7 @@ namespace projecten2.Data.Mappers
             builder.ToTable("Bijlage");
             builder.HasKey(x => x.BijlageID);
             builder.Property(x => x.Omschrijving).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.BestandType).IsRequired().HasMaxLength(15);
+            builder.Property(x => x.BestandType).IsRequired().HasMaxLength(50);
             
             
         }
