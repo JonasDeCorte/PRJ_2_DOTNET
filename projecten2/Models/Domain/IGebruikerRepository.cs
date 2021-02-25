@@ -7,7 +7,7 @@ namespace projecten2.Models.Domain
 {
     public interface IGebruikerRepository
     {
-        Gebruiker GetByGebruikersNaam(string gebruikersnaam);
+        Gebruiker GetByEmail(string email);
         IEnumerable<Gebruiker> GetAll();
         
         void SaveChanges();
