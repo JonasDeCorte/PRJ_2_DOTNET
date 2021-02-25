@@ -17,19 +17,16 @@ namespace projecten2.Data.Repositories
             _context = context;
             _Gebruikers = _context.Gebruikers;
         }
-        public void Add(Gebruiker gebruiker)
-        {
-            _Gebruikers.Add(gebruiker);
-        }
+      
 
         public IEnumerable<Gebruiker> GetAll()
         {
             return _Gebruikers.OrderBy(x => x.Naam).ToList();
         }
 
-        public Gebruiker GetByGebruikersNaam(string gebruikersnaam)
+        public Gebruiker GetByEmail(string email)
         {
-            return _Gebruikers.FirstOrDefault(x => x.GebruikersNaam.ToLower().Equals(gebruikersnaam.ToLower()));
+            return _Gebruikers.FirstOrDefault(x => x.Email.ToLower().Equals(email.ToLower()));
         }
 
         public void SaveChanges()
