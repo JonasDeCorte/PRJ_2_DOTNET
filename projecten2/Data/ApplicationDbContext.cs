@@ -11,7 +11,7 @@ namespace projecten2.Data
 {
     public class ApplicationDbContext: IdentityDbContext
     {
-        
+        // refactoring nodig
         public DbSet<Bedrijf> Bedrijven { get; set; }
         
         public DbSet<Bijlage> Bijlagen { get; set; }

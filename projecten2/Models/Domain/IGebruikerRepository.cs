@@ -9,7 +9,7 @@ namespace projecten2.Models.Domain
     {
         Gebruiker GetByGebruikersNaam(string gebruikersnaam);
         IEnumerable<Gebruiker> GetAll();
-        void Add(Gebruiker gebruiker);
+        
         void SaveChanges();
     }
 }
