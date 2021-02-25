@@ -1,0 +1,69 @@
+﻿body {
+    
+}
+.myCreateButton {
+   position: relative;
+}
+    .myCreateButton p {
+        text-align: center;
+    }
+
+    .myCreateButton a {
+        position: absolute;
+        right: 10px;
+        top: 25px;
+    }
+.layoutingHeader {
+    background-color: red;
+    display: flex;
+    flex-direction: row; 
+  
+}
+/*
+    .layoutingHeader h1 {
+         width: 500px;
+        align-items: stretch;
+        background-color: orchid;
+    }
+    .layoutingHeader  img {
+        
+        width: 75px;
+        height: 75px;
+        
+    }
+    .layoutingHeader h5 {
+        width: 250px;
+        align-self: center;
+        justify-content: flex-end;
+        background-color: palegreen;
+    }
+    .layoutingHeader a {
+        width: 150px;
+    }
+ */
+.header {
+    height: 150px;
+    overflow: hidden;
+    background-color: cyan;
+   
+}
+
+    .header img {
+       height: 75px;
+       width: 75px;
+        text-align: center;
+     
+    }
+
+.headera.title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+.header-right {
+    float: right;
+}
+
+    

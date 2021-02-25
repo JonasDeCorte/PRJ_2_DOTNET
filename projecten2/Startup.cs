@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using projecten2.Data;
+using projecten2.Data.Repositories;
 using projecten2.Models.Domain;
 using System.Security.Claims;
 
@@ -34,6 +35,9 @@ namespace projecten2
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSession();
+            services.AddScoped<IContractRepository, ContractRepository>();
+            services.AddScoped<IGebruikerRepository, GebruikerRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<Projecten2DataInitializer>();
         }
 

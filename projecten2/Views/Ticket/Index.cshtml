@@ -1,0 +1,86 @@
+﻿@model IEnumerable<projecten2.Models.Domain.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
+<div class="header">
+    <h1 class="title"> Mijn Tickets</h1>
+    <div class="header-right">
+        <h5>Username</h5>
+        <img class="img-thumbnail" src="~/download.png" />
+        <a class="badge badge-info" asp-action="">settings</a>
+    </div>
+</div>
+<div style="padding-left:20px">
+
+    <div class="myCreateButton">
+        <h2>Overzicht van mijn bestaande tickets</h2>
+        <p>
+            <a class="btn btn-primary" role="button" asp-action="Create">Nieuw ticket aanmaken</a>
+        </p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TicketNr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AanmaakDatum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Omschrijving)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Opmerkingen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TicketStatus)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AanmaakDatum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Omschrijving)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Opmerkingen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketStatus)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
