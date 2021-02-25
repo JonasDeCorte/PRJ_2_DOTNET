@@ -7,7 +7,11 @@ namespace projecten2.Models.Domain
 {
     public interface IGebruikerRepository
     {
+<<<<<<< Updated upstream
         Gebruiker GetByEmail(string email);
+=======
+        Gebruiker GetByEmail(string gebruikersnaam);
+>>>>>>> Stashed changes
         IEnumerable<Gebruiker> GetAll();
         
         void SaveChanges();
