@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace projecten2.Models.Domain
 {
-    public abstract class Gebruiker
+    public abstract class Gebruiker:IdentityUser
     {
 
         #region Fields
@@ -13,12 +14,11 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Properties
-        public int GebruikerID { get; set; }
-        public string GebruikersNaam { get; set; }
-        public string Wachtwoord { get; set; }
+        //public string GebruikersNaam { get; set; }
+        //public string Wachtwoord { get; set; }
         public string Voornaam { get; set; }
         public string Naam { get; set; }
-        public string Email { get; set; }
+        //public string Email { get; set; }
         public bool Status { get; set; }
 
         public ICollection<Ticket> Tickets { get; set; }
@@ -26,8 +26,21 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Constructors
+        public Gebruiker()
+        {
 
-        #endregion
+        }
+       /* public Gebruiker ( string gebruikersNaam,string wachtwoord,string voornaam,string naam,string email,bool status)
+        {
+            
+            GebruikersNaam = gebruikersNaam;
+            Wachtwoord = wachtwoord;
+            Voornaam = voornaam;
+            Naam = naam;
+            Email = email;
+            Status = status;
+        }*/
+            #endregion
 
         #region Methods
         public void TicketAanmaken()

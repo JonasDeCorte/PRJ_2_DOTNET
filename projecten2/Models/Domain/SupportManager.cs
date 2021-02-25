@@ -18,11 +18,25 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Constructors
+        public SupportManager()
+        {
 
-        #endregion
+        }
+        /*public SupportManager( string gebruikersNaam,string wachtwoord,
+            string voornaam,string naam,string email,bool status)
+        {
+            
+            GebruikersNaam = gebruikersNaam;
+            Wachtwoord = wachtwoord;
+            Voornaam = voornaam;
+            Naam = naam;
+            Email = email;
+            Status = status;
+        }*/
+    #endregion
 
-        #region Methods
-        public void KlantAanmaken()
+    #region Methods
+    public void KlantAanmaken()
         {
 
         }

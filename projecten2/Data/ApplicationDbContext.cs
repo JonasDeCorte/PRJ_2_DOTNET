@@ -9,7 +9,7 @@ using projecten2.Models.Domain;
 
 namespace projecten2.Data
 {
-    public class ApplicationDbContext: IdentityDbContext
+    public class ApplicationDbContext: IdentityDbContext<Gebruiker>
     {
         // refactoring nodig
         public DbSet<Bedrijf> Bedrijven { get; set; }

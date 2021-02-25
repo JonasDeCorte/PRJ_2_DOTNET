@@ -11,9 +11,9 @@ namespace projecten2.Data
     public class Projecten2DataInitializer
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<Gebruiker> _userManager;
 
-        public Projecten2DataInitializer(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
+        public Projecten2DataInitializer(ApplicationDbContext dbContext, UserManager<Gebruiker> userManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;
@@ -66,15 +66,19 @@ namespace projecten2.Data
                 private async Task InitializeUsersAndCustomers()
         {
             string eMailAddress = "supportManager@hogent.be";
-            IdentityUser user = new IdentityUser { UserName = eMailAddress, Email = eMailAddress };
-            await _userManager.CreateAsync(user, "P@ssword1");
-            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "admin"));
+            Gebruiker support = new SupportManager {UserName = "supportManager@hogent.be",
+                Wachtwoord= "P@ssword1", Voornaam="Andy",
+                Naam= "Depoortere",Email = eMailAddress, Status =true };
+            await _userManager.CreateAsync(support, "P@ssword1");
+            await _userManager.AddClaimAsync(support, new Claim(ClaimTypes.Role, "admin"));
 
             eMailAddress = "klant@hogent.be";
-            user = new IdentityUser { UserName = eMailAddress, Email = eMailAddress };
-            await _userManager.CreateAsync(user, "P@ssword1");
-            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "klant"));
-
+            Gebruiker klant = new Klant{ UserName = "klant@hogent.be",
+                Wachtwoord = "P@ssword1",Voornaam= "Candace",
+                Naam="Devlieger",Email= eMailAddress,Status= true,KlantNummer= 0001,GegevensContactPersonen="gegevensContactPersonen",DatumRegistratie= new DateTime(24/02/2021) };
+            await _userManager.CreateAsync(klant, "P@ssword1");
+            await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
+           
 
 
             var customer = new Klant

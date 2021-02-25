@@ -26,11 +26,26 @@ namespace projecten2.Models.Domain
         {
 
         }
+        /*public Klant ( string gebruikersNaam, string wachtwoord, 
+            string voornaam, string naam, string email, bool status, int klantNummer, 
+            string gegevensContactPersonen, DateTime registratie)
+        {
+            
+            GebruikersNaam = gebruikersNaam;
+            Wachtwoord = wachtwoord;
+            Voornaam = voornaam;
+            Naam = naam;
+            Email = email;
+            Status = status;
+            KlantNummer = klantNummer;
+            GegevensContactPersonen = gegevensContactPersonen;
+            DatumRegistratie = registratie;
+        }*/
         public Klant(int klantNummer, string gegevensContactPersonen, DateTime registratie)
         {
-            this.KlantNummer = klantNummer;
-            this.GegevensContactPersonen = gegevensContactPersonen;
-            this.DatumRegistratie = registratie;
+            KlantNummer = klantNummer;
+            GegevensContactPersonen = gegevensContactPersonen;
+            DatumRegistratie = registratie;
        
         }
       
