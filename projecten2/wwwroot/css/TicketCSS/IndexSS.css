@@ -1,69 +1,39 @@
 ﻿body {
     
 }
-.myCreateButton {
-   position: relative;
-}
-    .myCreateButton p {
-        text-align: center;
-    }
 
-    .myCreateButton a {
-        position: absolute;
-        right: 10px;
-        top: 25px;
-    }
-.layoutingHeader {
-    background-color: red;
-    display: flex;
-    flex-direction: row; 
+.myCreateButton {
+  display: inline;
   
 }
-/*
-    .layoutingHeader h1 {
-         width: 500px;
-        align-items: stretch;
-        background-color: orchid;
-    }
-    .layoutingHeader  img {
-        
-        width: 75px;
-        height: 75px;
-        
-    }
-    .layoutingHeader h5 {
-        width: 250px;
-        align-self: center;
-        justify-content: flex-end;
-        background-color: palegreen;
-    }
-    .layoutingHeader a {
-        width: 150px;
-    }
- */
-.header {
-    height: 150px;
-    overflow: hidden;
-    background-color: cyan;
-   
-}
+    .myCreateButton a {
+        float: left;
+        top: 0;
 
-    .header img {
-       height: 75px;
-       width: 75px;
-        text-align: center;
-     
     }
-
-.headera.title {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-
-
-.header-right {
-    float: right;
-}
 
     
+
+#right-side {
+    display: inline;
+    float: right;
+    text-align: right;
+}
+
+#profile-pic {
+    left: 0;
+    float: left;
+    width: 50px;
+}
+
+#profile-name {
+    margin-left: 55px;
+    top: 0;
+}
+
+
+#profilepic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
