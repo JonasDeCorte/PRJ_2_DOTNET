@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Repositories\" />
+    <None Include="wwwroot\css\TicketCSS\IndexSS.css" />
   </ItemGroup>
 
   <ItemGroup>

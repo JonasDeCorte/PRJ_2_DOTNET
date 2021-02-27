@@ -47,14 +47,20 @@ namespace projecten2.Data
                 _dbContext.SaveChanges();
             }
 
-
+            if (!_dbContext.TicketTypes.Any()) {
+                TicketType type_1 = new TicketType("PRODUCTIE_GEIMPACTEERD_BINNEN_2U_OPLOSSING", "HIGHEST PRIORITY");
+                TicketType type_2 = new TicketType("PRODUCTIE_ZAL_STIL_VALLEN_BINNEN_4U_OPLOSSING", "MEDIUM PRIORITY");
+                TicketType type_3 = new TicketType("GEEN_PRODUCTIE_IMPACT_BINNEN_3DAGEN_ANTWOORD", "LOW PRIORITY");
+                _dbContext.TicketTypes.AddRange(type_1, type_2, type_3);
+                _dbContext.SaveChanges();
+            }
             if (!_dbContext.Tickets.Any()) {
-
+                TicketType[] types = _dbContext.TicketTypes.ToArray();
                 Klant k1 = _dbContext.Klanten.First();
                 Contract contract =  _dbContext.Contracten.First();
-                Ticket ticket1 = new Ticket("Ticket1", "TESTEN", DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1, contract);
-                Ticket ticket2 = new Ticket("Ticket2", "TESTEN2", DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1, contract);
-                Ticket ticket3 = new Ticket("Ticket3", "TESTEN3", DateTime.Now, "TEST T3", "NOG STEEDS EEN TEST TICKET3", k1, contract);
+                Ticket ticket1 = new Ticket("Ticket1", types[0], DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1, contract);
+                Ticket ticket2 = new Ticket("Ticket2", types[1], DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1, contract);
+                Ticket ticket3 = new Ticket("Ticket3", types[2], DateTime.Now, "TEST T3", "NOG STEEDS EEN TEST TICKET3", k1, contract);
 
                 _dbContext.Tickets.AddRange(ticket1, ticket2, ticket3);
                 _dbContext.SaveChanges();

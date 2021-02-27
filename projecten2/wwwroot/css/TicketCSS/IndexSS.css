@@ -1,0 +1,39 @@
+﻿body {
+    
+}
+
+.myCreateButton {
+  display: inline;
+  
+}
+    .myCreateButton a {
+        float: left;
+        top: 0;
+
+    }
+
+    
+
+#right-side {
+    display: inline;
+    float: right;
+    text-align: right;
+}
+
+#profile-pic {
+    left: 0;
+    float: left;
+    width: 50px;
+}
+
+#profile-name {
+    margin-left: 55px;
+    top: 0;
+}
+
+
+#profilepic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}

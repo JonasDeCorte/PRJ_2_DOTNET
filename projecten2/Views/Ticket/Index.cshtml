@@ -1,0 +1,89 @@
+﻿@model IEnumerable<projecten2.Models.Domain.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
+
+    <ul id="right-side">
+        <div id="profile-pic">
+            <img src="https://i.stack.imgur.com/34AD2.jpg" id="profilepic">
+        </div>
+        <div id="profile-name">
+            User Name
+        </div>
+    </ul>
+
+
+
+<div class="myCreateButton">
+    <h2>Overzicht van mijn bestaande tickets</h2>
+    <p>
+        <a class="btn btn-primary" role="button" asp-action="Create">Nieuw ticket aanmaken</a>
+    </p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketType.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AanmaakDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Omschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opmerkingen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketNr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketType.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AanmaakDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Omschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opmerkingen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketStatus)
+                </td>
+                <td>
+                    <a asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">Edit</a>
+                    <a asp-controller="Ticket" asp-action="Details" asp-route-id="@item.TicketNr">Details</a>
+              
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
