@@ -23,11 +23,14 @@ namespace projecten2.Data
         public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Klant> Klanten { get; set; }
         public DbSet<SupportManager> SupportManagers { get; set; }
+        public DbSet<TicketType> TicketTypes { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
         }
-        
+
+      
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionstring = @"Server=.;Database=Projecten2;Integrated Security=true;";
@@ -51,6 +54,7 @@ namespace projecten2.Data
             modelBuilder.ApplyConfiguration(new ContractTypeConfiguration());
             modelBuilder.ApplyConfiguration(new RapportConfiguration());
             modelBuilder.ApplyConfiguration(new KlantConfiguration());
+            modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
         }
     }
 }

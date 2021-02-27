@@ -38,6 +38,7 @@ namespace projecten2
             services.AddScoped<IContractRepository, ContractRepository>();
             services.AddScoped<IGebruikerRepository, GebruikerRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
             services.AddScoped<Projecten2DataInitializer>();
         }
 

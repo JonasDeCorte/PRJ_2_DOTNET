@@ -10,7 +10,7 @@
   <Class Name="projecten2.Models.Domain.Gebruiker">
     <Position X="2.75" Y="2.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAYAAAAkACAAAVAAAAQgBAAAEABgAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAYAAAAkAAAAAFAAAAAgBAAAAABgAAAABAAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\Gebruiker.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -45,9 +45,9 @@
     <Position X="9" Y="3.25" Width="3.25" />
     <AssociationLine Name="TicketStatus" Type="projecten2.Models.Domain.TicketStatus" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="12.25" Y="3.681" />
-        <Point X="14" Y="3.681" />
-        <Point X="14" Y="2.931" />
+        <Point X="12.25" Y="3.648" />
+        <Point X="13.25" Y="3.648" />
+        <Point X="13.25" Y="2.431" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Rapport" Type="projecten2.Models.Domain.Rapport" FixedToPoint="true">
@@ -58,7 +58,7 @@
     </AssociationLine>
     <AssociationLine Name="Contract" Type="projecten2.Models.Domain.Contract" FixedToPoint="true">
       <Path>
-        <Point X="10.375" Y="5.767" />
+        <Point X="10.375" Y="5.574" />
         <Point X="10.375" Y="7.5" />
       </Path>
     </AssociationLine>
@@ -69,7 +69,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAgAAAAAEAAAAAAAAAQAAAAAAQAoIEAUAAA=</HashCode>
+      <HashCode>AAAAAAAQAAggAAAAEAAAAAAAAAQAAAAAAAAoIEAUAAA=</HashCode>
       <FileName>Models\Domain\Ticket.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -78,6 +78,7 @@
       <Property Name="Rapport" />
       <Property Name="Contract" />
       <Property Name="Oplossing" />
+      <Property Name="TicketType" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Bijlages" />
@@ -120,7 +121,7 @@
     <AssociationLine Name="Tickets" Type="projecten2.Models.Domain.Ticket" FixedFromPoint="true">
       <Path>
         <Point X="11.312" Y="7.5" />
-        <Point X="11.312" Y="5.767" />
+        <Point X="11.312" Y="5.574" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="ContractType" Type="projecten2.Models.Domain.ContractType" FixedFromPoint="true">
@@ -161,6 +162,13 @@
       <Property Name="Contracten" />
     </ShowAsCollectionAssociation>
   </Class>
+  <Class Name="projecten2.Models.Domain.TicketType">
+    <Position X="14.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Domain\TicketType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="projecten2.Models.Domain.IIdentityUser">
     <Position X="3.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -178,7 +186,7 @@
   <Interface Name="projecten2.Models.Domain.IGebruikerRepository">
     <Position X="16.75" Y="2.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>gAIAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\IGebruikerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -189,8 +197,15 @@
       <FileName>Models\Domain\ITicketRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="projecten2.Models.Domain.ITicketTypeRepository">
+    <Position X="19.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\ITicketTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="projecten2.Models.Domain.TicketStatus">
-    <Position X="13.25" Y="1.5" Width="1.5" />
+    <Position X="12.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAEAACAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Models\Domain\TicketStatus.cs</FileName>

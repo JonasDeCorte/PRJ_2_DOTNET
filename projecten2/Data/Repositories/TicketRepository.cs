@@ -24,14 +24,14 @@ namespace projecten2.Data.Repositories
 
         public IEnumerable<Ticket> GetAll()
         {
-            return _tickets.OrderBy(x => x.TicketStatus).Include(x => x.Gebruiker).ToList();
+            return _tickets.OrderBy(x => x.TicketNr).Include(x => x.TicketType).ToList();
         }
 
         public Ticket GetByTicketNr(int ticketNr)
         {
-            return _tickets.OrderBy(x => x.TicketStatus).Include(x => x.Gebruiker).FirstOrDefault(x => x.TicketNr == ticketNr);
+            return _tickets.Include(x => x.TicketType).FirstOrDefault(x => x.TicketNr == ticketNr);
         }
-
+        
         public void SaveChanges()
         {
             _context.SaveChanges();

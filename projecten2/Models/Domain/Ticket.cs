@@ -14,7 +14,7 @@ namespace projecten2.Models.Domain
         #region Properties
         public int TicketNr { get; set; }
         public string Titel { get; set; }
-        public string Type { get; set; }
+        public TicketType TicketType { get; set; }
         public DateTime AanmaakDatum { get; set; }
         public string Omschrijving { get; set; }
         public string Opmerkingen { get; set; }
@@ -33,10 +33,10 @@ namespace projecten2.Models.Domain
         {
 
         }
-        public Ticket(string titel, string type, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker, Contract contract)
+        public Ticket(string titel, TicketType ticketType, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker, Contract contract)
         {
             this.Titel = titel;
-            this.Type = type;
+            this.TicketType = ticketType;
             this.AanmaakDatum = aanmaakDatum;
             this.Omschrijving = omschrijving;
             this.Opmerkingen = opmerkingen;
@@ -50,6 +50,6 @@ namespace projecten2.Models.Domain
         #region Methods
 
         #endregion
-
+      
     }
 }

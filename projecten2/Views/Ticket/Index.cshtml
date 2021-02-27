@@ -34,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.Titel)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.TicketType.Naam)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AanmaakDatum)
@@ -62,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.Titel)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.TicketType.Naam)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AanmaakDatum)
@@ -77,8 +77,9 @@
                     @Html.DisplayFor(modelItem => item.TicketStatus)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    <a asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">Edit</a>
+                    <a asp-controller="Ticket" asp-action="Details" asp-route-id="@item.TicketNr">Details</a>
+              
                 </td>
             </tr>
         }
