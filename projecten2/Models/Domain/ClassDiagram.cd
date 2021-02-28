@@ -157,13 +157,6 @@
       <FileName>Models\Domain\TicketType.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="projecten2.Models.Domain.IIdentityUser">
-    <Position X="3.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Domain\IIdentityUser.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="projecten2.Models.Domain.IContractRepository">
     <Position X="16.75" Y="0.5" Width="2.75" />
     <TypeIdentifier>

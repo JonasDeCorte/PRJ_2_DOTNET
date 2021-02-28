@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using projecten2.Models.Domain;
+using projecten2.Data;
 
 namespace projecten2.Areas.Identity.Pages.Account
 {
@@ -22,23 +23,25 @@ namespace projecten2.Areas.Identity.Pages.Account
         private readonly SignInManager<Gebruiker> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _dbContext;
 
         public LoginModel(SignInManager<Gebruiker> signInManager,
             ILogger<LoginModel> logger,
             UserManager<Gebruiker> userManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _dbContext = context ;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }        
         public string ReturnUrl { get; set; }
 
         [TempData]
@@ -85,10 +88,12 @@ namespace projecten2.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var currentUser = await _userManager.FindByEmailAsync(Input.Gebruikersnaam);
-                var result = await _signInManager.PasswordSignInAsync(currentUser, Input.Wachtwoord, Input.Wachtwoord_onthouden, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(currentUser, Input.Wachtwoord, Input.Wachtwoord_onthouden, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                     _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.UserName });
+                    _dbContext.SaveChanges();
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -102,6 +107,8 @@ namespace projecten2.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.MISLUKT, Username = currentUser.UserName });
+                    _dbContext.SaveChanges();
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

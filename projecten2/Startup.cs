@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using projecten2.Data;
 using projecten2.Data.Repositories;
 using projecten2.Models.Domain;
+using System;
 using System.Security.Claims;
 
 namespace projecten2
@@ -27,6 +28,13 @@ namespace projecten2
             services.AddDbContext<ApplicationDbContext>();
             services.AddDefaultIdentity<Gebruiker>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+            });
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));

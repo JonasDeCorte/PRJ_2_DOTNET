@@ -18,8 +18,8 @@ namespace projecten2.Data
         public DbSet<Contract> Contracten { get; set; }
         public DbSet<ContractType> ContractTypes { get; set; }  
         public DbSet<Rapport> Rapporten { get; set; }     
-        public DbSet<Ticket> Tickets { get; set; }   
-        
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<GebruikerLogin> gebruikerLogins { get; set; }
         public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Klant> Klanten { get; set; }
         public DbSet<SupportManager> SupportManagers { get; set; }
@@ -55,6 +55,7 @@ namespace projecten2.Data
             modelBuilder.ApplyConfiguration(new RapportConfiguration());
             modelBuilder.ApplyConfiguration(new KlantConfiguration());
             modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
+            
         }
     }
 }
