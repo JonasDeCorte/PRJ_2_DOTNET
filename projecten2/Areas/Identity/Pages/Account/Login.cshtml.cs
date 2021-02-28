@@ -46,16 +46,15 @@ namespace projecten2.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            [Required ]
+            public string Gebruikersnaam { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
-            public string Password { get; set; }
+            public string Wachtwoord { get; set; }
 
-            [Display(Name = "Remember me?")]
-            public bool RememberMe { get; set; }
+            [Display(Name = "Wachtwoord onthouden?")]
+            public bool Wachtwoord_onthouden { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -85,8 +84,8 @@ namespace projecten2.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var currentUser = await _userManager.FindByEmailAsync(Input.Email);
-                var result = await _signInManager.PasswordSignInAsync(currentUser, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var currentUser = await _userManager.FindByEmailAsync(Input.Gebruikersnaam);
+                var result = await _signInManager.PasswordSignInAsync(currentUser, Input.Wachtwoord, Input.Wachtwoord_onthouden, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -94,7 +93,7 @@ namespace projecten2.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.Wachtwoord_onthouden });
                 }
                 if (result.IsLockedOut)
                 {
@@ -118,7 +117,7 @@ namespace projecten2.Areas.Identity.Pages.Account
                 return Page();
             }
 
-            var user = await _userManager.FindByEmailAsync(Input.Email);
+            var user = await _userManager.FindByEmailAsync(Input.Gebruikersnaam);
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");

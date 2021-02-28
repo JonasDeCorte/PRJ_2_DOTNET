@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\_Layout.cshtml" />
+    <Content Remove="Areas\Identity\Pages\_Layout1.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\TicketCSS\IndexSS.css" />
   </ItemGroup>
 
