@@ -5,15 +5,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\NewFolder\**" />
     <Compile Remove="UML\**" />
+    <Compile Remove="Views\Gebruiker\**" />
+    <Compile Remove="wwwroot\NewFolder1\**" />
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="Controllers\NewFolder\**" />
     <Content Remove="UML\**" />
+    <Content Remove="Views\Gebruiker\**" />
+    <Content Remove="wwwroot\NewFolder1\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="Controllers\NewFolder\**" />
     <EmbeddedResource Remove="UML\**" />
+    <EmbeddedResource Remove="Views\Gebruiker\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="Controllers\NewFolder\**" />
     <None Remove="UML\**" />
+    <None Remove="Views\Gebruiker\**" />
+    <None Remove="wwwroot\NewFolder1\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\GebruikerController.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\_Layout.cshtml" />
     <Content Remove="Areas\Identity\Pages\_Layout1.cshtml" />
+    <Content Remove="wwwroot\Actemium-sidebar.png" />
   </ItemGroup>
 
   <ItemGroup>
