@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace projecten2.Models.Domain
 {
     public class Klant : Gebruiker
     {
         #region Fields
-        
+
         #endregion
 
         #region Properties
         public int KlantNummer { get; set; }
         public string GegevensContactPersonen { get; set; }
         public DateTime DatumRegistratie { get; set; }
-
 
         public List<Bedrijf> Bedrijf { get; set; }
         public ICollection<Contract> Contracten { get; set; }
@@ -32,7 +29,7 @@ namespace projecten2.Models.Domain
             KlantNummer = klantNummer;
             GegevensContactPersonen = gegevensContactPersonen;
             DatumRegistratie = registratie;
-       
+
         }
 
         public Klant(int klantNummer, string voornaam, string naam, string email, bool status, string gegevensContactPersonen, DateTime registratie)
@@ -48,7 +45,10 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-
+        public void VoegContractToe(Contract contract)
+        {
+            Contracten.Add(contract);
+        }
         #endregion
 
     }
