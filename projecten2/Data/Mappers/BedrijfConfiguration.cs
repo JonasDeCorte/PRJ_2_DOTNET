@@ -15,9 +15,9 @@ namespace projecten2.Data.Mappers
 
         public void Configure(EntityTypeBuilder<Bedrijf> builder)
         {
-            var converter = new ValueConverter<int[], string>(
+            var converter = new ValueConverter<String[], string>(
                v => string.Join(";", v),
-               v => v.Split(";", StringSplitOptions.RemoveEmptyEntries).Select(val => int.Parse(val)).ToArray());
+               v => v.Split(";", StringSplitOptions.RemoveEmptyEntries));
 
             builder.ToTable("Bedrijf");
             builder.HasKey(x => x.BedrijfsID);

@@ -27,7 +27,7 @@ namespace projecten2.Data
                 Console.WriteLine("Database Created");
             }
             if (!_dbContext.Bedrijven.Any()) {
-                int[] nummers = { 0478194517, 0478202122, 0478232425 };
+                String[] nummers = { "+32 517 47 89 65", "+32 586 44 88 66", "+32 886 54 89 63" };
                 Bedrijf BEEGO = new Bedrijf("BEEGO", nummers, "BELGIUM", "OVERAL");
                 Bedrijf Microsoft = new Bedrijf("Microsoft", nummers, "BELGIUM", "1K BrusselsAirport");
                 Bedrijf Apple = new Bedrijf("Apple", nummers, "BELGIUM", "Gulden-Vlieslaan26/28");

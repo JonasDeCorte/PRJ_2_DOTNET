@@ -14,7 +14,7 @@ namespace projecten2.Models.Domain
         #region Properties
         public int BedrijfsID { get; set; }
         public string Bedrijfsnaam { get; set; }
-        public int[] Telefoonnummers { get; set; }
+        public String[] Telefoonnummers { get; set; }
         public string LandHoofdzetel { get; set; }
         public string Straat { get; set; }
         #endregion
@@ -24,7 +24,7 @@ namespace projecten2.Models.Domain
         {
 
         }
-        public Bedrijf(string Bnaam, int[] nummers, string hoofdzetel, string straat)
+        public Bedrijf(string Bnaam, String[] nummers, string hoofdzetel, string straat)
         {
           this.Bedrijfsnaam = Bnaam;
             this.Telefoonnummers = nummers;

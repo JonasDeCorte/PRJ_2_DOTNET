@@ -26,21 +26,7 @@ namespace projecten2.Models.Domain
         {
 
         }
-        /*public Klant ( string gebruikersNaam, string wachtwoord, 
-            string voornaam, string naam, string email, bool status, int klantNummer, 
-            string gegevensContactPersonen, DateTime registratie)
-        {
-            
-            GebruikersNaam = gebruikersNaam;
-            Wachtwoord = wachtwoord;
-            Voornaam = voornaam;
-            Naam = naam;
-            Email = email;
-            Status = status;
-            KlantNummer = klantNummer;
-            GegevensContactPersonen = gegevensContactPersonen;
-            DatumRegistratie = registratie;
-        }*/
+
         public Klant(int klantNummer, string gegevensContactPersonen, DateTime registratie)
         {
             KlantNummer = klantNummer;
@@ -48,7 +34,17 @@ namespace projecten2.Models.Domain
             DatumRegistratie = registratie;
        
         }
-      
+
+        public Klant(int klantNummer, string voornaam, string naam, string email, bool status, string gegevensContactPersonen, DateTime registratie)
+        {
+            KlantNummer = klantNummer;
+            Voornaam = voornaam;
+            Naam = naam;
+            Email = email;
+            Status = status;
+            GegevensContactPersonen = gegevensContactPersonen;
+            DatumRegistratie = registratie;
+        }
         #endregion
 
         #region Methods
