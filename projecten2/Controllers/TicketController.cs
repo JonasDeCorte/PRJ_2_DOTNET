@@ -21,62 +21,68 @@ namespace projecten2.Controllers
             _ticketTypeRepository = ticketTypeRepository;
         }
         // GET: TicketController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             IEnumerable<Ticket> tickets = _ticketRepository.GetAll();
             return View(tickets);
         }
 
         // GET: TicketController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: TicketController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            return View();
+            ViewData["IsEdit"] = false;
+            ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
+            return View(nameof(Edit), new TicketEditViewModel());
         }
 
         // POST: TicketController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(TicketEditViewModel tevm)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Ticket ticket = new Ticket();
+                MapTicketEditViewModelToTicket(tevm, ticket);
+                _ticketRepository.Add(ticket);
+                _ticketRepository.SaveChanges();
+                TempData["message"] = $"You successfully created ticket ${ticket.Titel}";
             }
             catch
             {
-                return View();
+                TempData["error"] = "Sorry, something went wrong, the ticket was not added...";
             }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TicketController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             Ticket ticket = _ticketRepository.GetByTicketNr(id);
-              
-            SelectList selectLists = new SelectList(_ticketTypeRepository.GetAll(), nameof(TicketType.id),nameof(TicketType.Naam));
-            ViewData["ticketTypes"] = selectLists;
+            ViewData["IsEdit"] = true;
+            ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(new TicketEditViewModel(ticket));
         }
 
         // POST: TicketController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, TicketEditViewModel tevm)
+        public IActionResult Edit(int id, TicketEditViewModel tevm)
         {
             Ticket ticket = null;
             try
             {
-                 ticket = _ticketRepository.GetByTicketNr(id);
+                ticket = _ticketRepository.GetByTicketNr(id);
                 MapTicketEditViewModelToTicket(tevm, ticket);
                 _ticketRepository.SaveChanges();
                 TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
-               
+
             }
             catch
             {
@@ -86,7 +92,7 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }
@@ -94,7 +100,7 @@ namespace projecten2.Controllers
         // POST: TicketController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
@@ -105,13 +111,21 @@ namespace projecten2.Controllers
                 return View();
             }
         }
+
+        private SelectList GetTicketTypesAsSelectList()
+        {
+            return new SelectList(_ticketTypeRepository.GetAll(), 
+                nameof(TicketType.id), 
+                nameof(TicketType.Naam));
+        }
+
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
         {
             ticket.TicketNr = TicketEditViewModel.TicketNr;
             ticket.Titel = TicketEditViewModel.Titel;
             ticket.TicketType = TicketEditViewModel.TicketType;
-          ticket.Omschrijving = TicketEditViewModel.Omschrijving;
-           ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
+            ticket.Omschrijving = TicketEditViewModel.Omschrijving;
+            ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿@model projecten2.Models.ViewModels.TicketEditViewModel
 
-@{
-    ViewData["Title"] = "Edit";
-}
+@{ ViewData["Title"] = (bool)ViewData["IsEdit"] ? "Ticket wijzigen" : "Nieuw ticket aanmaken"; }
 
-<h1>Edit</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>TicketEditViewModel</h4>
+<!--<h4>TicketEditViewModel</h4> -->
 <hr />
 <div class="row">
     <div class="col-md-4">
