@@ -31,8 +31,9 @@ namespace projecten2.Models.Domain
         #region Constructors
         public Ticket()
         {
-
-        }
+            this.AanmaakDatum = DateTime.Now;
+            this.TicketStatus = TicketStatus.AANGEMAAKT;
+        }      
         public Ticket(string titel, int ticketTypeId, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker, Contract contract)
         {
             this.Titel = titel;

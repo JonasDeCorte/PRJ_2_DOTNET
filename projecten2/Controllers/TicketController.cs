@@ -52,7 +52,7 @@ namespace projecten2.Controllers
             try
             {
                 Ticket ticket = new Ticket();
-                MapTicketEditViewModelToTicket(tevm, ticket);
+               MapTicketEditViewModelToTicket(tevm, ticket);
                 _ticketRepository.Add(ticket);
                 _ticketRepository.SaveChanges();
                 TempData["message"] = $"You successfully created ticket ${ticket.Titel}";
@@ -88,7 +88,7 @@ namespace projecten2.Controllers
                 try
                 {
                     ticket = _ticketRepository.GetByTicketNr(id);
-                    MapTicketEditViewModelToTicket(tevm, ticket);
+                   MapTicketEditViewModelToTicket(tevm, ticket);
                     _ticketRepository.SaveChanges();
                     TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
 
@@ -134,11 +134,12 @@ namespace projecten2.Controllers
         }
 
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
-        {         
+        {        
             ticket.Titel = TicketEditViewModel.Titel;
             ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
         }
+      
     }
 }
