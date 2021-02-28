@@ -24,6 +24,9 @@ namespace projecten2.Controllers
         public IActionResult Index()
         {
             IEnumerable<Ticket> tickets = _ticketRepository.GetAll();
+            if (tickets == null) {
+                return NotFound();
+            }
             return View(tickets);
         }
 
@@ -65,6 +68,10 @@ namespace projecten2.Controllers
         public IActionResult Edit(int id)
         {
             Ticket ticket = _ticketRepository.GetByTicketNr(id);
+            if(ticket == null)
+            {
+                return NotFound();
+            }
             ViewData["IsEdit"] = true;
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(new TicketEditViewModel(ticket));
@@ -75,20 +82,27 @@ namespace projecten2.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, TicketEditViewModel tevm)
         {
-            Ticket ticket = null;
-            try
-            {
-                ticket = _ticketRepository.GetByTicketNr(id);
-                MapTicketEditViewModelToTicket(tevm, ticket);
-                _ticketRepository.SaveChanges();
-                TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
+            if (ModelState.IsValid)
+           {
+                Ticket ticket = null;
+                try
+                {
+                    ticket = _ticketRepository.GetByTicketNr(id);
+                    MapTicketEditViewModelToTicket(tevm, ticket);
+                    _ticketRepository.SaveChanges();
+                    TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
 
+                }
+                catch(Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                   // TempData["error"] = $"Sorry, something went wrong, ticket {ticket?.TicketNr} was not updated...";
+                }
+                return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                TempData["error"] = $"Sorry, something went wrong, ticket {ticket?.TicketNr} was not updated...";
-            }
-            return RedirectToAction(nameof(Index));
+            ViewData["IsEdit"] = true;
+            ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
+            return View(nameof(Edit), tevm);
         }
 
         // GET: TicketController/Delete/5
@@ -120,10 +134,9 @@ namespace projecten2.Controllers
         }
 
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
-        {
-            ticket.TicketNr = TicketEditViewModel.TicketNr;
+        {         
             ticket.Titel = TicketEditViewModel.Titel;
-            ticket.TicketType = TicketEditViewModel.TicketType;
+            ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
         }

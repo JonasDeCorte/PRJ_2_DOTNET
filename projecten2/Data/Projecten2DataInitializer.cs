@@ -55,12 +55,12 @@ namespace projecten2.Data
                 _dbContext.SaveChanges();
             }
             if (!_dbContext.Tickets.Any()) {
-                TicketType[] types = _dbContext.TicketTypes.ToArray();
+               
                 Klant k1 = _dbContext.Klanten.First();
                 Contract contract =  _dbContext.Contracten.First();
-                Ticket ticket1 = new Ticket("Ticket1", types[0], DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1, contract);
-                Ticket ticket2 = new Ticket("Ticket2", types[1], DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1, contract);
-                Ticket ticket3 = new Ticket("Ticket3", types[2], DateTime.Now, "TEST T3", "NOG STEEDS EEN TEST TICKET3", k1, contract);
+                Ticket ticket1 = new Ticket("Ticket1", 1, DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1, contract);
+                Ticket ticket2 = new Ticket("Ticket2", 2, DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1, contract);
+                Ticket ticket3 = new Ticket("Ticket3", 3, DateTime.Now, "TEST T3", "NOG STEEDS EEN TEST TICKET3", k1, contract);
 
                 _dbContext.Tickets.AddRange(ticket1, ticket2, ticket3);
                 _dbContext.SaveChanges();
