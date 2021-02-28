@@ -49,19 +49,26 @@ namespace projecten2.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(TicketEditViewModel tevm)
         {
-            try
+            if (ModelState.IsValid)
             {
-                Ticket ticket = new Ticket();
-               MapTicketEditViewModelToTicket(tevm, ticket);
-                _ticketRepository.Add(ticket);
-                _ticketRepository.SaveChanges();
-                TempData["message"] = $"You successfully created ticket ${ticket.Titel}";
+                try
+                {
+                    Ticket ticket = new Ticket();
+                    MapTicketEditViewModelToTicket(tevm, ticket);
+                    _ticketRepository.Add(ticket);
+                    _ticketRepository.SaveChanges();
+                    TempData["message"] = $"You successfully created ticket ${ticket.Titel}.";
+                }
+                catch
+                {
+                    TempData["error"] = "Sorry, something went wrong, the ticket was not added...";
+                }
+                return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                TempData["error"] = "Sorry, something went wrong, the ticket was not added...";
-            }
-            return RedirectToAction(nameof(Index));
+            ViewData["IsEdit"] = false;
+            ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
+            return View(nameof(Edit), tevm);
+
         }
 
         // GET: TicketController/Edit/5
