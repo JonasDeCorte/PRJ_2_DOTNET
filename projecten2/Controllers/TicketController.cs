@@ -43,6 +43,7 @@ namespace projecten2.Controllers
         public IActionResult Create()
         {
             ViewData["IsEdit"] = false;
+            ViewData["contractenKlant"] = GetContractenAsSelectList();
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(nameof(Edit), new TicketEditViewModel());
         }
