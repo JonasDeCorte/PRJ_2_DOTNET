@@ -15,6 +15,7 @@ namespace projecten2.Models.Domain
         public int TicketNr { get; set; }
         public string Titel { get; set; }
         public int TicketTypeId { get; set; }
+        public int ContractId { get; set; }
         public DateTime AanmaakDatum { get; set; }
         public string Omschrijving { get; set; }
         public string Opmerkingen { get; set; }
@@ -34,15 +35,15 @@ namespace projecten2.Models.Domain
             this.AanmaakDatum = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
         }      
-        public Ticket(string titel, int ticketTypeId, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker, Contract contract)
+        public Ticket(string titel, int ticketTypeId, int contractId, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker)
         {
             this.Titel = titel;
             this.TicketTypeId = ticketTypeId;
+            this.ContractId = contractId;
             this.AanmaakDatum = aanmaakDatum;
             this.Omschrijving = omschrijving;
             this.Opmerkingen = opmerkingen;
             this.Gebruiker = gebruiker;
-            this.Contract = contract;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
             this.Bijlages = new List<Bijlage>();
         }

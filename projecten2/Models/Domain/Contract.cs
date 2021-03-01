@@ -11,6 +11,8 @@ namespace projecten2.Models.Domain
 
         #region Properties
         public int ContractNr { get; set; }
+        public String ContractTitel { get; set; }
+        public int KlantNr { get; set; }
         public DateTime Doorlooptijd { get; set; }
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
@@ -26,9 +28,10 @@ namespace projecten2.Models.Domain
         {
 
         }
-        public Contract(Klant klant, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+        public Contract(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
         {
-            this.Klant = klant;
+            this.ContractTitel = contractTitel;
+            this.KlantNr = klantNr;
             this.ContractStatus = contractStatus;
             this.StartDatum = StartDatum;
             this.ContractType = type;

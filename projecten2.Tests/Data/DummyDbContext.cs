@@ -36,19 +36,19 @@ namespace projecten2.Tests.Data
             Piet = new Klant(2, "Piet", "Van Steen", "Piet.VanSteen@Microsoft.be", true, "Gegevens Piet", new DateTime(24 / 10 / 2021));
             Sam = new Klant(3, "Sam", "Ross", "Sam.Ross@BEEGO.be", false, "Gegevens Sam", new DateTime(03 / 11 / 2021));
 
-            ContractPiet1 = new Contract(Piet, ContractStatus.LOPEND, new DateTime(24 / 10 / 2021), new ContractType());
-            ContractPiet2 = new Contract(Piet, ContractStatus.LOPEND, new DateTime(20 / 01 / 2022), new ContractType());
-            TicketPiet1 = new Ticket("Titel ticketP1", 1, new DateTime(26 / 11 / 2021), "Omschrijving ticketP1", "Opmerkingen ticketP1", Piet, ContractPiet1);
-            TicketPiet2 = new Ticket("Titel ticketP2 ", 1, new DateTime(13 / 12 / 2021), "Omschrijving ticketP2", "Opmerkingen ticketP2", Piet, ContractPiet1);
-            TicketPiet3 = new Ticket("Titel ticketP3", 2, new DateTime(12 / 02 / 2022), "Omschrijving ticketP3", "Opmerkingen ticketP3", Piet, ContractPiet2);
+            ContractPiet1 = new Contract("Contract Piet 1", 2, ContractStatus.LOPEND, new DateTime(24 / 10 / 2021), new ContractType());
+            ContractPiet2 = new Contract("Contract Piet 2", 2,  ContractStatus.LOPEND, new DateTime(20 / 01 / 2022), new ContractType());
+            TicketPiet1 = new Ticket("Titel ticketP1", 1, 1, new DateTime(26 / 11 / 2021), "Omschrijving ticketP1", "Opmerkingen ticketP1", Piet);
+            TicketPiet2 = new Ticket("Titel ticketP2 ", 2, 1, new DateTime(13 / 12 / 2021), "Omschrijving ticketP2", "Opmerkingen ticketP2", Piet);
+            TicketPiet3 = new Ticket("Titel ticketP3", 2, 2, new DateTime(12 / 02 / 2022), "Omschrijving ticketP3", "Opmerkingen ticketP3", Piet);
             ContractPiet1.VoegTicketToe(TicketPiet1);
             ContractPiet1.VoegTicketToe(TicketPiet2);
             ContractPiet2.VoegTicketToe(TicketPiet3);
             Piet.VoegContractToe(ContractPiet1);
             Piet.VoegContractToe(ContractPiet2);
 
-            ContractSam1 = new Contract(Sam, ContractStatus.BEËINDIGD, new DateTime(03 / 11 / 2021), new ContractType());
-            TicketSam1 = new Ticket("Titel ticketS1", 1, new DateTime(24 / 12 / 2021), "Omschrijving ticketS1", "Opmerkingen ticketS1", Sam, ContractSam1);
+            ContractSam1 = new Contract("Contract Sam",3, ContractStatus.BEËINDIGD, new DateTime(03 / 11 / 2021), new ContractType());
+            TicketSam1 = new Ticket("Titel ticketS1", 1,1, new DateTime(24 / 12 / 2021), "Omschrijving ticketS1", "Opmerkingen ticketS1", Sam);
             ContractSam1.VoegTicketToe(TicketSam1);
             Sam.VoegContractToe(ContractSam1);
 

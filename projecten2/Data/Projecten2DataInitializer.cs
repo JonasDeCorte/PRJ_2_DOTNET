@@ -40,9 +40,9 @@ namespace projecten2.Data
             if (!_dbContext.Contracten.Any())
             {
                 ContractType type = new ContractType("test", "open", DateTime.Now, DateTime.Now.AddDays(30), DateTime.Now.AddDays(15), 500.00);
-                Contract contract = new Contract(new Klant(1, "testgegeven", DateTime.Now), ContractStatus.LOPEND, DateTime.Now, type);
-                Contract contract2 = new Contract(new Klant(2, "testgegeven2", DateTime.Now), ContractStatus.LOPEND, DateTime.Now, type);
-                Contract contract3 = new Contract(new Klant(3, "testgegeven3", DateTime.Now), ContractStatus.LOPEND, DateTime.Now, type);
+                Contract contract = new Contract("testcontract", 0001, ContractStatus.LOPEND, DateTime.Now, type);
+                Contract contract2 = new Contract("testcontract2", 0001, ContractStatus.LOPEND, DateTime.Now, type);
+                Contract contract3 = new Contract("testcontract3", 0000, ContractStatus.LOPEND, DateTime.Now, type);
                 _dbContext.Contracten.AddRange(contract, contract2, contract3);
                 _dbContext.SaveChanges();
             }
@@ -60,9 +60,9 @@ namespace projecten2.Data
 
                 Klant k1 = _dbContext.Klanten.First();
                 Contract contract = _dbContext.Contracten.First();
-                Ticket ticket1 = new Ticket("Ticket1", 1, DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1, contract);
-                Ticket ticket2 = new Ticket("Ticket2", 2, DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1, contract);
-                Ticket ticket3 = new Ticket("Ticket3", 3, DateTime.Now, "TEST T3", "NOG STEEDS EEN TEST TICKET3", k1, contract);
+                Ticket ticket1 = new Ticket("Ticket1", 1, 1, DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1);
+                Ticket ticket2 = new Ticket("Ticket2", 2, 1, DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1);
+                Ticket ticket3 = new Ticket("Ticket3", 3, 1, DateTime.Now, "TEST T3", "NOG STEEDS EEN TEST TICKET3", k1);
 
                 _dbContext.Tickets.AddRange(ticket1, ticket2, ticket3);
                 _dbContext.SaveChanges();

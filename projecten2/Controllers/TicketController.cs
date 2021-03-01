@@ -15,10 +15,13 @@ namespace projecten2.Controllers
 
         private readonly ITicketRepository _ticketRepository;
         private readonly ITicketTypeRepository _ticketTypeRepository;
-        public TicketController(ITicketRepository ticketRepository, ITicketTypeRepository ticketTypeRepository)
+        private readonly IContractRepository _contractRepository;
+
+        public TicketController(ITicketRepository ticketRepository, ITicketTypeRepository ticketTypeRepository, IContractRepository contractRepository)
         {
             _ticketRepository = ticketRepository;
             _ticketTypeRepository = ticketTypeRepository;
+            _contractRepository = contractRepository;
         }
         // GET: TicketController
         public IActionResult Index()
@@ -66,6 +69,7 @@ namespace projecten2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IsEdit"] = false;
+            ViewData["contractenKlant"] = GetContractenAsSelectList();
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(nameof(Edit), tevm);
 
@@ -80,6 +84,7 @@ namespace projecten2.Controllers
                 return NotFound();
             }
             ViewData["IsEdit"] = true;
+            ViewData["contractenKlant"] = GetContractenAsSelectList();
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(new TicketEditViewModel(ticket));
         }
@@ -140,9 +145,17 @@ namespace projecten2.Controllers
                 nameof(TicketType.Naam));
         }
 
+        private SelectList GetContractenAsSelectList()
+        {
+            return new SelectList(_contractRepository.GetAll(),
+                nameof(Contract.ContractNr),
+                nameof(Contract.ContractTitel));
+        }
+
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
         {        
             ticket.Titel = TicketEditViewModel.Titel;
+            ticket.ContractId = TicketEditViewModel.ContractId;
             ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
