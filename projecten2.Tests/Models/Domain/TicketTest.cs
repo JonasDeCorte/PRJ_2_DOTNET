@@ -11,9 +11,15 @@ namespace projecten2.Tests.Models.Domain
 {
     public class TicketTest
     {
+        private DummyDbContext _context;
+        private DateTime dag;
+
         #region Constructor
-
+        public TicketTest()
+        {
+            _context = new DummyDbContext();
+            dag = _context.Dag;
+        }
         #endregion
-
     }
 }
