@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +49,11 @@ namespace projecten2
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
             services.AddScoped<Projecten2DataInitializer>();
+            services.AddMvc(options =>
+            {
+                // This pushes users to login if not authenticated
+                options.Filters.Add(new AuthorizeFilter());
+            });
 
         }
 
@@ -79,6 +85,7 @@ namespace projecten2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
             });
 
             projecten2DataInitializer.InitializeData().Wait();

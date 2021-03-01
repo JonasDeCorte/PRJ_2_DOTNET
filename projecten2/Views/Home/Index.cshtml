@@ -1,8 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@{ ViewData["Title"] = "Dashboard"; }
+    <div class="row">
+        <div class="container col-md-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Ticket" asp-action="Create"><h1>Ticket aanmaken</h1></a></div>
+        <div class="container col-md-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Contract" asp-action="Edit"><h1>Contract aanmaken</h1></a></div>
+    </div>
+    <div class="row">
+        <div class="container col-md-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Database" asp-action="Index"><h1>Ticket archief </h1></a></div>
+        <div class="container col-md-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Rapport" asp-action="Index"><h1>Rapporten </h1></a></div>
+    </div>
+    <h1 class="mt-5">Recente Activiteiten</h1>
+    <table class="table table-striped table-sm table-bordered ">
+        <tr>
+            <th>Onderwerp</th>
+            <th>Status</th>
+            <th>Laatst Gewijzigd</th>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        </tr>
+        <tr>
+            <td>TestOnderwerp</td>
+            <td>TestStatus</td>
+            <td>Test Laatst gewijzigd</td>
+        </tr>
+        <tr>
+            <td>TestOnderwerp2</td>
+            <td>TestStatus2</td>
+            <td>Test Laatst gewijzigd2</td>
+        </tr>
+        <tr>
+            <td>TestOnderwerp3</td>
+            <td>TestStatus3</td>
+            <td>Test Laatst gewijzigd3</td>
+        </tr>
+    </table>
