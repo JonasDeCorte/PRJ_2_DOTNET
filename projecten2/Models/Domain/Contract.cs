@@ -39,9 +39,11 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-        public void VoegTicketToe(Ticket ticket)
+        public Ticket VoegTicketToe(String titel, int ticketTypeId, int contractId, DateTime aanmaakDatum, String omschrijving, String opmerkingen, Gebruiker gebruiker)
         {
+            Ticket ticket = new Ticket(titel, ticketTypeId, contractId, aanmaakDatum, omschrijving, opmerkingen, gebruiker);
             Tickets.Add(ticket);
+            return ticket;
         }
         #endregion
 

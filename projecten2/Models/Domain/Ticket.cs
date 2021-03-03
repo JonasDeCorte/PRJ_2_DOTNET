@@ -34,7 +34,15 @@ namespace projecten2.Models.Domain
         {
             this.AanmaakDatum = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
-        }      
+        }
+
+        public Ticket(string titel)
+        {
+            this.Titel = titel;
+            this.AanmaakDatum = DateTime.Now;
+            this.TicketStatus = TicketStatus.AANGEMAAKT;
+        }
+
         public Ticket(string titel, int ticketTypeId, int contractId, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker)
         {
             this.Titel = titel;
