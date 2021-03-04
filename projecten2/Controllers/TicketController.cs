@@ -59,6 +59,7 @@ namespace projecten2.Controllers
                 {
                     Ticket ticket = new Ticket();
                     MapTicketEditViewModelToTicket(tevm, ticket);
+                    ticket.ContractId = tevm.ContractId;
                     _ticketRepository.Add(ticket);
                     _ticketRepository.SaveChanges();
                     TempData["message"] = $"You successfully created ticket ${ticket.Titel}.";
@@ -70,7 +71,6 @@ namespace projecten2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IsEdit"] = false;
-            ViewData["contractenKlant"] = GetContractenAsSelectList();
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(nameof(Edit), tevm);
 
@@ -85,7 +85,6 @@ namespace projecten2.Controllers
                 return NotFound();
             }
             ViewData["IsEdit"] = true;
-            ViewData["contractenKlant"] = GetContractenAsSelectList();
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(new TicketEditViewModel(ticket));
         }
@@ -156,7 +155,6 @@ namespace projecten2.Controllers
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
         {        
             ticket.Titel = TicketEditViewModel.Titel;
-            ticket.ContractId = TicketEditViewModel.ContractId;
             ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
