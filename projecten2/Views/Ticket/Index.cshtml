@@ -19,23 +19,23 @@
     </div>
 </ul>
 
-<h2>Overzicht van mijn bestaande tickets</h2>
+<h2>Overzicht van mijn tickets</h2>
 
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titel)
+                Titel
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketType)
+                Ticket prioriteit
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AanmaakDatum)
+                Aangemaakt op
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketStatus)
+                Ticket status
             </th>
             <th></th>
         </tr>
@@ -58,6 +58,7 @@
     </td>
     <td>
         <a asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">Ticket wijzigen</a>
+        <!--Lijn hieronder wijzigen en gebruiken voor "ticket afsluiten"-->
         <!--<a asp-controller="Ticket" asp-action="Details" asp-route-id="item.TicketNr">Details</a>-->
 
     </td>

@@ -49,9 +49,9 @@ namespace projecten2.Data
 
             if (!_dbContext.TicketTypes.Any())
             {
-                TicketType type_1 = new TicketType("PRODUCTIE_GEIMPACTEERD_BINNEN_2U_OPLOSSING", "HIGHEST PRIORITY");
-                TicketType type_2 = new TicketType("PRODUCTIE_ZAL_STIL_VALLEN_BINNEN_4U_OPLOSSING", "MEDIUM PRIORITY");
-                TicketType type_3 = new TicketType("GEEN_PRODUCTIE_IMPACT_BINNEN_3DAGEN_ANTWOORD", "LOW PRIORITY");
+                TicketType type_1 = new TicketType("PRODUCTIE_GEIMPACTEERD_BINNEN_2U_OPLOSSING", "Hoog");
+                TicketType type_2 = new TicketType("PRODUCTIE_ZAL_STIL_VALLEN_BINNEN_4U_OPLOSSING", "Medium");
+                TicketType type_3 = new TicketType("GEEN_PRODUCTIE_IMPACT_BINNEN_3DAGEN_ANTWOORD", "Laag");
                 _dbContext.TicketTypes.AddRange(type_1, type_2, type_3);
                 _dbContext.SaveChanges();
             }

@@ -5,20 +5,19 @@ namespace projecten2.Models.ViewModels
 {
     public class TicketEditViewModel
     {
-        [Required]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "{0} Must contain atleast 3 characters or may not contain more than 50 characters")]
+        [Required(ErrorMessage = "De titel van het ticket is verplicht in te vullen.")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "De titel van het ticket moet minstens 3 karakters bevatten, maximaal 50.")]
         public string Titel { get; set; }
-        [Required]
-        [Display(Name = "Contract waaronder het ticket valt")]
+        [Required(ErrorMessage = "U moet een contract kiezen waaronder dit ticket valt.")]
+        [Display(Name = "Bijhorend contract")]
         public int ContractId { get; set; }
-        [Required]
-        [Display(Name = "Prioriteit van het ticket")]
+        [Required(ErrorMessage = "U moet een prioriteit toekkennen aan het ticket.")]
+        [Display(Name = "Ticket prioriteit")]
         public int TicketTypeId { get; set; }
-        [Required]
-        [StringLength(500, ErrorMessage = "{0} may not contain more than 500 characters")]
+        [Required(ErrorMessage = "U moet het probleem omschrijven waarvoor dit ticket is aangemaakt.")]
+        [Display(Name = "Omschrijving van het probleem")]
         public string Omschrijving { get; set; }
-        [Required]
-        [StringLength(500, ErrorMessage = "{0} may not contain more than 500 characters")]
+        [Display(Name = "Extra opmerkingen")]
         public string Opmerkingen { get; set; }
 
         public TicketEditViewModel()
