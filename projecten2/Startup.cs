@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using projecten2.Data;
 using projecten2.Data.Repositories;
+using projecten2.filter;
 using projecten2.Models.Domain;
 using System;
 using System.Security.Claims;
@@ -49,6 +50,7 @@ namespace projecten2
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
             services.AddScoped<Projecten2DataInitializer>();
+            services.AddScoped<KlantFilter>();
             services.AddMvc(options =>
             {
                 // This pushes users to login if not authenticated

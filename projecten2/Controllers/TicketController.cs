@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using projecten2.filter;
 using projecten2.Models.Domain;
 using projecten2.Models.ViewModels;
 using System;
@@ -24,6 +26,8 @@ namespace projecten2.Controllers
             _contractRepository = contractRepository;
         }
         // GET: TicketController
+        [ServiceFilter(typeof(KlantFilter))]
+        [Authorize]
         public IActionResult Index()
         {
             IEnumerable<Ticket> tickets = _ticketRepository.GetAll();
@@ -40,6 +44,8 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Create
+        [ServiceFilter(typeof(KlantFilter))]
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["IsEdit"] = false;

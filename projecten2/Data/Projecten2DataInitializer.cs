@@ -95,13 +95,7 @@ namespace projecten2.Data
             await _userManager.CreateAsync(klant, "P@ssword1");
             await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
 
-            var customer = new Klant
-            {
-                Email = "Jan.DeMan@hotmail.com",
-                Voornaam = "Jan",
-                Naam = "De man",
-            };
-            _dbContext.Klanten.Add(customer);
+            
             _dbContext.SaveChanges();
         }
     }
