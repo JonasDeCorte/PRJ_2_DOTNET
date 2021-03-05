@@ -22,12 +22,14 @@ namespace projecten2.Data.Repositories
         }
         public IEnumerable<Contract> GetAll()
         {
-            return _contracten.Include(x => x.Klant).ThenInclude(x => x.Tickets).ToList();
+            return _contracten.Include(x => x.Tickets).ToList();
         }
+
+       
 
         public Contract GetByContractNr(int contractNr)
         {
-            return _contracten.Include(x => x.Klant).ThenInclude(x => x.Tickets).FirstOrDefault(x => x.ContractNr == contractNr);
+            return _contracten.Include(x => x.Tickets).FirstOrDefault(x => x.ContractNr == contractNr);
         }
 
         public void SaveChanges()

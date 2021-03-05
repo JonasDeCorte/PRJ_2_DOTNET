@@ -37,7 +37,7 @@ namespace projecten2.Tests.Data
             Bedrijf BEEGO = new Bedrijf("BEEGO", nummersBEEGO, "Brussel", "Steenstraat 48");
             Bedrijf Microsoft = new Bedrijf("Microsoft", nummersMicrosoft, "New York", "45 Wall Street");
             Bedrijven = new[] { BEEGO, Microsoft };
-
+/*
             Piet = new Klant(2, "Piet", "Van Steen", "Piet.VanSteen@Microsoft.be", true, "Gegevens Piet", new DateTime(24 / 10 / 2021));
             Sam = new Klant(3, "Sam", "Ross", "Sam.Ross@BEEGO.be", false, "Gegevens Sam", new DateTime(03 / 11 / 2021));
 
@@ -49,7 +49,7 @@ namespace projecten2.Tests.Data
 
             ContractSam1 = Sam.VoegContractToe("Contract Sam", 3, ContractStatus.BEËINDIGD, new DateTime(03 / 11 / 2021), new ContractType());
             TicketSam1 = ContractSam1.VoegTicketToe("Titel ticketS1", 1, 1, new DateTime(24 / 12 / 2021), "Omschrijving ticketS1", "Opmerkingen ticketS1", Sam);
-           
+           */
             Klanten = new[] { Piet, Sam };
             Tickets = new[] { TicketPiet1, TicketPiet2, TicketPiet3, TicketSam1 };
             Contracten = new[] { ContractPiet1, ContractPiet2, ContractSam1 };
@@ -61,5 +61,6 @@ namespace projecten2.Tests.Data
 
             Dag = new DateTime(DateTime.Now.Year + 1, 3, 1);     // 01/03/2022
         }
+
     }
 }

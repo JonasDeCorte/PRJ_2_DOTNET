@@ -12,12 +12,13 @@ namespace projecten2.Models.Domain
         #region Properties
         public int ContractNr { get; set; }
         public String ContractTitel { get; set; }
-        public int KlantNr { get; set; }
+       
         public DateTime Doorlooptijd { get; set; }
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
 
-        public Klant Klant { get; set; }
+       // public int KlantNr { get; set; }
+       // public Klant Klant { get; set; }
         public ContractStatus ContractStatus { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
         public ContractType ContractType { get; set; }
@@ -28,14 +29,7 @@ namespace projecten2.Models.Domain
         {
 
         }
-        public Contract(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
-        {
-            this.ContractTitel = contractTitel;
-            this.KlantNr = klantNr;
-            this.ContractStatus = contractStatus;
-            this.StartDatum = StartDatum;
-            this.ContractType = type;
-        }
+       
         #endregion
 
         #region Methods

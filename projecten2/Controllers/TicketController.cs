@@ -48,9 +48,9 @@ namespace projecten2.Controllers
         [ServiceFilter(typeof(KlantFilter))]       
         public IActionResult Create(Klant klant)
          {
-            Console.WriteLine(klant.Naam);
+            ICollection<Contract> contracts = klant.Contracten;
             ViewData["IsEdit"] = false;
-            ViewData["contractenKlant"] = GetContractenAsSelectList();
+            ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(nameof(Edit), new TicketEditViewModel());
         }
@@ -152,9 +152,9 @@ namespace projecten2.Controllers
                 nameof(TicketType.Naam));
         }
 
-        private SelectList GetContractenAsSelectList()
+        private SelectList GetContractenAsSelectList(Klant klant)
         {
-            return new SelectList(_contractRepository.GetAll(),
+            return new SelectList(klant.Contracten,
                 nameof(Contract.ContractNr),
                 nameof(Contract.ContractTitel));
         }

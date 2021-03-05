@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace projecten2.Models.Domain
 {
@@ -15,43 +16,37 @@ namespace projecten2.Models.Domain
         public DateTime DatumRegistratie { get; set; }
        
         
-        public List<Bedrijf> Bedrijf { get; set; }
-        public ICollection<Contract> Contracten { get; set; }
+        public List<Bedrijf> bedrijven { get; set; }
+       
         #endregion
 
         #region Constructors
         public Klant()
         {
-
+            bedrijven = new List<Bedrijf>();
+            Contracten = new List<Contract>();
+            DatumRegistratie = DateTime.Now;
+            
         }
-
-        public Klant(int klantNummer, string gegevensContactPersonen, DateTime registratie)
+        public int GetAantalActieveContracten()
         {
-            KlantNummer = klantNummer;
-            GegevensContactPersonen = gegevensContactPersonen;
-            DatumRegistratie = registratie;
-
-        }
-
-        public Klant(int klantNummer, string voornaam, string naam, string email, bool status, string gegevensContactPersonen, DateTime registratie)
-        {
-            KlantNummer = klantNummer;
-            Voornaam = voornaam;
-            Naam = naam;
-            Email = email;
-            Status = status;
-            GegevensContactPersonen = gegevensContactPersonen;
-            DatumRegistratie = registratie;
+            return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
         #endregion
-
         #region Methods
-        public Contract VoegContractToe(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+        public void VoegContractToe(Contract contract)
         {
-            Contract contract = new Contract(contractTitel, klantNr, contractStatus, StartDatum, type);
             Contracten.Add(contract);
-            return contract;
+
         }
+        /*
+        public void VoegContractToe(String contractTitel, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+        {
+            Contract contract = new Contract(contractTitel, this ,contractStatus, StartDatum, type);
+            Contracten.Add(contract); 
+           
+        }
+        */
         #endregion
 
     }
