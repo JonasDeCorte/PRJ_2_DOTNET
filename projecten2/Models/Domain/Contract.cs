@@ -13,7 +13,8 @@ namespace projecten2.Models.Domain
         public int ContractNr { get; set; }
         public String ContractTitel { get; set; }
         public int KlantNr { get; set; }
-        public DateTime Doorlooptijd { get; set; }
+        public int Doorlooptijd { get; set; }
+        public int ContractTypeId { get; set; }
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
 
@@ -28,13 +29,15 @@ namespace projecten2.Models.Domain
         {
 
         }
-        public Contract(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+        public Contract(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, int doorloopTijd, int contractTypeId)
         {
             this.ContractTitel = contractTitel;
             this.KlantNr = klantNr;
             this.ContractStatus = contractStatus;
             this.StartDatum = StartDatum;
-            this.ContractType = type;
+            this.Doorlooptijd = doorloopTijd;
+            this.EindDatum = StartDatum.AddYears(doorloopTijd);
+            this.ContractTypeId = contractTypeId;
         }
         #endregion
 

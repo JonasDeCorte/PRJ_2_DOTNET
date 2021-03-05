@@ -47,12 +47,18 @@ namespace projecten2.Data
 
             }
 
-            if (!_dbContext.Contracten.Any())
+            if (!_dbContext.ContractTypes.Any())
             {
                 ContractType type = new ContractType("test", "open", DateTime.Now, DateTime.Now.AddDays(30), DateTime.Now.AddDays(15), 500.00);
-                Contract contract = new Contract("testcontract", 0001, ContractStatus.LOPEND, DateTime.Now, type);
-                Contract contract2 = new Contract("testcontract2", 0001, ContractStatus.LOPEND, DateTime.Now, type);
-                Contract contract3 = new Contract("testcontract3", 0000, ContractStatus.LOPEND, DateTime.Now, type);
+                _dbContext.ContractTypes.AddRange(type);
+                _dbContext.SaveChanges();
+            }
+
+            if (!_dbContext.Contracten.Any())
+            {
+                Contract contract = new Contract("testcontract", 0001, ContractStatus.LOPEND, DateTime.Now, 1, 1);
+                Contract contract2 = new Contract("testcontract2", 0001, ContractStatus.LOPEND, DateTime.Now, 2, 1);
+                Contract contract3 = new Contract("testcontract3", 0000, ContractStatus.LOPEND, DateTime.Now, 3, 1);
                 _dbContext.Contracten.AddRange(contract, contract2, contract3);
                 _dbContext.SaveChanges();
             }

@@ -46,9 +46,9 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-        public Contract VoegContractToe(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+        public Contract VoegContractToe(String contractTitel, int klantNr, ContractStatus contractStatus, DateTime StartDatum, int doorloopTijd, int contractTypeId)
         {
-            Contract contract = new Contract(contractTitel, klantNr, contractStatus, StartDatum, type);
+            Contract contract = new Contract(contractTitel, klantNr, contractStatus, StartDatum, doorloopTijd, contractTypeId);
             Contracten.Add(contract);
             return contract;
         }
