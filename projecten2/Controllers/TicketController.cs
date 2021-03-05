@@ -44,10 +44,11 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Create
-        [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
-        public IActionResult Create()
-        {
+        [ServiceFilter(typeof(KlantFilter))]       
+        public IActionResult Create(Klant klant)
+         {
+            Console.WriteLine(klant.Naam);
             ViewData["IsEdit"] = false;
             ViewData["contractenKlant"] = GetContractenAsSelectList();
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();

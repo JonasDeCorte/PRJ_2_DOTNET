@@ -9,13 +9,13 @@ namespace projecten2.Data.Repositories
 {
     public class GebruikerRepository : IGebruikerRepository
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<Gebruiker> _Gebruikers;
+        private readonly ApplicationDbContext _Context;
+        private readonly DbSet<Gebruiker>_Gebruikers;
 
         public GebruikerRepository(ApplicationDbContext context)
         {
-            _context = context;
-            _Gebruikers = _context.Gebruikers;
+            _Context = context;
+            _Gebruikers = _Context.Gebruikers;
         }
       
 
@@ -26,12 +26,12 @@ namespace projecten2.Data.Repositories
 
         public Gebruiker GetByEmail(string email)
         {
-            return _Gebruikers.FirstOrDefault(x => x.Email.ToLower().Equals(email.ToLower()));
+            return _Gebruikers.FirstOrDefault(x => x.Email == email);
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            _Context.SaveChanges();
         }
     }
 }

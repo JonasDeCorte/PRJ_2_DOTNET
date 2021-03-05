@@ -13,7 +13,8 @@ namespace projecten2.Models.Domain
         public int KlantNummer { get; set; }
         public string GegevensContactPersonen { get; set; }
         public DateTime DatumRegistratie { get; set; }
-
+       
+        
         public List<Bedrijf> Bedrijf { get; set; }
         public ICollection<Contract> Contracten { get; set; }
         #endregion

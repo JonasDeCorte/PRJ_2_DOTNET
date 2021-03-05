@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 
 namespace projecten2.filter
 {   
-    [AttributeUsageAttribute(AttributeTargets.All, AllowMultiple = false)]
+    
     public class KlantFilter : ActionFilterAttribute
     {
-        private readonly UserManager<Gebruiker> _userManager;
-        public KlantFilter(UserManager<Gebruiker> userManager)
+        private readonly IGebruikerRepository _klantenRepo;
+        public KlantFilter(IGebruikerRepository klantenRepo)
             {
-            _userManager = userManager;
+            _klantenRepo = klantenRepo;
         }
 
             public override void OnActionExecuting(ActionExecutingContext context)
             {
-            var user =  _userManager.FindByNameAsync(context.HttpContext.User.Identity.Name);
-            context.ActionArguments["klant"] = context.HttpContext.User.Identity.IsAuthenticated ? user : null;
-                base.OnActionExecuting(context);
-            }
+            context.ActionArguments["klant"] = context.HttpContext.User.Identity.IsAuthenticated ? _klantenRepo.GetByEmail(context.HttpContext.User.Identity.Name ) : null;
+            base.OnActionExecuting(context);
+        }
     }
 }
     

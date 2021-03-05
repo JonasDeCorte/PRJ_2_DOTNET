@@ -10,9 +10,9 @@ namespace projecten2.Data
     public class Projecten2DataInitializer
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly UserManager<Gebruiker> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public Projecten2DataInitializer(ApplicationDbContext dbContext, UserManager<Gebruiker> userManager)
+        public Projecten2DataInitializer(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;
@@ -24,6 +24,16 @@ namespace projecten2.Data
             {
                 await InitializeUsersAndCustomers();
                 Console.WriteLine("Database Created");
+            }
+            if (!_dbContext.Gebruikers.Any())
+            {
+                Klant peter = new Klant() { GebruikersNaam = "peter@hogent.be",  Naam = "Claeyssens", Voornaam = "Peter", Email = "peter@hogent.be" };
+                _dbContext.Gebruikers.Add(peter);
+                Klant jan = new Klant() { GebruikersNaam = "jan@hogent.be",  Naam = "Peeters", Voornaam = "Jan", Email = "jan@gmail.com"};
+               _dbContext.Gebruikers.Add(jan); 
+                SupportManager supportManager = new SupportManager { GebruikersNaam = "admin", Email= "supportManager@hogent.be", StartDatumTeWerkStelling = DateTime.Now, Naam = "admin", Voornaam = "admin" };
+                _dbContext.Gebruikers.Add(supportManager);
+                _dbContext.SaveChanges();
             }
             if (!_dbContext.Bedrijven.Any())
             {
@@ -58,7 +68,7 @@ namespace projecten2.Data
             if (!_dbContext.Tickets.Any())
             {
 
-                Klant k1 = _dbContext.Klanten.First();
+                Klant k1 = (Klant)_dbContext.Gebruikers.First();
                 Contract contract = _dbContext.Contracten.First();
                 Ticket ticket1 = new Ticket("Ticket1", 1, 1, DateTime.Now, "TEST T", "NOG STEEDS EEN TEST TICKET", k1);
                 Ticket ticket2 = new Ticket("Ticket2", 2, 1, DateTime.Now, "TEST T2", "NOG STEEDS EEN TEST TICKET2", k1);
@@ -70,9 +80,14 @@ namespace projecten2.Data
         }
         private async Task InitializeUsersAndCustomers()
         {
-            Gebruiker support = new SupportManager
+            string eMailAddress = "supportManager@hogent.be";
+            ApplicationUser admin = new ApplicationUser { UserName = eMailAddress, Email = eMailAddress };
+            await _userManager.CreateAsync(admin, "P@ssword1");
+            await _userManager.AddClaimAsync(admin, new Claim(ClaimTypes.Role, "admin"));
+            /* 
+            Application support = new SupportManager
             {
-                UserName = "supportManager",
+                GebruikersNaam = "supportManager",
                 Voornaam = "Andy",
                 Naam = "Depoortere",
                 Email = "supportManager@hogent.be",
@@ -80,23 +95,44 @@ namespace projecten2.Data
             };
             await _userManager.CreateAsync(support, "P@ssword1");
             await _userManager.AddClaimAsync(support, new Claim(ClaimTypes.Role, "admin"));
+            */
 
-            Gebruiker klant = new Klant
+            eMailAddress = "jan@gmail.com";
+            ApplicationUser klant = new ApplicationUser { UserName = eMailAddress, Email = eMailAddress };
+            await _userManager.CreateAsync(klant, "P@ssword1");
+            await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
+           /*
+            Klant klant = new Klant
             {
-                UserName = "klant",
+
+                GebruikersNaam = "klant",
                 Voornaam = "Candace",
                 Naam = "Devlieger",
                 Email = "klant@hogent.be",
                 Status = true,
                 KlantNummer = 0001,
                 GegevensContactPersonen = "gegevensContactPersonen",
-                DatumRegistratie = new DateTime(24 / 02 / 2021)
+                DatumRegistratie = DateTime.Now
             };
             await _userManager.CreateAsync(klant, "P@ssword1");
             await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
+            Klant klant_2 = new Klant
+            {
+                Naam = "Test",
+                Voornaam = " test",
+                GebruikersNaam = "test",
+                Email = "test@hogent.be",
+                KlantNummer = 0002,
+                GegevensContactPersonen = "testtestest",
+                DatumRegistratie = DateTime.Now,
 
-            
-            _dbContext.SaveChanges();
+            };
+            await _userManager.CreateAsync(klant_2, "P@ssword1");
+            await _userManager.AddClaimAsync(klant_2, new Claim(ClaimTypes.Role, "klant"));
+          
+              _dbContext.Klanten.Add(klant);
+            _dbContext.SaveChanges(); 
+           */
         }
     }
 }

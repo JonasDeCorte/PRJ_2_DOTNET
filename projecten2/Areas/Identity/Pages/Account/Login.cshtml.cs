@@ -19,15 +19,15 @@ namespace projecten2.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<Gebruiker> _userManager;
-        private readonly SignInManager<Gebruiker> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _dbContext;
 
-        public LoginModel(SignInManager<Gebruiker> signInManager,
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<Gebruiker> userManager,
+            UserManager<IdentityUser> userManager,
             IEmailSender emailSender,
             ApplicationDbContext context)
         {
@@ -92,8 +92,8 @@ namespace projecten2.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                     _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.UserName });
-                    _dbContext.SaveChanges();
+                    // _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.GebruikersNaam });
+                   // _dbContext.SaveChanges();
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -107,8 +107,8 @@ namespace projecten2.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.MISLUKT, Username = currentUser.UserName });
-                    _dbContext.SaveChanges();
+                   // _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.MISLUKT, Username = currentUser.GebruikersNaam });
+                    //_dbContext.SaveChanges();
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

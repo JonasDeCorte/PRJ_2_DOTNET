@@ -53,4 +53,8 @@
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
 </Project>

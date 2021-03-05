@@ -14,7 +14,8 @@ namespace projecten2.Models.Domain
         #region Properties
         public int PersoneelsNummer { get; set; }
         public string Adres { get; set; }
-        public DateTime ActiefSinds { get; set; }
+        public DateTime StartDatumTeWerkStelling { get; set; }
+       
         #endregion
 
         #region Constructors
@@ -22,17 +23,7 @@ namespace projecten2.Models.Domain
         {
 
         }
-        /*public SupportManager( string gebruikersNaam,string wachtwoord,
-            string voornaam,string naam,string email,bool status)
-        {
-            
-            GebruikersNaam = gebruikersNaam;
-            Wachtwoord = wachtwoord;
-            Voornaam = voornaam;
-            Naam = naam;
-            Email = email;
-            Status = status;
-        }*/
+        
     #endregion
 
     #region Methods
