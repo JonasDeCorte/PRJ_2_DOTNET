@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projecten2.Models.Domain
 {
-    public abstract class Gebruiker:IdentityUser
+    public abstract class Gebruiker
     {
 
         #region Fields
@@ -14,12 +14,14 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Properties
-        //public string GebruikersNaam { get; set; }
-        //public string Wachtwoord { get; set; }
+        public int GebruikersId { get; set; }
+        public string GebruikersNaam { get; set; }
+        public string Wachtwoord { get; set; }
         public string Voornaam { get; set; }
         public string Naam { get; set; }
-        //public string Email { get; set; }
+        public string Email { get; set; }
         public bool Status { get; set; }
+        
 
         public ICollection<Ticket> Tickets { get; set; }
 
@@ -30,16 +32,7 @@ namespace projecten2.Models.Domain
         {
 
         }
-       /* public Gebruiker ( string gebruikersNaam,string wachtwoord,string voornaam,string naam,string email,bool status)
-        {
-            
-            GebruikersNaam = gebruikersNaam;
-            Wachtwoord = wachtwoord;
-            Voornaam = voornaam;
-            Naam = naam;
-            Email = email;
-            Status = status;
-        }*/
+     
             #endregion
 
         #region Methods

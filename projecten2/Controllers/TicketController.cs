@@ -47,7 +47,7 @@ namespace projecten2.Controllers
         [Authorize]
         [ServiceFilter(typeof(KlantFilter))]       
         public IActionResult Create(Klant klant)
-        {
+         {
             Console.WriteLine(klant.Naam);
             ViewData["IsEdit"] = false;
             ViewData["contractenKlant"] = GetContractenAsSelectList();

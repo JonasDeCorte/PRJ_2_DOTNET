@@ -14,7 +14,7 @@ namespace projecten2.Models.Domain
         public string GegevensContactPersonen { get; set; }
         public DateTime DatumRegistratie { get; set; }
        
-        public override string Email { get; set; }
+        
         public List<Bedrijf> Bedrijf { get; set; }
         public ICollection<Contract> Contracten { get; set; }
         #endregion

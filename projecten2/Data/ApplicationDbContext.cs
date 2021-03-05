@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using projecten2.Data.Mappers;
@@ -9,7 +10,7 @@ using projecten2.Models.Domain;
 
 namespace projecten2.Data
 {
-    public class ApplicationDbContext: IdentityDbContext<Gebruiker>
+    public class ApplicationDbContext : IdentityDbContext
     {
         // refactoring nodig
         public DbSet<Bedrijf> Bedrijven { get; set; }
@@ -21,8 +22,8 @@ namespace projecten2.Data
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<GebruikerLogin> gebruikerLogins { get; set; }
         public DbSet<Gebruiker> Gebruikers { get; set; }
-        public DbSet<Klant> Klanten { get; set; }
-        public DbSet<SupportManager> SupportManagers { get; set; }
+        //public DbSet<Klant> Klanten { get; set; }
+        //public DbSet<SupportManager> SupportManagers { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -40,14 +41,17 @@ namespace projecten2.Data
         {
             //modelBuilder.Entity<Klant>().ToTable("Klanten").HasBaseType<Gebruiker>() ;
             //modelBuilder.Entity<SupportManager>().ToTable("SupportManagers").HasBaseType<Gebruiker>();
- 
-            modelBuilder.Entity<Klant>().HasBaseType<Gebruiker>();
-            modelBuilder.Entity<SupportManager>().HasBaseType<Gebruiker>();
-          /* 
-            modelBuilder.Entity<Gebruiker>().HasDiscriminator<String>("Gebruiker_type")
-                .HasValue<Klant>("Gebruiker_klant")
-                .HasValue<SupportManager>("Gebruiker_spManager");
-            */
+
+            //modelBuilder.Entity<Klant>().HasBaseType<Gebruiker>();
+            //modelBuilder.Entity<SupportManager>().HasBaseType<Gebruiker>();
+
+            modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker").HasKey(x => x.GebruikersId);
+         
+
+            //modelBuilder.Entity<Gebruiker>().HasDiscriminator<string>("Gebruiker_type")
+            //      .HasValue<Klant>("Gebruiker_klant")
+            //      .HasValue<SupportManager>("Gebruiker_spManager");
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new BedrijfConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());

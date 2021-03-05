@@ -9,29 +9,29 @@ namespace projecten2.Data.Repositories
 {
     public class GebruikerRepository : IGebruikerRepository
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<Klant> _Klanten;
+        private readonly ApplicationDbContext _Context;
+        private readonly DbSet<Gebruiker>_Gebruikers;
 
         public GebruikerRepository(ApplicationDbContext context)
         {
-            _context = context;
-            _Klanten = _context.Klanten;
+            _Context = context;
+            _Gebruikers = _Context.Gebruikers;
         }
       
 
         public IEnumerable<Gebruiker> GetAll()
         {
-            return _Klanten.OrderBy(x => x.Naam).ToList();
+            return _Gebruikers.OrderBy(x => x.Naam).ToList();
         }
 
-        public Klant GetByEmail(string email)
+        public Gebruiker GetByEmail(string email)
         {
-            return _Klanten.FirstOrDefault(x => x.Email == email);
+            return _Gebruikers.FirstOrDefault(x => x.Email == email);
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            _Context.SaveChanges();
         }
     }
 }

@@ -13,8 +13,8 @@
     @using Microsoft.AspNetCore.Identity
     @using projecten2.Models.Domain
 
-    @inject SignInManager<Gebruiker> SignInManager
-    @inject UserManager<Gebruiker> UserManager
+    @inject SignInManager<IdentityUser> SignInManager
+    @inject UserManager<IdentityUser> UserManager
     @if (SignInManager.IsSignedIn(User))
     {
 
