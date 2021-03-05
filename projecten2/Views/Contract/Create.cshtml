@@ -1,0 +1,44 @@
+﻿@model projecten2.Models.ViewModels.ContractEditViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nieuw contract afsluiten</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ContractTitel" class="control-label"></label>
+                <input asp-for="ContractTitel" class="form-control" />
+                <span asp-validation-for="ContractTitel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDatum" class="control-label"></label>
+                <input asp-for="StartDatum" class="form-control" />
+                <span asp-validation-for="StartDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoorloopTijd" class="control-label"></label>
+                <input asp-for="DoorloopTijd" class="form-control" />
+                <span asp-validation-for="DoorloopTijd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractTypeId" class="control-label"></label>
+                <input asp-for="ContractTypeId" class="form-control" />
+                <span asp-validation-for="ContractTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

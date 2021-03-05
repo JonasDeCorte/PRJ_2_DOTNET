@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using projecten2.filter;
 using projecten2.Models.Domain;
+using projecten2.Models.ViewModels;
 using System.Collections.Generic;
 
 namespace projecten2.Controllers
@@ -24,18 +27,38 @@ namespace projecten2.Controllers
             return View(contracten);
         }
 
-        // GET: ContractController/Create
-        public IActionResult Create()
+        // GET: ContractController/Details 
+        public IActionResult Details(int id)
         {
             return View();
         }
 
+        // GET: ContractController/Create
+        [Authorize]
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Create()
+        {
+
+            return View(new ContractEditViewModel());
+        }
+
         // POST: ContractController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ContractEditViewModel cemv)
+        {
+            return View();
+        }
 
 
-        // GET: ContractController/Edit
 
+        // GET: ContractController/Delete
+        public IActionResult Delete()
+        {
+            return View();
+        }
 
-        // POST: ContractController/Edit
+        // POST: ContractController/Delete
+
     }
 }

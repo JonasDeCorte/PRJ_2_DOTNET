@@ -51,7 +51,7 @@
                     @Html.DisplayFor(modelItem => item.ContractTitel)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ContractTypeId)
+                    @Html.DisplayFor(modelItem => item.ContractType.ContractTypeId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDatum)
@@ -63,8 +63,7 @@
                     @Html.DisplayFor(modelItem => item.ContractStatus)
                 </td>
                 <td>
-                    <a asp-controller="Contract" asp-action="Edit" asp-route-id="@item.ContractNr">Contract wijzigen</a>
-
+                    <a asp-controller="Contract" asp-action="Details" asp-route-id="item.ContractNummer">Contract raadplegen</a>
                 </td>
             </tr>
         }
