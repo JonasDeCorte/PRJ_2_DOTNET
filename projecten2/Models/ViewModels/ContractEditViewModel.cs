@@ -8,7 +8,7 @@ namespace projecten2.Models.ViewModels
 {
     public class ContractEditViewModel
     {
-        public String ContractTitel { get; set; }
+        public string ContractTitel { get; set; }
         public DateTime StartDatum { get; set; }
         public int DoorloopTijd { get; set; }
         public int ContractTypeId { get; set; }
@@ -23,7 +23,7 @@ namespace projecten2.Models.ViewModels
             ContractTitel = contract.ContractTitel;
             StartDatum = contract.StartDatum;
             DoorloopTijd = contract.Doorlooptijd;
-            ContractTypeId = contract.ContractTypeId;
+            ContractTypeId = contract.ContractType.ContractTypeId;
         }
     }
 }
