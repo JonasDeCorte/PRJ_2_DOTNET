@@ -12,8 +12,8 @@ namespace projecten2.Models.Domain
         #region Properties
         public int ContractNr { get; set; }
         public String ContractTitel { get; set; }
-       
         public DateTime Doorlooptijd { get; set; }
+       
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
 

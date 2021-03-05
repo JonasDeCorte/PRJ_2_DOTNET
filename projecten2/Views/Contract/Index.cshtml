@@ -1,0 +1,72 @@
+﻿@model IEnumerable<projecten2.Models.Domain.Contract>
+
+@{
+    ViewData["Title"] = "Contracten";
+}
+
+<link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
+<ul id="right-side">
+    <!--<div id="profile-pic">
+        <img src="https://i.stack.imgur.com/34AD2.jpg" id="profilepic">
+    </div>
+    <div id="profile-name">
+        User Name
+    </div>-->
+
+    <div class="myCreateButton">
+        <p>
+            <a class="btn btn-primary" role="button" asp-controller="Contract" asp-action="Create">Nieuw contract afsluiten</a>
+        </p>
+    </div>
+</ul>
+
+<h2>Overzicht van mijn contracten</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Contract type
+            </th>
+            <th>
+                Start datum
+            </th>
+            <th>
+                Eind datum
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractTitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EindDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractStatus)
+                </td>
+                <td>
+                    <a asp-controller="Contract" asp-action="Edit" asp-route-id="@item.ContractNr">Contract wijzigen</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
