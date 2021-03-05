@@ -8,7 +8,7 @@ namespace projecten2.Models.Domain
     public interface IGebruikerRepository
     {
 
-        Gebruiker GetByEmail(string email);
+        Klant GetByEmail(string email);
   
 
         IEnumerable<Gebruiker> GetAll();

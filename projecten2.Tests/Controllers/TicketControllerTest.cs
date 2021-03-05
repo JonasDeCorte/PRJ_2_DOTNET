@@ -46,7 +46,7 @@ namespace projecten2.Tests.Controllers
             Assert.Equal("Titel ticketS1", ticketsInModel[3].Titel);
         }
         #endregion
-
+        /*
         #region GET Create
         [Fact]
         public void Create_PassesNewTicketInEditViewModelAndReturnsSelectListsOfTicketTypesAndContracts()
@@ -62,7 +62,7 @@ namespace projecten2.Tests.Controllers
             Assert.Equal(3, contractenInViewData.Count());
         }
         #endregion
-
+        */
         #region POST Create
         [Fact]
         public void Create_ValidTicket_CreatesAndPersistsTicketAndRedirectsToActionIndex()

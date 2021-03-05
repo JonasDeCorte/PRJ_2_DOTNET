@@ -21,12 +21,12 @@
     <Position X="5" Y="7.5" Width="2.75" />
     <AssociationLine Name="Contracten" Type="projecten2.Models.Domain.Contract" FixedFromPoint="true">
       <Path>
-        <Point X="7.75" Y="8.183" />
-        <Point X="9.5" Y="8.183" />
+        <Point X="7.75" Y="8.241" />
+        <Point X="9.5" Y="8.241" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAQAAAAAAAAAAYABAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAACAAAAAAQAAAAAAAAAAYABAIAAAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\Klant.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -63,7 +63,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAggAAAAEAAAAAABAAQAAAAAAAAoIEAUAAA=</HashCode>
+      <HashCode>AAAAAAAQAAggAAAAEAAAAAABAAQAAAIAAAAoIEAUAAA=</HashCode>
       <FileName>Models\Domain\Ticket.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -119,7 +119,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAQgAAAAAAAAgAAAAAAAAAAAAKAAEACAAgAABAAAAAA=</HashCode>
+      <HashCode>AAQgAAAAAAAAgAAgAAAAAAAAEKAAEACAAgAABAAAAAA=</HashCode>
       <FileName>Models\Domain\Contract.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

@@ -15,6 +15,7 @@ namespace projecten2.Models.Domain
         public int PersoneelsNummer { get; set; }
         public string Adres { get; set; }
         public DateTime ActiefSinds { get; set; }
+       
         #endregion
 
         #region Constructors

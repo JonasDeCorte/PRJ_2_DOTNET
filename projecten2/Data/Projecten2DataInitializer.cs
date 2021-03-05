@@ -81,8 +81,9 @@ namespace projecten2.Data
             await _userManager.CreateAsync(support, "P@ssword1");
             await _userManager.AddClaimAsync(support, new Claim(ClaimTypes.Role, "admin"));
 
-            Gebruiker klant = new Klant
+            Klant klant = new Klant
             {
+
                 UserName = "klant",
                 Voornaam = "Candace",
                 Naam = "Devlieger",
@@ -90,12 +91,24 @@ namespace projecten2.Data
                 Status = true,
                 KlantNummer = 0001,
                 GegevensContactPersonen = "gegevensContactPersonen",
-                DatumRegistratie = new DateTime(24 / 02 / 2021)
+                DatumRegistratie = DateTime.Now
             };
             await _userManager.CreateAsync(klant, "P@ssword1");
             await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
+            Klant klant_2 = new Klant
+            {
+                Naam = "Test",
+                Voornaam = " test",
+                UserName = "test",
+                Email = "test@hogent.be",
+                KlantNummer = 0002,
+                GegevensContactPersonen = "testtestest",
+                DatumRegistratie = DateTime.Now,
 
-            
+            };
+            await _userManager.CreateAsync(klant_2, "P@ssword1");
+            await _userManager.AddClaimAsync(klant_2, new Claim(ClaimTypes.Role, "klant"));
+            //  _dbContext.Klanten.Add(klant);
             _dbContext.SaveChanges();
         }
     }

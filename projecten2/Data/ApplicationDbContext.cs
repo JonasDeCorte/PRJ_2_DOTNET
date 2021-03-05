@@ -38,10 +38,12 @@ namespace projecten2.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //modelBuilder.Entity<Klant>().ToTable("Klanten").HasBaseType<Gebruiker>() ;
+            //modelBuilder.Entity<SupportManager>().ToTable("SupportManagers").HasBaseType<Gebruiker>();
+ 
             modelBuilder.Entity<Klant>().HasBaseType<Gebruiker>();
             modelBuilder.Entity<SupportManager>().HasBaseType<Gebruiker>();
-            /*
+          /* 
             modelBuilder.Entity<Gebruiker>().HasDiscriminator<String>("Gebruiker_type")
                 .HasValue<Klant>("Gebruiker_klant")
                 .HasValue<SupportManager>("Gebruiker_spManager");
