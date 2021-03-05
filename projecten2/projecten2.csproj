@@ -6,21 +6,25 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\NewFolder\**" />
+    <Compile Remove="Data\Migrations\**" />
     <Compile Remove="UML\**" />
     <Compile Remove="Views\Gebruiker\**" />
     <Compile Remove="wwwroot\NewFolder1\**" />
     <Compile Remove="wwwroot\NewFolder\**" />
     <Content Remove="Controllers\NewFolder\**" />
+    <Content Remove="Data\Migrations\**" />
     <Content Remove="UML\**" />
     <Content Remove="Views\Gebruiker\**" />
     <Content Remove="wwwroot\NewFolder1\**" />
     <Content Remove="wwwroot\NewFolder\**" />
     <EmbeddedResource Remove="Controllers\NewFolder\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
     <EmbeddedResource Remove="UML\**" />
     <EmbeddedResource Remove="Views\Gebruiker\**" />
     <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
     <EmbeddedResource Remove="wwwroot\NewFolder\**" />
     <None Remove="Controllers\NewFolder\**" />
+    <None Remove="Data\Migrations\**" />
     <None Remove="UML\**" />
     <None Remove="Views\Gebruiker\**" />
     <None Remove="wwwroot\NewFolder1\**" />
@@ -51,10 +55,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="5.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>
