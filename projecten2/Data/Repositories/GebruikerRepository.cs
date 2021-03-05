@@ -26,7 +26,7 @@ namespace projecten2.Data.Repositories
 
         public Gebruiker GetByEmail(string email)
         {
-            return _Gebruikers.FirstOrDefault(x => x.Email == email);
+            return _Gebruikers.Include(x => x.Contracten).FirstOrDefault(x => x.Email == email);
         }
 
         public void SaveChanges()

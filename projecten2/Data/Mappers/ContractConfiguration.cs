@@ -17,7 +17,7 @@ namespace projecten2.Data.Mappers
 
             builder.Property(x => x.ContractTitel).IsRequired().HasMaxLength(50);
 
-            builder.Property(x => x.KlantNr).IsRequired();
+         //   builder.Property(x => x.KlantNr).IsRequired();
             builder.Property(x => x.ContractStatus).IsRequired();
             builder.Property(x => x.StartDatum).IsRequired();
             builder.Property(x => x.EindDatum);

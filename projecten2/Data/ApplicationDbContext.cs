@@ -20,7 +20,7 @@ namespace projecten2.Data
         public DbSet<ContractType> ContractTypes { get; set; }  
         public DbSet<Rapport> Rapporten { get; set; }     
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<GebruikerLogin> gebruikerLogins { get; set; }
+        public DbSet<GebruikerLogin> GebruikerLogins { get; set; }
         public DbSet<Gebruiker> Gebruikers { get; set; }
         //public DbSet<Klant> Klanten { get; set; }
         //public DbSet<SupportManager> SupportManagers { get; set; }

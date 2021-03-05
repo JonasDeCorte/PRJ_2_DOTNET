@@ -92,8 +92,8 @@ namespace projecten2.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    // _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.GebruikersNaam });
-                   // _dbContext.SaveChanges();
+                     _dbContext.GebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.Email });
+                    _dbContext.SaveChanges();
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -107,8 +107,8 @@ namespace projecten2.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                   // _dbContext.gebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.MISLUKT, Username = currentUser.GebruikersNaam });
-                    //_dbContext.SaveChanges();
+                    _dbContext.GebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.MISLUKT, Username = currentUser.Email });
+                    _dbContext.SaveChanges();
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

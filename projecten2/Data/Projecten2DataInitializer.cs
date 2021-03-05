@@ -26,12 +26,69 @@ namespace projecten2.Data
                 Console.WriteLine("Database Created");
             }
             if (!_dbContext.Gebruikers.Any())
-            {
+            {       
+                Klant jan = new Klant() { GebruikersNaam = "jan@hogent.be", Naam = "Peeters", Voornaam = "Jan", Email = "jan@gmail.com" };
                 Klant peter = new Klant() { GebruikersNaam = "peter@hogent.be",  Naam = "Claeyssens", Voornaam = "Peter", Email = "peter@hogent.be" };
-                _dbContext.Gebruikers.Add(peter);
-                Klant jan = new Klant() { GebruikersNaam = "jan@hogent.be",  Naam = "Peeters", Voornaam = "Jan", Email = "jan@gmail.com"};
-               _dbContext.Gebruikers.Add(jan); 
-                SupportManager supportManager = new SupportManager { GebruikersNaam = "admin", Email= "supportManager@hogent.be", StartDatumTeWerkStelling = DateTime.Now, Naam = "admin", Voornaam = "admin" };
+                Contract con = new Contract(){  ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = "contract 1",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),  };
+                   jan.VoegContractToe(con);
+                                 
+                  con = new Contract()
+                {
+                    ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = "contract 2",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),
+
+                };
+                 jan.VoegContractToe(con);
+               con = new Contract()
+                {
+                    ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = "contract 3",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),
+
+                }; 
+                jan.VoegContractToe(con);
+                con = new Contract()
+                {
+                    ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = "contract 4",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),
+
+                };
+                peter.VoegContractToe(con);
+
+                con = new Contract()
+                {
+                    ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = "contract 5",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),
+
+                };
+
+                peter.VoegContractToe(con);
+
+                con = new Contract()
+                {
+                    ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = "contract 6",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),
+
+                };
+
+                peter.VoegContractToe(con);
+               
+                _dbContext.Gebruikers.AddRange(peter, jan);
+                _dbContext.SaveChanges();
+               
+                SupportManager supportManager = new SupportManager { GebruikersNaam = "supportManager@hogent.be", Email= "supportManager@hogent.be", StartDatumTeWerkStelling = DateTime.Now, Naam = "admin", Voornaam = "admin" };
                 _dbContext.Gebruikers.Add(supportManager);
                 _dbContext.SaveChanges();
             }
@@ -46,23 +103,18 @@ namespace projecten2.Data
                 _dbContext.SaveChanges();
 
             }
-
-            if (!_dbContext.ContractTypes.Any())
-            {
-                ContractType type = new ContractType("test", "open", DateTime.Now, DateTime.Now.AddDays(30), DateTime.Now.AddDays(15), 500.00);
-                _dbContext.ContractTypes.AddRange(type);
-                _dbContext.SaveChanges();
-            }
-
+            /*
             if (!_dbContext.Contracten.Any())
             {
-                Contract contract = new Contract("testcontract", 0001, ContractStatus.LOPEND, DateTime.Now, 1, 1);
-                Contract contract2 = new Contract("testcontract2", 0001, ContractStatus.LOPEND, DateTime.Now, 2, 1);
-                Contract contract3 = new Contract("testcontract3", 0000, ContractStatus.LOPEND, DateTime.Now, 3, 1);
+                ContractType type = new ContractType("test", "open", DateTime.Now, DateTime.Now.AddDays(30), DateTime.Now.AddDays(15), 500.00);
+                Contract contract = new Contract("testcontract", 0001, ContractStatus.LOPEND, DateTime.Now, type);
+                Contract contract2 = new Contract("testcontract2", 0001, ContractStatus.LOPEND, DateTime.Now, type);
+                Contract contract3 = new Contract("testcontract3", 0000, ContractStatus.LOPEND, DateTime.Now, type);
+               
                 _dbContext.Contracten.AddRange(contract, contract2, contract3);
                 _dbContext.SaveChanges();
             }
-
+            */
             if (!_dbContext.TicketTypes.Any())
             {
                 TicketType type_1 = new TicketType("PRODUCTIE_GEIMPACTEERD_BINNEN_2U_OPLOSSING", "Hoog");
@@ -90,55 +142,18 @@ namespace projecten2.Data
             ApplicationUser admin = new ApplicationUser { UserName = eMailAddress, Email = eMailAddress };
             await _userManager.CreateAsync(admin, "P@ssword1");
             await _userManager.AddClaimAsync(admin, new Claim(ClaimTypes.Role, "admin"));
-            /* 
-            Application support = new SupportManager
-            {
-                GebruikersNaam = "supportManager",
-                Voornaam = "Andy",
-                Naam = "Depoortere",
-                Email = "supportManager@hogent.be",
-                Status = true
-            };
-            await _userManager.CreateAsync(support, "P@ssword1");
-            await _userManager.AddClaimAsync(support, new Claim(ClaimTypes.Role, "admin"));
-            */
+           
 
             eMailAddress = "jan@gmail.com";
             ApplicationUser klant = new ApplicationUser { UserName = eMailAddress, Email = eMailAddress };
             await _userManager.CreateAsync(klant, "P@ssword1");
             await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
-           /*
-            Klant klant = new Klant
-            {
 
-                GebruikersNaam = "klant",
-                Voornaam = "Candace",
-                Naam = "Devlieger",
-                Email = "klant@hogent.be",
-                Status = true,
-                KlantNummer = 0001,
-                GegevensContactPersonen = "gegevensContactPersonen",
-                DatumRegistratie = DateTime.Now
-            };
+            eMailAddress = "peter@hogent.be";
+             klant = new ApplicationUser { UserName = eMailAddress, Email = eMailAddress };
             await _userManager.CreateAsync(klant, "P@ssword1");
             await _userManager.AddClaimAsync(klant, new Claim(ClaimTypes.Role, "klant"));
-            Klant klant_2 = new Klant
-            {
-                Naam = "Test",
-                Voornaam = " test",
-                GebruikersNaam = "test",
-                Email = "test@hogent.be",
-                KlantNummer = 0002,
-                GegevensContactPersonen = "testtestest",
-                DatumRegistratie = DateTime.Now,
 
-            };
-            await _userManager.CreateAsync(klant_2, "P@ssword1");
-            await _userManager.AddClaimAsync(klant_2, new Claim(ClaimTypes.Role, "klant"));
-          
-              _dbContext.Klanten.Add(klant);
-            _dbContext.SaveChanges(); 
-           */
         }
     }
 }

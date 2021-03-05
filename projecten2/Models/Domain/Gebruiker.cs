@@ -24,6 +24,7 @@ namespace projecten2.Models.Domain
         
 
         public ICollection<Ticket> Tickets { get; set; }
+        public ICollection<Contract> Contracten { get; set; }
 
         #endregion
 

@@ -9,6 +9,7 @@ namespace projecten2.Models.Domain
     {
         Contract GetByContractNr(int contractNr);
         IEnumerable<Contract> GetAll();
+      
         void Add(Contract contract);
         void SaveChanges();
     }
