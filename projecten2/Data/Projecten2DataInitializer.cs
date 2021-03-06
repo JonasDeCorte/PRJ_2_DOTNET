@@ -25,14 +25,22 @@ namespace projecten2.Data
                 await InitializeUsersAndCustomers();
                 Console.WriteLine("Database Created");
             }
+             if (!_dbContext.ContractTypes.Any())
+            {
+                ContractType type = new ContractType("test", "open", DateTime.Now, DateTime.Now.AddDays(30), DateTime.Now.AddDays(15), 500.00);
+                _dbContext.ContractTypes.AddRange(type);
+                _dbContext.SaveChanges();
+            }
             if (!_dbContext.Gebruikers.Any())
             {       
                 Klant jan = new Klant() { GebruikersNaam = "jan@hogent.be", Naam = "Peeters", Voornaam = "Jan", Email = "jan@gmail.com" };
                 Klant peter = new Klant() { GebruikersNaam = "peter@hogent.be",  Naam = "Claeyssens", Voornaam = "Peter", Email = "peter@hogent.be" };
-                Contract con = new Contract(){  ContractStatus = ContractStatus.LOPEND,
+                Contract con = new Contract() { ContractStatus = ContractStatus.LOPEND,
                     ContractTitel = "contract 1",
                     StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),  };
+                    EindDatum = DateTime.Today.AddDays(30),
+                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
+                };
                    jan.VoegContractToe(con);
                                  
                   con = new Contract()
@@ -41,8 +49,9 @@ namespace projecten2.Data
                     ContractTitel = "contract 2",
                     StartDatum = DateTime.Now,
                     EindDatum = DateTime.Today.AddDays(30),
+                      ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
 
-                };
+                  };
                  jan.VoegContractToe(con);
                con = new Contract()
                 {
@@ -50,8 +59,8 @@ namespace projecten2.Data
                     ContractTitel = "contract 3",
                     StartDatum = DateTime.Now,
                     EindDatum = DateTime.Today.AddDays(30),
-
-                }; 
+                   ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
+               }; 
                 jan.VoegContractToe(con);
                 con = new Contract()
                 {
@@ -59,7 +68,7 @@ namespace projecten2.Data
                     ContractTitel = "contract 4",
                     StartDatum = DateTime.Now,
                     EindDatum = DateTime.Today.AddDays(30),
-
+                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
                 };
                 peter.VoegContractToe(con);
 
@@ -69,7 +78,7 @@ namespace projecten2.Data
                     ContractTitel = "contract 5",
                     StartDatum = DateTime.Now,
                     EindDatum = DateTime.Today.AddDays(30),
-
+                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
                 };
 
                 peter.VoegContractToe(con);
@@ -80,7 +89,7 @@ namespace projecten2.Data
                     ContractTitel = "contract 6",
                     StartDatum = DateTime.Now,
                     EindDatum = DateTime.Today.AddDays(30),
-
+                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
                 };
 
                 peter.VoegContractToe(con);

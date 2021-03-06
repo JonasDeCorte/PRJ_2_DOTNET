@@ -23,7 +23,7 @@ namespace projecten2.Models.ViewModels
             ContractTitel = contract.ContractTitel;
             StartDatum = contract.StartDatum;
             DoorloopTijd = contract.Doorlooptijd;
-            ContractTypeId = contract.ContractType.ContractTypeId;
+            ContractTypeId = contract.ContractTypeId;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace projecten2.Models.Domain
         public int ContractNr { get; set; }
         public string ContractTitel { get; set; }
         public int Doorlooptijd { get; set; }
-       
+        public int ContractTypeId { get; set; }
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
 
