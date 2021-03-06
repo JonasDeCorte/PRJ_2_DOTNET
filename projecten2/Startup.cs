@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -52,10 +53,11 @@ namespace projecten2
             services.AddScoped<Projecten2DataInitializer>();
             services.AddScoped<KlantFilter>();
             services.AddMvc(options =>
-            {
-                // This pushes users to login if not authenticated
-                options.Filters.Add(new AuthorizeFilter());
-            });
+             {
+                 // This pushes users to login if not authenticated
+                 options.Filters.Add(new AuthorizeFilter());
+             });
+           
 
         }
 
