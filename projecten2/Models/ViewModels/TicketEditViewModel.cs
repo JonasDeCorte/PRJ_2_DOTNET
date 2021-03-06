@@ -6,6 +6,7 @@ namespace projecten2.Models.ViewModels
     public class TicketEditViewModel
     {
         [Required(ErrorMessage = "De titel van het ticket is verplicht in te vullen.")]
+        [Display(Name = "Ticket titel")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "De titel van het ticket moet minstens 3 karakters bevatten, maximaal 50.")]
         public string Titel { get; set; }
         [Required(ErrorMessage = "U moet een contract kiezen waaronder dit ticket valt.")]

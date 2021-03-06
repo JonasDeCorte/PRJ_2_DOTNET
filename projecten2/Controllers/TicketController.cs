@@ -69,11 +69,11 @@ namespace projecten2.Controllers
                     ticket.ContractId = tevm.ContractId;
                     _ticketRepository.Add(ticket);
                     _ticketRepository.SaveChanges();
-                    TempData["message"] = $"You successfully created ticket ${ticket.Titel}.";
+                    TempData["message"] = $"Je hebt het ticket ${ticket.Titel} aangemaakt.";
                 }
                 catch
                 {
-                    TempData["error"] = "Sorry, something went wrong, the ticket was not added...";
+                    TempData["error"] = "Sorry, er is iets fout gegaan. Het ticket is niet aangemaakt...";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -165,7 +165,6 @@ namespace projecten2.Controllers
             ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
-        }
-      
+        }   
     }
 }

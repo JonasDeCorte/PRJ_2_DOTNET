@@ -1,8 +1,6 @@
 ﻿@model projecten2.Models.ViewModels.ContractEditViewModel
 
-@{
-    ViewData["Title"] = "Create";
-}
+@{ ViewData["Title"] = "Create"; }
 
 <h1>Nieuw contract afsluiten</h1>
 
@@ -23,22 +21,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="DoorloopTijd" class="control-label"></label>
-                <input asp-for="DoorloopTijd" class="form-control" />
-                <span asp-validation-for="DoorloopTijd" class="text-danger"></span>
+                <select asp-for="DoorloopTijd" class="form-control">
+                    <option value="">-- Aantal jaar --</option>
+                    <option value=1>1 jaar</option>
+                    <option value=2>2 jaar</option>
+                    <option value=3>3 jaar</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="ContractTypeId" class="control-label"></label>
-                <input asp-for="ContractTypeId" class="form-control" />
-                <span asp-validation-for="ContractTypeId" class="text-danger"></span>
+                <select asp-for="ContractTypeId" asp-items="@(ViewData["contractTypes"] as SelectList)" class="form-control">
+                    <option value="">-- Contract type --</option>
+                </select>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div>
+                <button class="btn btn-primary" type="submit">Contract aanmaken</button>
+                <a asp-action="Index" class="btn btn-secondary">Terug</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
 

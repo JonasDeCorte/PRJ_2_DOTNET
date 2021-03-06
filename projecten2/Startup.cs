@@ -47,6 +47,7 @@ namespace projecten2
             services.AddRazorPages();
             services.AddSession();
             services.AddScoped<IContractRepository, ContractRepository>();
+            services.AddScoped<IContractTypeRepository, ContractTypeRepository>();
             services.AddScoped<IGebruikerRepository, GebruikerRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
