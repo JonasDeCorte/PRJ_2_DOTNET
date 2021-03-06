@@ -29,6 +29,13 @@ namespace projecten2.Models.Domain
         {
             EindDatum = StartDatum.AddYears(Doorlooptijd);
         }
+        public Contract(int contractNr)
+        {
+            ContractNr = contractNr;
+        }
+
+     
+
 
         #endregion
 
