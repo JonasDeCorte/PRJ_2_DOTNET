@@ -17,15 +17,7 @@ namespace projecten2.Models.Domain
        
         
         public List<Bedrijf> bedrijven { get; set; }
-
-
-        public new ICollection<Contract> Contracten
-        {
-            get;
-        }
-        public int NrOfContracten => Contracten.Count;
-
-
+       
         #endregion
 
         #region Constructors
@@ -46,11 +38,6 @@ namespace projecten2.Models.Domain
         {
             Contracten.Add(contract);
 
-        }
-
-        public void VoegContractToe(string v)
-        {
-            throw new NotImplementedException();
         }
         /*
         public void VoegContractToe(String contractTitel, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
