@@ -9,18 +9,19 @@ namespace projecten2.Models.ViewModels
 {
     public class ContractEditViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "De titel van het contract is verplicht in te vullen.")]
         [Display(Name = "Contract titel")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "De contract titel moet minstens 3 karakters bevatten, maximaal 50.")]
         public string ContractTitel { get; set; }
-        [Required]
+        [Required(ErrorMessage = "De startdatum van het contract is verplicht in te vullen.")]
         [Display(Name = "Startdatum van het contract")]
         [DataType(DataType.Date)]
         public DateTime StartDatum { get; set; }
-        [Required]
+        [Required(ErrorMessage = "De doorloop tijd van het contract is verplicht in te vullen. (1, 2 of 3 jaar)")]
         [Display( Name = "Doorloop tijd")]
         [Range(1,3)]
         public int DoorloopTijd { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Het contract type is verplicht in te vullen.")]
         [Display(Name = "Contract type")]
         public int ContractTypeId { get; set; }
 
@@ -38,3 +39,5 @@ namespace projecten2.Models.ViewModels
         }
     }
 }
+
+
