@@ -23,7 +23,7 @@ namespace projecten2.Tests.Models.Domain
             _alpha.VoegTicketToe("ContractTwee", 2, 2, startDate, "omschrijving test2", "opmerkingen test2", piet);
         }
 
-        public void VoegContractToe_ContractZonderRapport_voegtContractToe()
+        public void VoegTicketToe_ContractMetTweeTickets_voegtTicketToe()
         {
             int aantalTicketsVoorhand = _alpha.NrOfTickets;
             Gebruiker jan = null;
