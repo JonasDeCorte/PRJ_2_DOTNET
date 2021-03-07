@@ -34,7 +34,9 @@ namespace projecten2.Controllers
         // GET: ContractController/Details 
         public IActionResult Details(int id)
         {
-            return View();
+            Contract contract = _contractRepository.GetByContractNr(id);
+            if (contract == null) { return NotFound(); }
+            return View(contract);
         }
 
         // GET: ContractController/Create
