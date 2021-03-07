@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon></ApplicationIcon>
+    <PackageIcon>favicon.PNG</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +31,10 @@
     <None Remove="Views\Gebruiker\**" />
     <None Remove="wwwroot\NewFolder1\**" />
     <None Remove="wwwroot\NewFolder\**" />
+    <None Include="wwwroot\favicon.PNG">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
