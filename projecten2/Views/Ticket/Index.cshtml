@@ -51,7 +51,8 @@
         @Html.DisplayFor(modelItem => item.TicketType.Naam)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.AanmaakDatum)
+        @String.Format("{0:dd/MM/yyyy}", item.AanmaakDatum)
+      
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.TicketStatus)

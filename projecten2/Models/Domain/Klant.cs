@@ -41,18 +41,7 @@ namespace projecten2.Models.Domain
 
         }
 
-        public void VoegContractToe(string v)
-        {
-            throw new NotImplementedException();
-        }
-        /*
-public void VoegContractToe(String contractTitel, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
-{
-   Contract contract = new Contract(contractTitel, this ,contractStatus, StartDatum, type);
-   Contracten.Add(contract); 
-
-}
-*/
+      
         #endregion
 
     }
