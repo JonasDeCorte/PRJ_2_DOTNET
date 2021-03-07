@@ -28,25 +28,31 @@ namespace projecten2.Models.Domain
             DatumRegistratie = DateTime.Now;
             
         }
+
+        #endregion
+        #region Methods
         public int GetAantalActieveContracten()
         {
             return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
-        #endregion
-        #region Methods
         public void VoegContractToe(Contract contract)
         {
             Contracten.Add(contract);
 
         }
-        /*
-        public void VoegContractToe(String contractTitel, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+
+        public void VoegContractToe(string v)
         {
-            Contract contract = new Contract(contractTitel, this ,contractStatus, StartDatum, type);
-            Contracten.Add(contract); 
-           
+            throw new NotImplementedException();
         }
-        */
+        /*
+public void VoegContractToe(String contractTitel, ContractStatus contractStatus, DateTime StartDatum, ContractType type)
+{
+   Contract contract = new Contract(contractTitel, this ,contractStatus, StartDatum, type);
+   Contracten.Add(contract); 
+
+}
+*/
         #endregion
 
     }

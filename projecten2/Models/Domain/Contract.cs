@@ -21,6 +21,8 @@ namespace projecten2.Models.Domain
        // public Klant Klant { get; set; }
         public ContractStatus ContractStatus { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
+
+        public int NrOfTickets => Tickets.Count;
         public ContractType ContractType { get; set; }
         #endregion
 
@@ -29,7 +31,12 @@ namespace projecten2.Models.Domain
         {
             EindDatum = StartDatum.AddYears(Doorlooptijd);
         }
+        public Contract(int contractNr)
+        {
+            ContractNr = contractNr;
+        }
 
+      
         #endregion
 
         #region Methods
