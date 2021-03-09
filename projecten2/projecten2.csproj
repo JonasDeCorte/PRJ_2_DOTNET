@@ -31,6 +31,7 @@
     <None Remove="Views\Gebruiker\**" />
     <None Remove="wwwroot\NewFolder1\**" />
     <None Remove="wwwroot\NewFolder\**" />
+    <None Include="Views\Shared\Components\ChartJs\default.cshtml" />
     <None Include="wwwroot\favicon.PNG">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -52,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Chart.js" Version="2.9.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
