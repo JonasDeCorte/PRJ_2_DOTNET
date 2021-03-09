@@ -43,115 +43,69 @@ namespace projecten2.Data
             {       
                 Klant jan = new Klant() { GebruikersNaam = "jan@hogent.be", Naam = "Peeters", Voornaam = "Jan", Email = "jan@gmail.com" };
                 Klant peter = new Klant() { GebruikersNaam = "peter@hogent.be",  Naam = "Claeyssens", Voornaam = "Peter", Email = "peter@hogent.be" };
-                Contract con = new Contract() { ContractStatus = ContractStatus.LOPEND,
-                    ContractTitel = "contract 1",
-                    StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),
-                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
-                };
-                   jan.VoegContractToe(con);
-                Ticket ticket = new Ticket
-                {
-                    Titel = "Ticket1",
-                    Omschrijving = "nog steeds een test ticket",
-                    Opmerkingen = "test t ",
-                    TicketTypeId = 1
-                };
-                con.VoegTicketToe(ticket);
-                ticket = new Ticket
-                {
-                    Titel = "Ticket2",
-                    Omschrijving = "nog steeds een test ticket2",
-                    Opmerkingen = "test t2 ",
-                    TicketTypeId = 1
-                };
-                con.VoegTicketToe(ticket);
-                ticket = new Ticket
-                {
-                    Titel = "Ticket3",
-                    Omschrijving = "nog steeds een test ticket3",
-                    Opmerkingen = "test t3 ",
-                    TicketTypeId = 1
-                };
-                con.VoegTicketToe(ticket);
-                con = new Contract()
-                {
-                    ContractStatus = ContractStatus.LOPEND,
-                    ContractTitel = "contract 2",
-                    StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),
-                      ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
-
-                  };
-                 jan.VoegContractToe(con);
-
-               con = new Contract()
-                {
-                    ContractStatus = ContractStatus.LOPEND,
-                    ContractTitel = "contract 3",
-                    StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),
-                   ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
-               }; 
-                jan.VoegContractToe(con);
-                con = new Contract()
-                {
-                    ContractStatus = ContractStatus.LOPEND,
-                    ContractTitel = "contract 4",
-                    StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),
-                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
-                };
-                peter.VoegContractToe(con);
-                 ticket = new Ticket
-                {
-                    Titel = "Ticket4",
-                    Omschrijving = "nog steeds een test ticket4",
-                    Opmerkingen = "test t4 ",
-                    TicketTypeId = 1
-                };
-                con.VoegTicketToe(ticket);
-              
-              
-                con = new Contract()
-                {
-                    ContractStatus = ContractStatus.LOPEND,
-                    ContractTitel = "contract 5",
-                    StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),
-                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
-                };
-                ticket = new Ticket
-                {
-                    Titel = "Ticket5",
-                    Omschrijving = "nog steeds een test ticket5",
-                    Opmerkingen = "test t5 ",
-                    TicketTypeId = 1
-                };
-               
-                peter.VoegContractToe(con);
-                 con.VoegTicketToe(ticket);
-                con = new Contract()
-                {
-                    ContractStatus = ContractStatus.LOPEND,
-                    ContractTitel = "contract 6",
-                    StartDatum = DateTime.Now,
-                    EindDatum = DateTime.Today.AddDays(30),
-                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
-                };
-
-                peter.VoegContractToe(con);
-                ticket = new Ticket
-                {
-                    Titel = "Ticket6",
-                    Omschrijving = "nog steeds een test ticket6",
-                    Opmerkingen = "test t6 ",
-                    TicketTypeId = 1
-                };
-                con.VoegTicketToe(ticket);
                 _dbContext.Gebruikers.AddRange(peter, jan);
                 _dbContext.SaveChanges();
-               
+                for(int i = 0; i < 5; i++)
+                {
+                    Contract con = new Contract() { ContractStatus = ContractStatus.LOPEND,
+                    ContractTitel = $"contract {i}",
+                    StartDatum = DateTime.Now,
+                    EindDatum = DateTime.Today.AddDays(30),
+                    ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
+                }; 
+                    jan.VoegContractToe(con);
+                    _dbContext.Contracten.Add(con);
+                    _dbContext.SaveChanges();
+                }
+
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                    Ticket ticket = new Ticket
+                    {
+                        ContractId = jan.Contracten.ElementAt(i).ContractNr,
+                        Titel = $"Ticket{j}",
+                        Omschrijving = $"nog steeds een test ticket{j}",
+                        Opmerkingen = $"test ticket{j} ",
+                        TicketTypeId = 1
+                    };
+                    jan.Contracten.ElementAt(i).Tickets.Add(ticket);
+                    _dbContext.Tickets.Add(ticket);
+                    }
+                   
+                    _dbContext.SaveChanges();
+                }
+                for (int i = 5; i < 10; i++)
+                {
+                    Contract con = new Contract()
+                    {
+                        ContractStatus = ContractStatus.LOPEND,
+                        ContractTitel = $"contract {i}",
+                        StartDatum = DateTime.Now,
+                        EindDatum = DateTime.Today.AddDays(30),
+                        ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
+                    };
+                    peter.VoegContractToe(con);
+                    _dbContext.Contracten.Add(con);
+                    _dbContext.SaveChanges();
+                }
+
+                for (int i = 5; i < 10; i++)
+                {
+                    Ticket ticket = new Ticket
+                    {
+                        ContractId = peter.Contracten.First().ContractNr,
+                        Titel = $"Ticket{i}",
+                        Omschrijving = $"nog steeds een test ticket{i}",
+                        Opmerkingen = $"test ticket{i} ",
+                        TicketTypeId = 1
+                    };
+                    peter.Contracten.First().Tickets.Add(ticket);
+                    _dbContext.Tickets.Add(ticket);
+                    _dbContext.SaveChanges();
+                }
+
                 SupportManager supportManager = new SupportManager { GebruikersNaam = "supportManager@hogent.be", Email= "supportManager@hogent.be", StartDatumTeWerkStelling = DateTime.Now, Naam = "admin", Voornaam = "admin" };
                 _dbContext.Gebruikers.Add(supportManager);
                 _dbContext.SaveChanges();

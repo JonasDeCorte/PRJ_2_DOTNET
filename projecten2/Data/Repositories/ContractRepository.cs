@@ -24,8 +24,10 @@ namespace projecten2.Data.Repositories
         {
             return _contracten.Include(x => x.Tickets).ToList();
         }
+      
 
-       
+
+
 
         public Contract GetByContractNr(int contractNr)
         {

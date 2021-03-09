@@ -25,18 +25,32 @@ namespace projecten2.Controllers
             _ticketTypeRepository = ticketTypeRepository;
             _contractRepository = contractRepository;
         }
+       
         // GET: TicketController
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
-        public IActionResult Index(Klant klant)
+        public IActionResult Index(Klant klant, int? contractid)
         {
-            // gewoon een voorbeeld klant moet eigenlijk zelf in de view een contract selecteren zodat wij alle tickets kunnen weergeven
-            Contract contract = klant.Contracten.First();
-            IEnumerable<Ticket> tickets = _ticketRepository.GetAll().Where(x => x.ContractId == contract.ContractNr);
+
+            List<Ticket> tickets = new List<Ticket>();
+            
+            ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
+       
+            if (contractid.HasValue && contractid.Value != 0)
+           
+                tickets = _ticketRepository.GetAll().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
+           else
+
+                tickets = _ticketRepository.GetAll().OrderBy(x => x.AanmaakDatum).ToList();
+
+
+
+            ViewData["selectedcontract"] = contractid;
             if (tickets == null) {
                 return NotFound();
             }
-            return View(tickets);
+            
+            return View(tickets.OrderBy(x => x.AanmaakDatum));
         }
 
         // GET: TicketController/Details/5
@@ -168,5 +182,6 @@ namespace projecten2.Controllers
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
         }   
+       
     }
 }
