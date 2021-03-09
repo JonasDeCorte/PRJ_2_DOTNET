@@ -26,11 +26,11 @@ namespace projecten2.Controllers
         }
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(Klant klant)
         {
             int[] aantal = new int[2];
             
-            aantal[0] = _contractRepository.GetAll().Count();
+            aantal[0] = klant.Contracten.Count();
             aantal[1] = _ticketRepository.GetAll().Count();
             return View(aantal);
         }

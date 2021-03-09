@@ -21,9 +21,11 @@ namespace projecten2.Controllers
         }
 
         // GET: ContractController
-        public IActionResult Index()
+        [Authorize]
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Index(Klant klant)
         {
-            IEnumerable<Contract> contracten = _contractRepository.GetAll();
+            IEnumerable<Contract> contracten = klant.Contracten;
             if (contracten == null)
             {
                 return NotFound();
