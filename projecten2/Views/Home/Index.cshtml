@@ -1,11 +1,22 @@
-﻿
+﻿@model Int32[]
 @{ ViewData["Title"] = "Dashboard"; }
 <div class="row">
-    <div class="container col-md-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Ticket" asp-action="Create"><h1>Ticket aanmaken</h1></a></div>
-    <div class="container col-md-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Contract" asp-action="Create"><h1>Contract aanmaken</h1></a></div>
-</div>
+    <div class="container col-lg-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Ticket" asp-action="Create"><h2>Ticket aanmaken</h2></a></div>
+    <div class="container col-lg-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Contract" asp-action="Create"><h2>Contract aanmaken</h2></a></div>
 
-<vc:chartjs></vc:chartjs>
+</div>
+<div class="row">
+    <div class="container col-lg-6 mx-3"> <vc:chartjs></vc:chartjs></div>
+    <div class="container col-lg-4 mx-3">
+        <div class="container my-2 border  bg-light ">
+            <a class="nav-item nav-link text-dark " asp-area="" asp-controller="Contract" asp-action="Index"><h4>Lopende contracten:<br>@Model[0]</h4></a>
+        </div>
+        <div class="container   my-2 border  bg-light ">
+            <a class="nav-item nav-link text-dark " asp-area="" asp-controller="Ticket" asp-action="Index"><h4>Actieve tickets:<br>@Model[1] </h4></a>
+        </div>
+    </div>
+
+</div>
 <h1 class="mt-5">Recente Activiteiten</h1>
 <table class="table table-striped table-sm table-bordered ">
     <tr>
