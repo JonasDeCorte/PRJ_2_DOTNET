@@ -30,6 +30,7 @@ namespace projecten2.Models.Domain
         public Contract()
         {
             EindDatum = StartDatum.AddYears(Doorlooptijd);
+            Tickets = new List<Ticket>();
         }
         public Contract(int contractNr)
         {
@@ -40,13 +41,19 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
+        /*
         public Ticket VoegTicketToe(String titel, int ticketTypeId, int contractId, DateTime aanmaakDatum, String omschrijving, String opmerkingen, Gebruiker gebruiker)
         {
             Ticket ticket = new Ticket(titel, ticketTypeId, contractId, aanmaakDatum, omschrijving, opmerkingen, gebruiker);
             Tickets.Add(ticket);
             return ticket;
+        }*/
+        public void VoegTicketToe(Ticket ticket)
+        {
+            Tickets.Add(ticket);
+
         }
-        
+
         #endregion
 
     }

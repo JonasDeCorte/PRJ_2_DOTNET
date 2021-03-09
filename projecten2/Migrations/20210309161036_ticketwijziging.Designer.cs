@@ -10,8 +10,8 @@ using projecten2.Data;
 namespace projecten2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210305174004_init")]
-    partial class init
+    [Migration("20210309161036_ticketwijziging")]
+    partial class ticketwijziging
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -297,19 +297,16 @@ namespace projecten2.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ContractTypeId")
+                    b.Property<int>("ContractTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Doorlooptijd")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Doorlooptijd")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EindDatum")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("KlantGebruikersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("KlantNr")
+                    b.Property<int?>("GebruikersId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDatum")
@@ -319,7 +316,7 @@ namespace projecten2.Migrations
 
                     b.HasIndex("ContractTypeId");
 
-                    b.HasIndex("KlantGebruikersId");
+                    b.HasIndex("GebruikersId");
 
                     b.ToTable("Contract");
                 });
@@ -415,7 +412,7 @@ namespace projecten2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("gebruikerLogins");
+                    b.ToTable("GebruikerLogins");
                 });
 
             modelBuilder.Entity("projecten2.Models.Domain.Rapport", b =>
@@ -588,7 +585,7 @@ namespace projecten2.Migrations
             modelBuilder.Entity("projecten2.Models.Domain.Bedrijf", b =>
                 {
                     b.HasOne("projecten2.Models.Domain.Klant", null)
-                        .WithMany("Bedrijf")
+                        .WithMany("bedrijven")
                         .HasForeignKey("KlantGebruikersId")
                         .OnDelete(DeleteBehavior.NoAction);
                 });
@@ -607,15 +604,15 @@ namespace projecten2.Migrations
                 {
                     b.HasOne("projecten2.Models.Domain.ContractType", "ContractType")
                         .WithMany("Contracten")
-                        .HasForeignKey("ContractTypeId");
+                        .HasForeignKey("ContractTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("projecten2.Models.Domain.Klant", "Klant")
+                    b.HasOne("projecten2.Models.Domain.Gebruiker", null)
                         .WithMany("Contracten")
-                        .HasForeignKey("KlantGebruikersId");
+                        .HasForeignKey("GebruikersId");
 
                     b.Navigation("ContractType");
-
-                    b.Navigation("Klant");
                 });
 
             modelBuilder.Entity("projecten2.Models.Domain.Rapport", b =>
@@ -637,10 +634,9 @@ namespace projecten2.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("projecten2.Models.Domain.Gebruiker", "Gebruiker")
+                    b.HasOne("projecten2.Models.Domain.Gebruiker", null)
                         .WithMany("Tickets")
-                        .HasForeignKey("GebruikersId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("GebruikersId");
 
                     b.HasOne("projecten2.Models.Domain.Bijlage", "Oplossing")
                         .WithMany()
@@ -653,8 +649,6 @@ namespace projecten2.Migrations
                         .IsRequired();
 
                     b.Navigation("Contract");
-
-                    b.Navigation("Gebruiker");
 
                     b.Navigation("Oplossing");
 
@@ -673,6 +667,8 @@ namespace projecten2.Migrations
 
             modelBuilder.Entity("projecten2.Models.Domain.Gebruiker", b =>
                 {
+                    b.Navigation("Contracten");
+
                     b.Navigation("Tickets");
                 });
 
@@ -685,9 +681,7 @@ namespace projecten2.Migrations
 
             modelBuilder.Entity("projecten2.Models.Domain.Klant", b =>
                 {
-                    b.Navigation("Bedrijf");
-
-                    b.Navigation("Contracten");
+                    b.Navigation("bedrijven");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace projecten2.Migrations
 {
-    public partial class init : Migration
+    public partial class ticketwijziging : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,7 +88,7 @@ namespace projecten2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "gebruikerLogins",
+                name: "GebruikerLogins",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -99,7 +99,7 @@ namespace projecten2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_gebruikerLogins", x => x.Id);
+                    table.PrimaryKey("PK_GebruikerLogins", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -251,13 +251,12 @@ namespace projecten2.Migrations
                     ContractNr = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContractTitel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    KlantNr = table.Column<int>(type: "int", nullable: false),
-                    Doorlooptijd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Doorlooptijd = table.Column<int>(type: "int", nullable: false),
+                    ContractTypeId = table.Column<int>(type: "int", nullable: false),
                     StartDatum = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EindDatum = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    KlantGebruikersId = table.Column<int>(type: "int", nullable: true),
                     ContractStatus = table.Column<int>(type: "int", nullable: false),
-                    ContractTypeId = table.Column<int>(type: "int", nullable: true)
+                    GebruikersId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -267,10 +266,10 @@ namespace projecten2.Migrations
                         column: x => x.ContractTypeId,
                         principalTable: "ContractType",
                         principalColumn: "ContractTypeId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Contract_Gebruiker_KlantGebruikersId",
-                        column: x => x.KlantGebruikersId,
+                        name: "FK_Contract_Gebruiker_GebruikersId",
+                        column: x => x.GebruikersId,
                         principalTable: "Gebruiker",
                         principalColumn: "GebruikersId",
                         onDelete: ReferentialAction.Restrict);
@@ -288,9 +287,9 @@ namespace projecten2.Migrations
                     AanmaakDatum = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Omschrijving = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Opmerkingen = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GebruikersId = table.Column<int>(type: "int", nullable: true),
                     TicketStatus = table.Column<int>(type: "int", nullable: false),
-                    OplossingBijlageID = table.Column<int>(type: "int", nullable: true)
+                    OplossingBijlageID = table.Column<int>(type: "int", nullable: true),
+                    GebruikersId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -305,7 +304,7 @@ namespace projecten2.Migrations
                         column: x => x.GebruikersId,
                         principalTable: "Gebruiker",
                         principalColumn: "GebruikersId",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Ticket_TicketType_TicketTypeId",
                         column: x => x.TicketTypeId,
@@ -409,9 +408,9 @@ namespace projecten2.Migrations
                 column: "ContractTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contract_KlantGebruikersId",
+                name: "IX_Contract_GebruikersId",
                 table: "Contract",
-                column: "KlantGebruikersId");
+                column: "GebruikersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rapport_TicketId",
@@ -451,7 +450,7 @@ namespace projecten2.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Contract_Gebruiker_KlantGebruikersId",
+                name: "FK_Contract_Gebruiker_GebruikersId",
                 table: "Contract");
 
             migrationBuilder.DropForeignKey(
@@ -481,7 +480,7 @@ namespace projecten2.Migrations
                 name: "Bedrijf");
 
             migrationBuilder.DropTable(
-                name: "gebruikerLogins");
+                name: "GebruikerLogins");
 
             migrationBuilder.DropTable(
                 name: "Rapport");

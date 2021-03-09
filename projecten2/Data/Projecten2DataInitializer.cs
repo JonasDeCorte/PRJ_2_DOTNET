@@ -31,6 +31,14 @@ namespace projecten2.Data
                 _dbContext.ContractTypes.AddRange(type);
                 _dbContext.SaveChanges();
             }
+            if (!_dbContext.TicketTypes.Any())
+            {
+                TicketType type_1 = new TicketType("PRODUCTIE_GEIMPACTEERD_BINNEN_2U_OPLOSSING", "Hoog");
+                TicketType type_2 = new TicketType("PRODUCTIE_ZAL_STIL_VALLEN_BINNEN_4U_OPLOSSING", "Medium");
+                TicketType type_3 = new TicketType("GEEN_PRODUCTIE_IMPACT_BINNEN_3DAGEN_ANTWOORD", "Laag");
+                _dbContext.TicketTypes.AddRange(type_1, type_2, type_3);
+                _dbContext.SaveChanges();
+            }
             if (!_dbContext.Gebruikers.Any())
             {       
                 Klant jan = new Klant() { GebruikersNaam = "jan@hogent.be", Naam = "Peeters", Voornaam = "Jan", Email = "jan@gmail.com" };
@@ -42,8 +50,31 @@ namespace projecten2.Data
                     ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
                 };
                    jan.VoegContractToe(con);
-                                 
-                  con = new Contract()
+                Ticket ticket = new Ticket
+                {
+                    Titel = "Ticket1",
+                    Omschrijving = "nog steeds een test ticket",
+                    Opmerkingen = "test t ",
+                    TicketTypeId = 1
+                };
+                con.VoegTicketToe(ticket);
+                ticket = new Ticket
+                {
+                    Titel = "Ticket2",
+                    Omschrijving = "nog steeds een test ticket2",
+                    Opmerkingen = "test t2 ",
+                    TicketTypeId = 1
+                };
+                con.VoegTicketToe(ticket);
+                ticket = new Ticket
+                {
+                    Titel = "Ticket3",
+                    Omschrijving = "nog steeds een test ticket3",
+                    Opmerkingen = "test t3 ",
+                    TicketTypeId = 1
+                };
+                con.VoegTicketToe(ticket);
+                con = new Contract()
                 {
                     ContractStatus = ContractStatus.LOPEND,
                     ContractTitel = "contract 2",
@@ -53,6 +84,7 @@ namespace projecten2.Data
 
                   };
                  jan.VoegContractToe(con);
+
                con = new Contract()
                 {
                     ContractStatus = ContractStatus.LOPEND,
@@ -71,7 +103,16 @@ namespace projecten2.Data
                     ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
                 };
                 peter.VoegContractToe(con);
-
+                 ticket = new Ticket
+                {
+                    Titel = "Ticket4",
+                    Omschrijving = "nog steeds een test ticket4",
+                    Opmerkingen = "test t4 ",
+                    TicketTypeId = 1
+                };
+                con.VoegTicketToe(ticket);
+              
+              
                 con = new Contract()
                 {
                     ContractStatus = ContractStatus.LOPEND,
@@ -80,9 +121,16 @@ namespace projecten2.Data
                     EindDatum = DateTime.Today.AddDays(30),
                     ContractTypeId = _dbContext.ContractTypes.First().ContractTypeId
                 };
-
+                ticket = new Ticket
+                {
+                    Titel = "Ticket5",
+                    Omschrijving = "nog steeds een test ticket5",
+                    Opmerkingen = "test t5 ",
+                    TicketTypeId = 1
+                };
+               
                 peter.VoegContractToe(con);
-
+                 con.VoegTicketToe(ticket);
                 con = new Contract()
                 {
                     ContractStatus = ContractStatus.LOPEND,
@@ -93,7 +141,14 @@ namespace projecten2.Data
                 };
 
                 peter.VoegContractToe(con);
-               
+                ticket = new Ticket
+                {
+                    Titel = "Ticket6",
+                    Omschrijving = "nog steeds een test ticket6",
+                    Opmerkingen = "test t6 ",
+                    TicketTypeId = 1
+                };
+                con.VoegTicketToe(ticket);
                 _dbContext.Gebruikers.AddRange(peter, jan);
                 _dbContext.SaveChanges();
                
@@ -124,14 +179,8 @@ namespace projecten2.Data
                 _dbContext.SaveChanges();
             }
             */
-            if (!_dbContext.TicketTypes.Any())
-            {
-                TicketType type_1 = new TicketType("PRODUCTIE_GEIMPACTEERD_BINNEN_2U_OPLOSSING", "Hoog");
-                TicketType type_2 = new TicketType("PRODUCTIE_ZAL_STIL_VALLEN_BINNEN_4U_OPLOSSING", "Medium");
-                TicketType type_3 = new TicketType("GEEN_PRODUCTIE_IMPACT_BINNEN_3DAGEN_ANTWOORD", "Laag");
-                _dbContext.TicketTypes.AddRange(type_1, type_2, type_3);
-                _dbContext.SaveChanges();
-            }
+          
+            /*
             if (!_dbContext.Tickets.Any())
             {
 
@@ -143,7 +192,8 @@ namespace projecten2.Data
 
                 _dbContext.Tickets.AddRange(ticket1, ticket2, ticket3);
                 _dbContext.SaveChanges();
-            }
+            
+            }*/
         }
         private async Task InitializeUsersAndCustomers()
         {

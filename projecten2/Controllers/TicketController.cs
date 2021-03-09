@@ -28,9 +28,11 @@ namespace projecten2.Controllers
         // GET: TicketController
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(Klant klant)
         {
-            IEnumerable<Ticket> tickets = _ticketRepository.GetAll();
+            // gewoon een voorbeeld klant moet eigenlijk zelf in de view een contract selecteren zodat wij alle tickets kunnen weergeven
+            Contract contract = klant.Contracten.First();
+            IEnumerable<Ticket> tickets = _ticketRepository.GetAll().Where(x => x.ContractId == contract.ContractNr);
             if (tickets == null) {
                 return NotFound();
             }
