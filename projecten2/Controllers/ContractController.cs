@@ -53,7 +53,8 @@ namespace projecten2.Controllers
         // POST: ContractController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ContractEditViewModel cevm)
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Create(ContractEditViewModel cevm, Klant klant)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +62,7 @@ namespace projecten2.Controllers
                 {
                     Contract contract = new Contract();
                     MapContractEditViewModelToContract(cevm, contract);
+                    klant.VoegContractToe(contract);
                     _contractRepository.Add(contract);
                     _contractRepository.SaveChanges();
                     TempData["message"] = $"Het contract ${contract.ContractTitel} is aangemaakt.";
@@ -87,8 +89,9 @@ namespace projecten2.Controllers
 
 
 
-        private void MapContractEditViewModelToContract(ContractEditViewModel contractEditViewModel, Contract contract)
+        private void MapContractEditViewModelToContract(ContractEditViewModel contractEditViewModel, Contract contract )
         {
+            
             contract.ContractTitel = contractEditViewModel.ContractTitel;
             contract.StartDatum = contractEditViewModel.StartDatum;
             contract.Doorlooptijd = contractEditViewModel.DoorloopTijd;

@@ -75,14 +75,15 @@ namespace projecten2.Controllers
         // POST: TicketController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(TicketEditViewModel tevm)
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Create(TicketEditViewModel tevm, Klant klant)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     Ticket ticket = new Ticket();
-                    MapTicketEditViewModelToTicket(tevm, ticket);
+                    MapTicketEditViewModelToTicket(tevm, ticket, klant);
                     ticket.ContractId = tevm.ContractId;
                     _ticketRepository.Add(ticket);
                     _ticketRepository.SaveChanges();
@@ -116,7 +117,8 @@ namespace projecten2.Controllers
         // POST: TicketController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, TicketEditViewModel tevm)
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Edit(int id, TicketEditViewModel tevm, Klant klant)
         {
             if (ModelState.IsValid)
            {
@@ -124,7 +126,7 @@ namespace projecten2.Controllers
                 try
                 {
                     ticket = _ticketRepository.GetByTicketNr(id);
-                   MapTicketEditViewModelToTicket(tevm, ticket);
+                   MapTicketEditViewModelToTicket(tevm, ticket, klant);
                     _ticketRepository.SaveChanges();
                     TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
 
@@ -176,8 +178,9 @@ namespace projecten2.Controllers
                 nameof(Contract.ContractTitel));
         }
 
-        private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
-        {        
+        private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket, Klant klant)
+        {
+            ticket.gebruikersId = klant.GebruikersId;
             ticket.Titel = TicketEditViewModel.Titel;
             ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
