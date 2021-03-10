@@ -38,7 +38,6 @@ namespace projecten2.Models.Domain
         public void VoegContractToe(Contract contract)
         {
             Contracten.Add(contract);
-
         }
 
       

@@ -31,7 +31,7 @@ namespace projecten2.Controllers
             int[] aantal = new int[2];
             
             aantal[0] = klant.Contracten.Count();
-            aantal[1] = _ticketRepository.GetAll().Count();
+            aantal[1] = _ticketRepository.GetAll().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).Count();
             return View(aantal);
         }
 

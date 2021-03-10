@@ -20,7 +20,7 @@ namespace projecten2.Models.Domain
        // public int KlantNr { get; set; }
        // public Klant Klant { get; set; }
         public ContractStatus ContractStatus { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+        public List<Ticket> Tickets { get; set; }
 
         public int NrOfTickets => Tickets.Count;
         public ContractType ContractType { get; set; }
@@ -35,6 +35,15 @@ namespace projecten2.Models.Domain
         public Contract(int contractNr)
         {
             ContractNr = contractNr;
+        }
+        public Contract(ContractStatus status, string titel, DateTime einddatum, int cttId) 
+        {
+            this.ContractStatus = status;
+            this.ContractTitel = titel;
+            this.EindDatum = einddatum;
+            this.ContractTypeId = cttId;
+            this.Tickets = new List<Ticket>();
+            
         }
 
       

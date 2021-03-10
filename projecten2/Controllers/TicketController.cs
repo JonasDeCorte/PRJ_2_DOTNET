@@ -39,10 +39,11 @@ namespace projecten2.Controllers
             if (contractid.HasValue && contractid.Value != 0)
             {
                 tickets = _ticketRepository.GetAll().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
+                    
             }
             else
             {
-                tickets = _ticketRepository.GetAll().OrderBy(x => x.AanmaakDatum).ToList();
+                tickets = _ticketRepository.GetAll().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).OrderBy(x => x.AanmaakDatum).ToList();
             }
 
             ViewData["selectedcontract"] = contractid;
