@@ -6,23 +6,27 @@ using System;
 using projecten2.filter;
 using Microsoft.AspNetCore.Authorization;
 using projecten2.Models.Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace projecten2.ViewComponents
 {
     [ViewComponent(Name = "chartjs")]
     public class ChartJsViewComponent : ViewComponent
     {
-        
+
         //[ServiceFilter(typeof(KlantFilter))]
-       // [Authorize]
+        // [Authorize]
+        
+
         public IViewComponentResult Invoke(/*Klant klant*/)
         {
             // Ref: https://www.chartjs.org/docs/latest/
 
 
-            Klant klant2 = new Klant();
+            //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            Klant klant = new Klant();
             string[] dataLabels2 = new string[6];
-            int[] data = { 0, 0, 0, 0, 0, 0 };
+            int[] data = { 5, 8, 4, 12, 10, 5 };
             DateTime date = DateTime.Today;
             string.Format("dd mm `yy");
             DateTime date2 = new DateTime();
@@ -30,7 +34,7 @@ namespace projecten2.ViewComponents
             {
                 date2 = date.AddDays(-7);
                 dataLabels2[i] = string.Format("{0:dd/MM/yy}", date2) + "-" + string.Format("{0:dd/MM/yy}", date);
-                foreach(Contract c in klant2.Contracten)
+                foreach(Contract c in klant.Contracten)
                     foreach(Ticket t in c.Tickets)
                     {
                         if (t.AanmaakDatum > date2)
@@ -40,12 +44,12 @@ namespace projecten2.ViewComponents
             }
             
             string[] backgroundColor = {
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(255, 99, 132, 0.2)"
+                        "rgba(204, 214, 12, 0.2)",
+                        "rgba(204, 214, 12, 0.2)",
+                        "rgba(204, 214, 12, 0.2)",
+                        "rgba(204, 214, 12, 0.2)",
+                        "rgba(204, 214, 12, 0.2)",
+                        "rgba(204, 214, 12, 0.2)"
                         };
                             
             Dataset dataset = new Dataset { label = "Actieve tickets", data = data, borderWidth =1,backgroundColor = backgroundColor};
