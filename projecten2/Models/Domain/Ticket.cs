@@ -14,14 +14,16 @@ namespace projecten2.Models.Domain
         #region Properties
         public int TicketNr { get; set; }
         public string Titel { get; set; }
-        public int TicketTypeId { get; set; }
-        public int ContractId { get; set; }
         public DateTime AanmaakDatum { get; set; }
         public DateTime LaatstGewijzigd { get; set; }
         public string Omschrijving { get; set; }
         public string Opmerkingen { get; set; }
+
         public int gebruikersId { get; set; }
-        //public Gebruiker Gebruiker { get; set; }
+          public int TicketTypeId { get; set; }
+        public int ContractId { get; set; }
+
+      //  public Gebruiker Gebruiker { get; set; }
         public TicketStatus TicketStatus { get; set; }
         public Rapport Rapport { get; set; }
         public Contract Contract { get; set; }
