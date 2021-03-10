@@ -23,11 +23,11 @@
 
 <form>
     <div class="form-group">
-        <!--<label for="contractid" class="control-label">Geef de tickets van contract </label>-->
-        <select name="contractid" id="contractid" value=@ViewData["contractid"] asp-items="@(ViewData["contractenKlant"]  as SelectList)">
-            <option value="0">Geef tickets van contract</option>
+        <label for="contractid" class="control-label">Geef de tickets van contract </label>
+        <select name="contractid" id="contractid" onchange="this.form.submit()" value=@ViewData["contractid"] asp-items="@(ViewData["contractenKlant"]  as SelectList)">
+            <option value="">kies een optie</option>
+            <option value="0">Alle contracten </option>
         </select>
-        <input style='background: #cad50c' type="submit" value="zoek" class="btn btn-secondary border-0" />
     </div>
 </form>
 
