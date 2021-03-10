@@ -88,10 +88,16 @@ namespace projecten2.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var currentUser = await _userManager.FindByEmailAsync(Input.Gebruikersnaam);
+                if (currentUser == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Geen geldidge inloggegevens.");
+                    return Page();
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(currentUser, Input.Wachtwoord, Input.Wachtwoord_onthouden, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("User ingelogd.");
                      _dbContext.GebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.Email });
                     _dbContext.SaveChanges();
                     return LocalRedirect(returnUrl);
@@ -102,14 +108,14 @@ namespace projecten2.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Account geblokkeerd");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
                     _dbContext.GebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.MISLUKT, Username = currentUser.Email });
                     _dbContext.SaveChanges();
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Geen geldige inloggegevens.");
                     return Page();
                 }
             }
