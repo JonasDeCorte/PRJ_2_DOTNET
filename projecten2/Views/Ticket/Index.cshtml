@@ -14,7 +14,7 @@
 
     <div class="myCreateButton">
         <p>
-            <a class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Nieuw ticket aanmaken</a>
+            <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Nieuw ticket aanmaken</a>
         </p>
     </div>
 </ul>
@@ -27,7 +27,7 @@
         <select name="contractid" id="contractid" value=@ViewData["contractid"] asp-items="@(ViewData["contractenKlant"]  as SelectList)">
             <option value="0">Geef tickets van contract</option>
         </select>
-        <input type="submit" value="zoek" class="btn btn-secondary" />
+        <input style='background: #cad50c' type="submit" value="zoek" class="btn btn-secondary border-0" />
     </div>
 </form>
 
@@ -73,7 +73,7 @@
         @Html.DisplayFor(modelItem => item.TicketStatus)
     </td>
     <td>
-        <a asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">Ticket wijzigen</a>
+        <a  asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">Ticket wijzigen</a>
         <!--Lijn hieronder wijzigen en gebruiken voor "ticket stoppen"-->
         <!--<a asp-controller="Ticket" asp-action="Details" asp-route-id="item.TicketNr">Details</a>-->
 

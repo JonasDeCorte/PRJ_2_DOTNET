@@ -10,23 +10,28 @@ using Microsoft.AspNetCore.Identity;
 
 namespace projecten2.ViewComponents
 {
+    
     [ViewComponent(Name = "chartjs")]
     public class ChartJsViewComponent : ViewComponent
     {
+        private readonly IGebruikerRepository _klantenRepo;
 
-        //[ServiceFilter(typeof(KlantFilter))]
-        // [Authorize]
+        public ChartJsViewComponent(IGebruikerRepository klantenrepo)
+        {
+            _klantenRepo = klantenrepo;
+        }
         
-
-        public IViewComponentResult Invoke(/*Klant klant*/)
+       // [ServiceFilter(typeof(KlantFilter))]
+        // [Authorize]
+        public IViewComponentResult Invoke()
         {
             // Ref: https://www.chartjs.org/docs/latest/
 
+            Klant klant = (Klant)_klantenRepo.GetByEmail("jan@gmail.com");
 
-            //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            Klant klant = new Klant();
+       
             string[] dataLabels2 = new string[6];
-            int[] data = { 5, 8, 4, 12, 10, 5 };
+            int[] data = { 0, 0, 0, 0, 0, 0 };
             DateTime date = DateTime.Today;
             string.Format("dd mm `yy");
             DateTime date2 = new DateTime();
@@ -37,7 +42,7 @@ namespace projecten2.ViewComponents
                 foreach(Contract c in klant.Contracten)
                     foreach(Ticket t in c.Tickets)
                     {
-                        if (t.AanmaakDatum > date2)
+                        if (t.AanmaakDatum < date2)
                             data[i]+=1;
                     };
                 date = date2.AddDays(-1);

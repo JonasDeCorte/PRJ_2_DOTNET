@@ -63,25 +63,39 @@ namespace projecten2.Models.Domain
             this.Bijlages = new List<Bijlage>();
 
         }
-/*
-        public Ticket(string titel, int ticketTypeId, int contractId, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker)
+        public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, int tickettypeId,DateTime aanmaakDatum)
         {
-            this.Titel = titel;
-            this.TicketTypeId = ticketTypeId;
-            this.ContractId = contractId;
-            this.AanmaakDatum = aanmaakDatum;
-            this.Omschrijving = omschrijving;
+
+            this.gebruikersId = klant.GebruikersId;
             this.Opmerkingen = opmerkingen;
-            this.Gebruiker = gebruiker;
+            this.Titel = titel;
+            this.Omschrijving = omschrijving;
+            this.TicketTypeId = tickettypeId;
+            this.AanmaakDatum = aanmaakDatum;
+            this.LaatstGewijzigd = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
             this.Bijlages = new List<Bijlage>();
-        } */
-       
+
+        }
+        /*
+                public Ticket(string titel, int ticketTypeId, int contractId, DateTime aanmaakDatum, string omschrijving, string opmerkingen, Gebruiker gebruiker)
+                {
+                    this.Titel = titel;
+                    this.TicketTypeId = ticketTypeId;
+                    this.ContractId = contractId;
+                    this.AanmaakDatum = aanmaakDatum;
+                    this.Omschrijving = omschrijving;
+                    this.Opmerkingen = opmerkingen;
+                    this.Gebruiker = gebruiker;
+                    this.TicketStatus = TicketStatus.AANGEMAAKT;
+                    this.Bijlages = new List<Bijlage>();
+                } */
+
         #endregion
 
         #region Methods
 
         #endregion
-      
+
     }
 }

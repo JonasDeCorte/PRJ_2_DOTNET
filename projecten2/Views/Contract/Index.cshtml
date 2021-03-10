@@ -15,7 +15,7 @@
 
     <div class="myCreateButton">
         <p>
-            <a class="btn btn-primary" role="button" asp-controller="Contract" asp-action="Create">Nieuw contract afsluiten</a>
+            <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Contract" asp-action="Create">Nieuw contract afsluiten</a>
         </p>
     </div>
 </ul>
@@ -60,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.ContractStatus)
                 </td>
                 <td>
-                    <a asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">Contract raadplegen</a>
+                    <a  asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">Contract raadplegen</a>
                 </td>
             </tr>
         }
