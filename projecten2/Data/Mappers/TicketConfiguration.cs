@@ -21,8 +21,8 @@ namespace projecten2.Data.Mappers
           
             builder.Property(x => x.AanmaakDatum).IsRequired();
             builder.Property(x => x.LaatstGewijzigd).IsRequired();
-            builder.Property(x => x.Omschrijving).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Opmerkingen).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Omschrijving).IsRequired().HasMaxLength(5000);
+            builder.Property(x => x.Opmerkingen).HasMaxLength(5000);
         
             //builder.HasOne(x => x.Gebruiker).WithMany(t => t.Tickets).OnDelete(DeleteBehavior.SetNull);
            

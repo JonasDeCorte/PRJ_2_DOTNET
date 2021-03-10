@@ -36,14 +36,15 @@ namespace projecten2.Models.Domain
         {
             ContractNr = contractNr;
         }
-        public Contract(ContractStatus status, string titel, DateTime einddatum, int cttId) 
+        public Contract(ContractStatus status, string titel, int doorlooptijd, int cttId) 
         {
             this.ContractStatus = status;
             this.ContractTitel = titel;
-            this.EindDatum = einddatum;
+            this.StartDatum = DateTime.Today;
+            this.EindDatum = StartDatum.AddYears(doorlooptijd);
+            this.Doorlooptijd = doorlooptijd;
             this.ContractTypeId = cttId;
-            this.Tickets = new List<Ticket>();
-            
+            this.Tickets = new List<Ticket>();      
         }
 
       

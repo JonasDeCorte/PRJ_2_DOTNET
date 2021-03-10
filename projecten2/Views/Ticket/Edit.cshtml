@@ -6,8 +6,9 @@
 
 <hr />
 <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="row">
-        <div asp-validation-summary="All" class="text-danger"></div>
+
         <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="Titel" class="control-label"></label>
@@ -16,12 +17,12 @@
             </div>
             @if (!(bool)ViewData["IsEdit"])
             {
-        <div class="form-group">
-            <label asp-for="ContractId" class="control-label"></label>
-            <select asp-for="ContractId" asp-items="@(ViewData["contractenKlant"] as SelectList)" class="form-control">
+            <div class="form-group">
+                <label asp-for="ContractId" class="control-label"></label>
+                <select asp-for="ContractId" asp-items="@(ViewData["contractenKlant"] as SelectList)" class="form-control">
                 <option value="">-- Contract --</option>
-            </select>
-        </div>}
+                </select>
+            </div>}
             <div class="form-group">
                 <label asp-for="TicketTypeId" class="control-label"></label>
                 <select asp-for="TicketTypeId" asp-items="@(ViewData["ticketTypes"] as SelectList)" class="form-control">
@@ -29,7 +30,12 @@
                 </select>
             </div>
             <div>
-                <button class="btn btn-primary" type="submit">Ticket opslaan</button>
+                @if ((bool)ViewData["IsEdit"])
+                {
+                   <button class="btn btn-primary" type="submit">Ticket wijzigen</button>}
+                else
+                {
+                <button class="btn btn-primary" type="submit">Ticket aanmaken</button>}
                 <a asp-action="Index" class="btn btn-secondary">Terug</a>
             </div>
         </div>
@@ -48,9 +54,6 @@
     </div>
 </form>
     
-
-
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

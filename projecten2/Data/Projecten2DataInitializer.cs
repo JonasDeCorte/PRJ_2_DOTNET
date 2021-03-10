@@ -47,30 +47,30 @@ namespace projecten2.Data
                 _dbContext.Gebruikers.AddRange(peter, jan);
                 _dbContext.SaveChanges();
                 #region jan tickets contracten
-                Contract contract = new Contract(ContractStatus.LOPEND, "contract1", DateTime.Today.AddDays(30), _dbContext.ContractTypes.First().ContractTypeId);
+                Contract contract = new Contract(ContractStatus.LOPEND, "contract1", 1, _dbContext.ContractTypes.First().ContractTypeId);
                 Ticket ticket;
                 for (int j = 1; j < 6; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"nog steeds een test ticket{j}", $"test ticket{j} ", 1);
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
                     _dbContext.Tickets.Add(ticket);
                     contract.VoegTicketToe(ticket);
                 }
                 jan.VoegContractToe(contract);
                 _dbContext.Contracten.Add(contract);
 
-                Contract contract2 = new Contract(ContractStatus.LOPEND, "contract2", DateTime.Today.AddDays(30), _dbContext.ContractTypes.First().ContractTypeId);
+                Contract contract2 = new Contract(ContractStatus.LOPEND, "contract2", 2, _dbContext.ContractTypes.First().ContractTypeId);
                 for (int j = 6; j < 11; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"nog steeds een test ticket{j}", $"test ticket{j} ", 1);
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
                     _dbContext.Tickets.Add(ticket);
                     contract2.VoegTicketToe(ticket);
                 }
                 jan.VoegContractToe(contract2);
                 _dbContext.Contracten.Add(contract2);
-                Contract contract3 = new Contract(ContractStatus.LOPEND, "contract3", DateTime.Today.AddDays(30), _dbContext.ContractTypes.First().ContractTypeId);
+                Contract contract3 = new Contract(ContractStatus.LOPEND, "contract3", 3, _dbContext.ContractTypes.First().ContractTypeId);
                 for (int j = 11; j < 16; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"nog steeds een test ticket{j}", $"test ticket{j} ", 1);
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
                     _dbContext.Tickets.Add(ticket);
                     contract3.VoegTicketToe(ticket);
                 }
@@ -81,30 +81,30 @@ namespace projecten2.Data
 
 
                 #region Peter tickets contracten
-                Contract contract4 = new Contract(ContractStatus.LOPEND, "contract1", DateTime.Today.AddDays(30), _dbContext.ContractTypes.First().ContractTypeId);
+                Contract contract4 = new Contract(ContractStatus.LOPEND, "contract1", 1, _dbContext.ContractTypes.First().ContractTypeId);
 
                 for (int j = 16; j < 21; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"nog steeds een test ticket{j}", $"test ticket{j} ", 1);
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
                     _dbContext.Tickets.Add(ticket);
                     contract4.VoegTicketToe(ticket);
                 }
                 peter.VoegContractToe(contract4);
                 _dbContext.Contracten.Add(contract4);
 
-                Contract contract5 = new Contract(ContractStatus.LOPEND, "contract2", DateTime.Today.AddDays(30), _dbContext.ContractTypes.First().ContractTypeId);
+                Contract contract5 = new Contract(ContractStatus.LOPEND, "contract2", 2, _dbContext.ContractTypes.First().ContractTypeId);
                 for (int j = 21; j < 26; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"nog steeds een test ticket{j}", $"test ticket{j} ", 1);
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
                     _dbContext.Tickets.Add(ticket);
                     contract5.VoegTicketToe(ticket);
                 }
                 peter.VoegContractToe(contract5);
                 _dbContext.Contracten.Add(contract5);
-                Contract contract6 = new Contract(ContractStatus.LOPEND, "contract3", DateTime.Today.AddDays(30), _dbContext.ContractTypes.First().ContractTypeId);
+                Contract contract6 = new Contract(ContractStatus.LOPEND, "contract3", 3, _dbContext.ContractTypes.First().ContractTypeId);
                 for (int j = 26; j < 31; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"nog steeds een test ticket{j}", $"test ticket{j} ", 1);
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
                     _dbContext.Tickets.Add(ticket);
                     contract6.VoegTicketToe(ticket);
                 }
