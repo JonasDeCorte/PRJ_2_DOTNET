@@ -5,13 +5,13 @@
     <div class="container col-lg-5 text-center border rounded py-5 mt-3 bg-light mx-3"><a class="nav-item nav-link text-dark " asp-area="" asp-controller="Contract" asp-action="Create"><h2>Contract aanmaken</h2></a></div>
 
 </div>
-<div class="row">
+<div class="row my-5">
     <div class="container col-lg-6 mx-3"> <vc:chartjs></vc:chartjs></div>
-    <div class="container col-lg-4 mx-3">
-        <div class="container my-2 border  bg-light ">
+    <div class="container col-lg-4 my-4 mx-3">
+        <div class="container my-3  bg-light ">
             <a class="nav-item nav-link text-dark " asp-area="" asp-controller="Contract" asp-action="Index"><h4>Lopende contracten:<br>@Model[0]</h4></a>
         </div>
-        <div class="container   my-2 border  bg-light ">
+        <div class="container   my-3   bg-light ">
             <a class="nav-item nav-link text-dark " asp-area="" asp-controller="Ticket" asp-action="Index"><h4>Actieve tickets:<br>@Model[1] </h4></a>
         </div>
     </div>
