@@ -39,6 +39,12 @@ namespace projecten2.Controllers
         {
             return View();
         }
+        [ServiceFilter(typeof(KlantFilter))]
+        [Authorize]
+        public IActionResult Chart()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

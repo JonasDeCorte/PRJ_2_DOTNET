@@ -1,0 +1,24 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Geblokkeerd";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml"; 
+    }
+
+
+
+
+<div class="col-md-10 offset-md-1">
+    <section>
+        <div>
+            <img src="~/images/Actemium-sidebar.png" alt="logo bedrijf" width="400" />
+        </div>
+        
+            <h1 class="text-danger">@ViewData["Title"]</h1>
+            <p class="text-danger">Maximum inlogpogingen overschreden, probeer opnieuw in een minuut.</p>
+            <form class="form-group" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button style='background: #cad50c' type="submit" class="btn btn-primary border-0 ">Keer terug</button>
+            </form>
+        
+    </section>
+</div>
