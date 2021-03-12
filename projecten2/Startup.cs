@@ -46,10 +46,8 @@ namespace projecten2
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSession();
-            services.AddScoped<IContractRepository, ContractRepository>();
             services.AddScoped<IContractTypeRepository, ContractTypeRepository>();
             services.AddScoped<IGebruikerRepository, GebruikerRepository>();
-            services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
             services.AddScoped<Projecten2DataInitializer>();
             services.AddScoped<KlantFilter>();

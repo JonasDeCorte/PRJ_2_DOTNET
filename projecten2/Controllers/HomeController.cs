@@ -1,44 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using projecten2.filter;
 using projecten2.Models;
 using projecten2.Models.Domain;
+using System.Diagnostics;
+using System.Linq;
 
 namespace projecten2.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ITicketRepository _ticketRepository;
-        private readonly IContractRepository _contractRepository;
+        private readonly IGebruikerRepository _gebruikerRepository;
 
-        public HomeController(ILogger<HomeController> logger, ITicketRepository ticketRepository, IContractRepository contractRepository)
+        public HomeController(ILogger<HomeController> logger, IGebruikerRepository gebruikerRepository)
         {
             _logger = logger;
-            _ticketRepository = ticketRepository;
-            _contractRepository = contractRepository;
+            _gebruikerRepository = gebruikerRepository;
         }
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
         public IActionResult Index(Klant klant)
         {
             int[] aantal = new int[2];
-            
+
             aantal[0] = klant.Contracten.Count();
-            aantal[1] = _ticketRepository.GetAll().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).Count();
+            aantal[1] = _gebruikerRepository.GetAllTickets().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).Count();
             return View(aantal);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
         public IActionResult Chart()

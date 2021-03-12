@@ -11,12 +11,12 @@ namespace projecten2.Controllers
 {
     public class ContractController : Controller
     {
-        private readonly IContractRepository _contractRepository;
+        private readonly IGebruikerRepository _gebruikerRepository;
         private readonly IContractTypeRepository _contractTypeRepository;
 
-        public ContractController(IContractRepository contractRepository, IContractTypeRepository contractTypeRepository)
+        public ContractController(IGebruikerRepository gebruikerRepository, IContractTypeRepository contractTypeRepository)
         {
-            _contractRepository = contractRepository;
+            _gebruikerRepository = gebruikerRepository;
             _contractTypeRepository = contractTypeRepository;
         }
 
@@ -36,7 +36,7 @@ namespace projecten2.Controllers
         // GET: ContractController/Details 
         public IActionResult Details(int id)
         {
-            Contract contract = _contractRepository.GetByContractNr(id);
+            Contract contract = _gebruikerRepository.GetByContractNr(id);
             if (contract == null) { return NotFound(); }
             return View(contract);
         }
@@ -63,8 +63,8 @@ namespace projecten2.Controllers
                     Contract contract = new Contract();
                     MapContractEditViewModelToContract(cevm, contract);
                     klant.VoegContractToe(contract);
-                    _contractRepository.Add(contract);
-                    _contractRepository.SaveChanges();
+                    _gebruikerRepository.AddContract(contract);
+                    _gebruikerRepository.SaveChanges();
                     TempData["message"] = $"Het contract ${contract.ContractTitel} is aangemaakt.";
                 }
                 catch

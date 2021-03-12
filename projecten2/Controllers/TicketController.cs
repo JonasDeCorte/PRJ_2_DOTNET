@@ -8,24 +8,20 @@ using projecten2.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace projecten2.Controllers
 {
     public class TicketController : Controller
     {
-
-        private readonly ITicketRepository _ticketRepository;
         private readonly ITicketTypeRepository _ticketTypeRepository;
-        private readonly IContractRepository _contractRepository;
+        private readonly IGebruikerRepository _gebruikerRepository;
 
-        public TicketController(ITicketRepository ticketRepository, ITicketTypeRepository ticketTypeRepository, IContractRepository contractRepository)
+        public TicketController(ITicketTypeRepository ticketTypeRepository, IGebruikerRepository gebruikerRepository)
         {
-            _ticketRepository = ticketRepository;
             _ticketTypeRepository = ticketTypeRepository;
-            _contractRepository = contractRepository;
+            _gebruikerRepository = gebruikerRepository;
         }
-       
+
         // GET: TicketController
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
@@ -35,19 +31,20 @@ namespace projecten2.Controllers
             List<Ticket> tickets = new List<Ticket>();
 
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
-       
+
             if (contractid.HasValue && contractid.Value != 0)
             {
-                tickets = _ticketRepository.GetAll().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
-                    
+                tickets = _gebruikerRepository.GetAllTickets().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
+
             }
             else
             {
-                tickets = _ticketRepository.GetAll().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).OrderBy(x => x.AanmaakDatum).ToList();
+                tickets = _gebruikerRepository.GetAllTickets().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).OrderBy(x => x.AanmaakDatum).ToList();
             }
 
             ViewData["selectedcontract"] = contractid;
-            if (tickets == null) {
+            if (tickets == null)
+            {
                 return NotFound();
             }
 
@@ -62,9 +59,9 @@ namespace projecten2.Controllers
 
         // GET: TicketController/Create
         [Authorize]
-        [ServiceFilter(typeof(KlantFilter))]       
+        [ServiceFilter(typeof(KlantFilter))]
         public IActionResult Create(Klant klant)
-         {
+        {
             ICollection<Contract> contracts = klant.Contracten;
             ViewData["IsEdit"] = false;
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
@@ -85,8 +82,8 @@ namespace projecten2.Controllers
                     Ticket ticket = new Ticket();
                     MapTicketEditViewModelToTicket(tevm, ticket, klant);
                     ticket.ContractId = tevm.ContractId;
-                    _ticketRepository.Add(ticket);
-                    _ticketRepository.SaveChanges();
+                    _gebruikerRepository.AddTicket(ticket);
+                    _gebruikerRepository.SaveChanges();
                     TempData["message"] = $"Je hebt het ticket ${ticket.Titel} aangemaakt.";
                 }
                 catch
@@ -104,8 +101,8 @@ namespace projecten2.Controllers
         // GET: TicketController/Edit/5
         public IActionResult Edit(int id)
         {
-            Ticket ticket = _ticketRepository.GetByTicketNr(id);
-            if(ticket == null)
+            Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
+            if (ticket == null)
             {
                 return NotFound();
             }
@@ -121,20 +118,20 @@ namespace projecten2.Controllers
         public IActionResult Edit(int id, TicketEditViewModel tevm, Klant klant)
         {
             if (ModelState.IsValid)
-           {
+            {
                 Ticket ticket = null;
                 try
                 {
-                    ticket = _ticketRepository.GetByTicketNr(id);
-                   MapTicketEditViewModelToTicket(tevm, ticket, klant);
-                    _ticketRepository.SaveChanges();
+                    ticket = _gebruikerRepository.GetByTicketNr(id);
+                    MapTicketEditViewModelToTicket(tevm, ticket, klant);
+                    _gebruikerRepository.SaveChanges();
                     TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
 
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
-                   // TempData["error"] = $"Sorry, something went wrong, ticket {ticket?.TicketNr} was not updated...";
+                    // TempData["error"] = $"Sorry, something went wrong, ticket {ticket?.TicketNr} was not updated...";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -166,8 +163,8 @@ namespace projecten2.Controllers
 
         private SelectList GetTicketTypesAsSelectList()
         {
-            return new SelectList(_ticketTypeRepository.GetAll(), 
-                nameof(TicketType.id), 
+            return new SelectList(_ticketTypeRepository.GetAll(),
+                nameof(TicketType.id),
                 nameof(TicketType.Naam));
         }
 
@@ -186,6 +183,6 @@ namespace projecten2.Controllers
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
             ticket.LaatstGewijzigd = DateTime.Now;
-        }        
+        }
     }
 }
