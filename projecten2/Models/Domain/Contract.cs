@@ -35,7 +35,10 @@ namespace projecten2.Models.Domain
         }
         public Contract(int contractNr)
         {
+            if ( contractNr < 5)
+                throw new ArgumentException();
             ContractNr = contractNr;
+           
         }
         public Contract(ContractStatus status, string titel, int doorlooptijd, int cttId) 
         {
