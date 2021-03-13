@@ -80,12 +80,38 @@ namespace projecten2.Controllers
 
 
         // GET: ContractController/Delete
-        public IActionResult Delete()
+        public IActionResult Delete(int contractNr)
         {
+            ViewData[nameof(Contract.ContractTitel)] = _gebruikerRepository.GetByContractNr(contractNr).ContractTitel;
             return View();
         }
 
+
         // POST: ContractController/Delete
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int contractNr) { 
+            Contract contract = null;
+            try
+            {
+                contract = _gebruikerRepository.GetByContractNr(contractNr);
+                _gebruikerRepository.DeleteContract(contract);
+
+                _gebruikerRepository.SaveChanges();
+
+                TempData["message"] = $"Je verwijderde succesvol contract {contract.ContractTitel}.";
+            }
+
+            catch
+            {
+                TempData["error"] = $"Sorry, iets ging mis, contract  {contract?.ContractTitel} werd niet verwijderd..";
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
 
 
 

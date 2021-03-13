@@ -141,24 +141,36 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Delete/5
-        public IActionResult Delete(int id)
+       public IActionResult Delete(int TicketNr)
         {
+            ViewData[nameof(Ticket.Titel)] = _gebruikerRepository.GetByTicketNr(TicketNr).Titel;
             return View();
         }
 
+
+
         // POST: TicketController/Delete/5
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int TicketNr)
         {
+            Ticket ticket = null;
             try
             {
-                return RedirectToAction(nameof(Index));
+                ticket = _gebruikerRepository.GetByTicketNr(TicketNr);
+
+                _gebruikerRepository.DeleteTicket(ticket);
+
+                _gebruikerRepository.SaveChanges();
+
+                TempData["message"] = $"Je verwijderde succesvol ticket {ticket.Titel}.";
             }
+
             catch
             {
-                return View();
+                TempData["error"] = $"Sorry, iets ging mis, ticket  {ticket?.Titel} werd niet verwijderd..";
             }
+            return RedirectToAction(nameof(Index));
         }
 
         private SelectList GetTicketTypesAsSelectList()

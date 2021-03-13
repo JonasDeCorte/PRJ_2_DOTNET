@@ -1,0 +1,14 @@
+﻿@{ ViewData["Title"] = "Contracten"; }
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>
+    Besetig het verwijderen van ticket @ViewData["Name"]...
+</h4>
+
+<form asp-action="Delete" method="post">
+    <div>
+        <button class="btn btn-primary" type="submit">Verwijder</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
