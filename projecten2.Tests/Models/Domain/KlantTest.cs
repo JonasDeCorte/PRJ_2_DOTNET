@@ -53,13 +53,19 @@ namespace projecten2.Tests.Models.Domain
         public KlantTest()
         {
             _pol = new Klant();
-          
+            Contract contractÉen = null;
+            Contract contractTwee = null;
+            _pol.VoegContractToe(contractÉen);
+            _pol.VoegContractToe(contractTwee);
+
+
         }
 
         public void VoegContractToe_KlantMetTweeContracten_voegtContractToe()
         {
             int aantalContractenVoorhand = _pol.GetAantalActieveContracten();
-          
+            Contract contractDrie = null;
+            _pol.VoegContractToe(contractDrie);
             Assert.Equal(aantalContractenVoorhand + 1, _pol.GetAantalActieveContracten());
         }
     }

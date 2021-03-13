@@ -5,6 +5,7 @@ namespace projecten2.Models.Domain
 {
     public class Contract
     {
+        
         #region Fields
 
         #endregion
@@ -47,7 +48,7 @@ namespace projecten2.Models.Domain
             this.Tickets = new List<Ticket>();      
         }
 
-      
+    
         #endregion
 
         #region Methods
