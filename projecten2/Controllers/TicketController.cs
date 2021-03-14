@@ -35,7 +35,6 @@ namespace projecten2.Controllers
             if (contractid.HasValue && contractid.Value != 0)
             {
                 tickets = _gebruikerRepository.GetAllTickets().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
-
             }
             else
             {
@@ -156,7 +155,7 @@ namespace projecten2.Controllers
             try
             {
                 ticket = _gebruikerRepository.GetByTicketNr(id);
-                ticket.TicketStatus = TicketStatus.GEANNULEERD;
+                ticket.AnnulerenTicket(ticket);
                 _gebruikerRepository.SaveChanges();
 
                 TempData["message"] = $"U annuleerde succesvol ticket {ticket.Titel}.";

@@ -62,8 +62,7 @@ namespace projecten2.Controllers
                     Contract contract = new Contract();
                     MapContractEditViewModelToContract(cevm, contract);
                     klant.VoegContractToe(contract);
-                    _gebruikerRepository.AddContract(contract);
-                    _gebruikerRepository.SaveChanges();
+                        
                     TempData["message"] = $"Het contract ${contract.ContractTitel} is aangemaakt.";
                 }
                 catch
@@ -91,7 +90,7 @@ namespace projecten2.Controllers
             try
             {
                 contract = _gebruikerRepository.GetByContractNr(id);
-                contract.ContractStatus = ContractStatus.BEËINDIGD;
+                contract.StopzettenContract(contract);
                 _gebruikerRepository.SaveChanges();
 
                 TempData["message"] = $"Je verwijderde succesvol contract {contract.ContractTitel}.";

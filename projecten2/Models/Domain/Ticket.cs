@@ -94,7 +94,10 @@ namespace projecten2.Models.Domain
         #endregion
 
         #region Methods
-
+        public void AnnulerenTicket(Ticket ticket)
+        {
+            ticket.TicketStatus = TicketStatus.GEANNULEERD;
+        }
         #endregion
 
     }
