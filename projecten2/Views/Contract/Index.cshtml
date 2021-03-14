@@ -60,7 +60,9 @@
                     @Html.DisplayFor(modelItem => item.ContractStatus)
                 </td>
                 <td>
-                    <a  asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">Contract raadplegen</a>
+                    <a asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">Contract raadplegen</a>
+                    |
+                    <a asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractNr"> X </a>
                 </td>
             </tr>
         }

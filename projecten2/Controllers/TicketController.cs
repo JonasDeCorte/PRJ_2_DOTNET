@@ -141,34 +141,29 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Delete/5
-       public IActionResult Delete(int TicketNr)
+       public IActionResult Delete(int id)
         {
-            ViewData[nameof(Ticket.Titel)] = _gebruikerRepository.GetByTicketNr(TicketNr).Titel;
+            ViewData[nameof(Ticket.Titel)] = _gebruikerRepository.GetByTicketNr(id).Titel;
             return View();
         }
-
-
 
         // POST: TicketController/Delete/5
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int TicketNr)
+        public IActionResult DeleteConfirmed(int id)
         {
             Ticket ticket = null;
             try
             {
-                ticket = _gebruikerRepository.GetByTicketNr(TicketNr);
-
-                _gebruikerRepository.DeleteTicket(ticket);
-
+                ticket = _gebruikerRepository.GetByTicketNr(id);
+                ticket.TicketStatus = TicketStatus.GEANNULEERD;
                 _gebruikerRepository.SaveChanges();
 
-                TempData["message"] = $"Je verwijderde succesvol ticket {ticket.Titel}.";
+                TempData["message"] = $"U annuleerde succesvol ticket {ticket.Titel}.";
             }
-
             catch
             {
-                TempData["error"] = $"Sorry, iets ging mis, ticket  {ticket?.Titel} werd niet verwijderd..";
+                TempData["error"] = $"Sorry, iets ging mis, ticket {ticket?.Titel} werd niet geannuleerd..";
             }
             return RedirectToAction(nameof(Index));
         }

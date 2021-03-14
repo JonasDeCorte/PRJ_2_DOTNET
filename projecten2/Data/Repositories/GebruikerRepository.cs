@@ -37,11 +37,6 @@ namespace projecten2.Data.Repositories
 
         #region Contract
 
-        public void DeleteContract(Contract contract)
-        {
-            contract.ContractStatus = ContractStatus.BEËINDIGD;
-
-        }
         public IEnumerable<Contract> GetAllContracten()
         {
             return _contracten.Include(x => x.Tickets).ToList();
@@ -75,14 +70,6 @@ namespace projecten2.Data.Repositories
             _tickets.Add(ticket);
         }
         #endregion
-
-        public void DeleteTicket(Ticket ticket)
-        {
-            ticket.TicketStatus = TicketStatus.GEANNULEERD;
-
-        }
-        
-
 
 
         public void SaveChanges()

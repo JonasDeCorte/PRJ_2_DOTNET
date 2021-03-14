@@ -13,9 +13,6 @@ namespace projecten2.Models.Domain
         Contract GetByContractNr(int contractNr);
         IEnumerable<Contract> GetAllContracten();
         void AddContract(Contract contract);
-
-        void DeleteContract(Contract contract);
-
         #endregion
 
         #region Ticket
@@ -23,7 +20,6 @@ namespace projecten2.Models.Domain
         Ticket GetByTicketNr(int ticketNr);
         IEnumerable<Ticket> GetAllTickets();
         void AddTicket(Ticket ticket);
-        void DeleteTicket(Ticket ticket);
         #endregion
 
         void SaveChanges();

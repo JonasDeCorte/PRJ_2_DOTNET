@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using projecten2.filter;
 using projecten2.Models.Domain;
 using projecten2.Models.ViewModels;
-using System;
 using System.Collections.Generic;
 
 namespace projecten2.Controllers
@@ -77,31 +76,26 @@ namespace projecten2.Controllers
             return View(nameof(Create), cevm);
         }
 
-
-
         // GET: ContractController/Delete
-        public IActionResult Delete(int contractNr)
+        public IActionResult Delete(int id)
         {
-            ViewData[nameof(Contract.ContractTitel)] = _gebruikerRepository.GetByContractNr(contractNr).ContractTitel;
+            ViewData[nameof(Contract.ContractTitel)] = _gebruikerRepository.GetByContractNr(id).ContractTitel;
             return View();
         }
 
-
         // POST: ContractController/Delete
-
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int contractNr) { 
+        public IActionResult DeleteConfirmed(int id)
+        {
             Contract contract = null;
             try
             {
-                contract = _gebruikerRepository.GetByContractNr(contractNr);
-                _gebruikerRepository.DeleteContract(contract);
-
+                contract = _gebruikerRepository.GetByContractNr(id);
+                contract.ContractStatus = ContractStatus.BEËINDIGD;
                 _gebruikerRepository.SaveChanges();
 
                 TempData["message"] = $"Je verwijderde succesvol contract {contract.ContractTitel}.";
             }
-
             catch
             {
                 TempData["error"] = $"Sorry, iets ging mis, contract  {contract?.ContractTitel} werd niet verwijderd..";
@@ -109,15 +103,8 @@ namespace projecten2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
-
-
-
-
-        private void MapContractEditViewModelToContract(ContractEditViewModel contractEditViewModel, Contract contract )
+        private void MapContractEditViewModelToContract(ContractEditViewModel contractEditViewModel, Contract contract)
         {
-            
             contract.ContractTitel = contractEditViewModel.ContractTitel;
             contract.StartDatum = contractEditViewModel.StartDatum;
             contract.Doorlooptijd = contractEditViewModel.DoorloopTijd;
