@@ -36,15 +36,7 @@ namespace projecten2.Models.Domain
         }
         public List<Ticket> AllTickets()
         {
-            List<Ticket> tickets = new List<Ticket>();
-            foreach (Contract contract in Contracten)
-            {
-                foreach (Ticket ticket in contract.Tickets)
-                {
-                    tickets.Add(ticket);
-                }
-            }
-            return tickets;
+            return Contracten.SelectMany(x => x.Tickets).ToList();
         }
         public List<Ticket> AllTicketsByContractId(int contractId)
         {
