@@ -40,9 +40,7 @@ namespace projecten2.Models.Domain
         }
         public List<Ticket> AllTicketsByContractId(int contractId)
         {
-            List<Ticket> tickets = new List<Ticket>();       
-            Contract contract = Contracten.FirstOrDefault(x => x.ContractNr.Equals(contractId));
-            return contract.Tickets;     
+            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
         }
 
         public Contract GetContractById(int id)
