@@ -34,11 +34,13 @@ namespace projecten2.Models.Domain
         {
             return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
-        public List<Ticket> AllTickets()
+
+        public List<Ticket> GetAllTickets()
         {
             return Contracten.SelectMany(x => x.Tickets).ToList();
         }
-        public List<Ticket> AllTicketsByContractId(int contractId)
+
+        public List<Ticket> GetAllTicketsByContractId(int contractId)
         {
             return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
         }
@@ -57,7 +59,6 @@ namespace projecten2.Models.Domain
                 VoegTicketToe(ticket);
             }
             return ticket;
-
         }
          
         public void VoegTicketToe(Ticket ticket)
@@ -71,14 +72,10 @@ namespace projecten2.Models.Domain
         public void VoegContractToe(Contract contract)
         {
             if(contract != null)
-            {
-                 
+            {              
                 Contracten.Add(contract);
-            }
-          
-        }
-
-      
+            }         
+        }      
         #endregion
 
     }

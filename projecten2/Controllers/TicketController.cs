@@ -34,11 +34,11 @@ namespace projecten2.Controllers
 
             if (contractid.HasValue && contractid.Value != 0)
             {
-                tickets = klant.AllTicketsByContractId(contractid.Value);                               
+                tickets = klant.GetAllTicketsByContractId(contractid.Value);                               
             }
             else
             {
-                tickets = klant.AllTickets();            
+                tickets = klant.GetAllTickets();            
             }
             ViewData["selectedcontract"] = contractid;
             if (tickets == null)
@@ -83,11 +83,11 @@ namespace projecten2.Controllers
                     ticket.TicketType = ticketType;
                     klant.AddTicketByContractId(tevm.ContractId, ticket);
                     _gebruikerRepository.SaveChanges();
-                    TempData["message"] = $"Je hebt het ticket ${ticket.Titel} aangemaakt.";
+                    TempData["message"] = $"Je hebt het ticket {ticket.Titel} aangemaakt.";
                 }
                 catch
                 {
-                    TempData["error"] = "Sorry, er is iets fout gegaan. Het ticket is niet aangemaakt...";
+                    TempData["error"] = "Sorry, er is iets fout gelopen waardoor het ticket niet is aangemaakt.";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -126,12 +126,12 @@ namespace projecten2.Controllers
                     TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
                     ticket.TicketType = ticketType;
                     _gebruikerRepository.SaveChanges();
-                    TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
+                    TempData["message"] = $"Het ticket {ticket.Titel} is succesvol gewijzigd.";
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
-                    // TempData["error"] = $"Sorry, something went wrong, ticket {ticket?.TicketNr} was not updated...";
+                    TempData["error"] = $"Sorry, er is iets fout gelopen waardoor ticket {ticket?.Titel} niet is gewijzigd.";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -162,7 +162,7 @@ namespace projecten2.Controllers
             }
             catch
             {
-                TempData["error"] = $"Sorry, iets ging mis, ticket {ticket?.Titel} werd niet geannuleerd..";
+                TempData["error"] = $"Sorry, er is iets fout gelopen waardoor ticket {ticket?.Titel} niet geannuleerd werd.";
             }
             return RedirectToAction(nameof(Index));
         }

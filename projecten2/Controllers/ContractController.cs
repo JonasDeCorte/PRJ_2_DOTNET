@@ -66,11 +66,11 @@ namespace projecten2.Controllers
                     contract.ContractType = type;
                     klant.VoegContractToe(contract);
                     _gebruikerRepository.SaveChanges();
-                    TempData["message"] = $"Het contract ${contract.ContractTitel} is aangemaakt.";
+                    TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol aangemaakt.";
                 }
                 catch
                 {
-                    TempData["error"] = "Sorry, er is iets fout gelopen en het contract is niet aangemaakt...";
+                    TempData["error"] = "Sorry, er is iets fout gelopen. Het contract is niet aangemaakt...";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -96,11 +96,11 @@ namespace projecten2.Controllers
                 contract.StopzettenContract(contract);
                 _gebruikerRepository.SaveChanges();
 
-                TempData["message"] = $"Je verwijderde succesvol contract {contract.ContractTitel}.";
+                TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol stop gezet.";
             }
             catch
             {
-                TempData["error"] = $"Sorry, iets ging mis, contract  {contract?.ContractTitel} werd niet verwijderd..";
+                TempData["error"] = $"Sorry, er is iets fout gelopen. Contract {contract?.ContractTitel} werd niet stop gezet.";
             }
             return RedirectToAction(nameof(Index));
         }
