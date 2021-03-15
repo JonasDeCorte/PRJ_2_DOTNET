@@ -14,8 +14,8 @@ namespace projecten2.Models.Domain
         public int KlantNummer { get; set; }
         public string GegevensContactPersonen { get; set; }
         public DateTime DatumRegistratie { get; set; }
-       
-        
+
+     
         public List<Bedrijf> bedrijven { get; set; }
        
         #endregion
@@ -26,7 +26,6 @@ namespace projecten2.Models.Domain
             bedrijven = new List<Bedrijf>();
             Contracten = new List<Contract>();
             DatumRegistratie = DateTime.Now;
-            
         }
 
         #endregion
@@ -35,9 +34,58 @@ namespace projecten2.Models.Domain
         {
             return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
+        public List<Ticket> AllTickets()
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            foreach (Contract contract in Contracten)
+            {
+                foreach (Ticket ticket in contract.Tickets)
+                {
+                    tickets.Add(ticket);
+                }
+            }
+            return tickets;
+        }
+        public List<Ticket> AllTicketsByContractId(int contractId)
+        {
+            List<Ticket> tickets = new List<Ticket>();       
+            Contract contract = Contracten.FirstOrDefault(x => x.ContractNr.Equals(contractId));
+            return contract.Tickets;     
+        }
+
+        public Contract GetContractById(int id)
+        {
+            return Contracten.FirstOrDefault(x => x.ContractNr.Equals(id));
+        }
+
+        public Ticket AddTicketByContractId(int contractId, Ticket ticket)
+        {
+            Contract contract = Contracten.FirstOrDefault(x => x.ContractNr.Equals(contractId));
+            if(ticket != null)
+            {
+                contract.VoegTicketToe(ticket);
+                VoegTicketToe(ticket);
+            }
+            return ticket;
+
+        }
+         
+        public void VoegTicketToe(Ticket ticket)
+        {
+            if(ticket != null)
+            {
+                 Tickets.Add(ticket);
+            }
+           
+        }
         public void VoegContractToe(Contract contract)
         {
-            Contracten.Add(contract);
+            if(contract != null)
+            {
+                 
+                Contracten.Add(contract);
+            }
+          
         }
 
       

@@ -34,13 +34,12 @@ namespace projecten2.Controllers
 
             if (contractid.HasValue && contractid.Value != 0)
             {
-                tickets = _gebruikerRepository.GetAllTickets().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
+                tickets = klant.AllTicketsByContractId(contractid.Value);                               
             }
             else
             {
-                tickets = _gebruikerRepository.GetAllTickets().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).OrderBy(x => x.AanmaakDatum).ToList();
+                tickets = klant.AllTickets();            
             }
-
             ViewData["selectedcontract"] = contractid;
             if (tickets == null)
             {
@@ -79,9 +78,10 @@ namespace projecten2.Controllers
                 try
                 {
                     Ticket ticket = new Ticket();
-                    MapTicketEditViewModelToTicket(tevm, ticket, klant);
-                    ticket.ContractId = tevm.ContractId;
-                    _gebruikerRepository.AddTicket(ticket);
+                    MapTicketEditViewModelToTicket(tevm, ticket);
+                    TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
+                    ticket.TicketType = ticketType;
+                    klant.AddTicketByContractId(tevm.ContractId, ticket);
                     _gebruikerRepository.SaveChanges();
                     TempData["message"] = $"Je hebt het ticket ${ticket.Titel} aangemaakt.";
                 }
@@ -98,9 +98,9 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Edit/5
-        public IActionResult Edit(int id)
+          public IActionResult Edit(int id)
         {
-            Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
+            Ticket ticket =  _gebruikerRepository.GetByTicketNr(id);
             if (ticket == null)
             {
                 return NotFound();
@@ -121,11 +121,12 @@ namespace projecten2.Controllers
                 Ticket ticket = null;
                 try
                 {
-                    ticket = _gebruikerRepository.GetByTicketNr(id);
-                    MapTicketEditViewModelToTicket(tevm, ticket, klant);
+                    ticket = _gebruikerRepository.GetByTicketNr(id);                 
+                    MapTicketEditViewModelToTicket(tevm, ticket);
+                    TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
+                    ticket.TicketType = ticketType;
                     _gebruikerRepository.SaveChanges();
                     TempData["message"] = $"You successfully updated Ticket {ticket.TicketNr}.";
-
                 }
                 catch (Exception e)
                 {
@@ -157,7 +158,6 @@ namespace projecten2.Controllers
                 ticket = _gebruikerRepository.GetByTicketNr(id);
                 ticket.AnnulerenTicket(ticket);
                 _gebruikerRepository.SaveChanges();
-
                 TempData["message"] = $"U annuleerde succesvol ticket {ticket.Titel}.";
             }
             catch
@@ -181,11 +181,10 @@ namespace projecten2.Controllers
                 nameof(Contract.ContractTitel));
         }
 
-        private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket, Klant klant)
+        private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
         {
-            ticket.gebruikersId = klant.GebruikersId;
+           
             ticket.Titel = TicketEditViewModel.Titel;
-            ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
             ticket.LaatstGewijzigd = DateTime.Now;

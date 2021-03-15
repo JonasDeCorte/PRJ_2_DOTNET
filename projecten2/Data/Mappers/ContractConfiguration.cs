@@ -22,7 +22,7 @@ namespace projecten2.Data.Mappers
             builder.Property(x => x.StartDatum).IsRequired();
             builder.Property(x => x.EindDatum);
             builder.Property(x => x.Doorlooptijd);
-    
+        
           
         }
     }

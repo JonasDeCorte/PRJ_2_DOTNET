@@ -14,7 +14,7 @@ namespace projecten2.Models.Domain
         public int ContractNr { get; set; }
         public string ContractTitel { get; set; }
         public int Doorlooptijd { get; set; }
-        public int ContractTypeId { get; set; }
+      //  public int ContractTypeId { get; set; }
         public DateTime StartDatum { get; set; }
         public DateTime EindDatum { get; set; }
 
@@ -22,7 +22,6 @@ namespace projecten2.Models.Domain
        // public Klant Klant { get; set; }
         public ContractStatus ContractStatus { get; set; }
         public List<Ticket> Tickets { get; set; }
-
         public int NrOfTickets => Tickets.Count;
         public ContractType ContractType { get; set; }
         #endregion
@@ -40,14 +39,14 @@ namespace projecten2.Models.Domain
             ContractNr = contractNr;
            
         }
-        public Contract(ContractStatus status, string titel, int doorlooptijd, int cttId) 
+        public Contract(ContractStatus status, string titel, int doorlooptijd, ContractType contractType) 
         {
             this.ContractStatus = status;
             this.ContractTitel = titel;
             this.StartDatum = DateTime.Today;
             this.EindDatum = StartDatum.AddYears(doorlooptijd);
             this.Doorlooptijd = doorlooptijd;
-            this.ContractTypeId = cttId;
+            this.ContractType = contractType;
             this.Tickets = new List<Ticket>();      
         }
 
@@ -57,12 +56,21 @@ namespace projecten2.Models.Domain
         #region Methods
         public void VoegTicketToe(Ticket ticket)
         {
-            Tickets.Add(ticket);
+            if(ticket != null)
+            {
+                Tickets.Add(ticket);
+            }
+           
         }
+      
 
         public void StopzettenContract(Contract contract)
         {
-            contract.ContractStatus = ContractStatus.BEËINDIGD;
+            if (contract != null)
+            {
+                contract.ContractStatus = ContractStatus.BEËINDIGD;
+            }
+            
         }
 
         #endregion

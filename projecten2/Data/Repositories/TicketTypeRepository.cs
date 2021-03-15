@@ -20,9 +20,9 @@ namespace projecten2.Data.Repositories
             return _TicketTypes.ToList();
         }
 
-        public TicketType GetBy(string naam)
+        public TicketType GetBy(int id)
         {
-            return _TicketTypes.SingleOrDefault(l => l.Naam == naam);
+            return _TicketTypes.SingleOrDefault(l => l.id.Equals(id));
         }
     }
 }

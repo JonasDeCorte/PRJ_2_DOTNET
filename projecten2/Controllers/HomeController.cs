@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using projecten2.filter;
 using projecten2.Models;
 using projecten2.Models.Domain;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -22,11 +23,12 @@ namespace projecten2.Controllers
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
         public IActionResult Index(Klant klant)
-        {
+         {
             int[] aantal = new int[2];
 
             aantal[0] = klant.Contracten.Count();
-            aantal[1] = _gebruikerRepository.GetAllTickets().Where(x => x.gebruikersId.Equals(klant.GebruikersId)).Count();
+            aantal[1] = klant.AllTickets().Count();
+                //_gebruikerRepository.GetAllTickets().Where(x => x.Gebruiker.GebruikersId.Equals(klant.GebruikersId)).Count();
             return View(aantal);
         }
 

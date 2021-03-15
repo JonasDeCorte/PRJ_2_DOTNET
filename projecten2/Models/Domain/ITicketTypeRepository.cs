@@ -7,7 +7,7 @@ namespace projecten2.Models.Domain
 {
     public interface ITicketTypeRepository
     {
-        TicketType GetBy(string naam);
+        TicketType GetBy(int Id);
         IEnumerable<TicketType> GetAll();
     }
 }

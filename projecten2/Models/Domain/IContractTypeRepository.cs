@@ -8,5 +8,6 @@ namespace projecten2.Models.Domain
     public interface IContractTypeRepository
     {
         IEnumerable<ContractType> GetAll();
+        ContractType GetContractType(int id);
     }
 }
