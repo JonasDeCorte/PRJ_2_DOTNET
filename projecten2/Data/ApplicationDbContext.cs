@@ -21,9 +21,7 @@ namespace projecten2.Data
         public DbSet<Rapport> Rapporten { get; set; }     
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<GebruikerLogin> GebruikerLogins { get; set; }
-        public DbSet<Gebruiker> Gebruikers { get; set; }
-        //public DbSet<Klant> Klanten { get; set; }
-        //public DbSet<SupportManager> SupportManagers { get; set; }
+        public DbSet<Gebruiker> Gebruikers { get; set; }    
         public DbSet<TicketType> TicketTypes { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -39,19 +37,7 @@ namespace projecten2.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Klant>().ToTable("Klanten").HasBaseType<Gebruiker>() ;
-            //modelBuilder.Entity<SupportManager>().ToTable("SupportManagers").HasBaseType<Gebruiker>();
-
-            //modelBuilder.Entity<Klant>().HasBaseType<Gebruiker>();
-            //modelBuilder.Entity<SupportManager>().HasBaseType<Gebruiker>();
-
             modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker").HasKey(x => x.GebruikersId);
-         
-
-            //modelBuilder.Entity<Gebruiker>().HasDiscriminator<string>("Gebruiker_type")
-            //      .HasValue<Klant>("Gebruiker_klant")
-            //      .HasValue<SupportManager>("Gebruiker_spManager");
-
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new BedrijfConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());
