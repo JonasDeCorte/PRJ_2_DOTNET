@@ -13,23 +13,21 @@ namespace projecten2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IGebruikerRepository _gebruikerRepository;
-
-        public HomeController(ILogger<HomeController> logger, IGebruikerRepository gebruikerRepository)
+        public HomeController(ILogger<HomeController> logger )
         {
             _logger = logger;
-            _gebruikerRepository = gebruikerRepository;
+            
         }
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
         public IActionResult Index(Klant klant)
          {
-            int[] aantal = new int[2];
+            ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
+            ViewBag.TotaalAantalTickets = klant.GetAllTickets().Count();
 
-            aantal[0] = klant.GetAantalActieveContracten();
-            aantal[1] = klant.GetAllTickets().Count();
-                //_gebruikerRepository.GetAllTickets().Where(x => x.Gebruiker.GebruikersId.Equals(klant.GebruikersId)).Count();
-            return View(aantal);
+            List<Ticket> tickets = klant.GetAllTickets();
+
+            return View(tickets.OrderByDescending(x => x.LaatstGewijzigd).Take(5));
         }
 
         [ServiceFilter(typeof(KlantFilter))]

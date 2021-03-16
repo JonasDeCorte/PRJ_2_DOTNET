@@ -50,9 +50,17 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Details/5
-        public IActionResult Details(int id)
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Details(int id, Klant klant)
         {
-            return View();
+            Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
+
+            if (ticket == null) 
+            { 
+                return NotFound(); 
+            }
+
+            return View(ticket);
         }
 
         // GET: TicketController/Create
