@@ -285,6 +285,7 @@ namespace projecten2.Migrations
                     TicketTypeId = table.Column<int>(type: "int", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: false),
                     AanmaakDatum = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DatumAfgewerkt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Omschrijving = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Opmerkingen = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TicketStatus = table.Column<int>(type: "int", nullable: false),

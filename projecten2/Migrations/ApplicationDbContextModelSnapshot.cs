@@ -451,6 +451,9 @@ namespace projecten2.Migrations
                     b.Property<DateTime>("AanmaakDatum")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DatumAfgewerkt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ContractId")
                         .HasColumnType("int");
 

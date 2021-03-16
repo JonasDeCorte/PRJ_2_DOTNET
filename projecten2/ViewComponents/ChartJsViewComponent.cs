@@ -43,7 +43,7 @@ namespace projecten2.ViewComponents
                 foreach(Contract c in klant.Contracten)
                 {
                         foreach(Ticket t in c.Tickets)
-                        if (t.AanmaakDatum < date2)
+                        if (t.AanmaakDatum <= date &&  t.DatumAfgewerkt <= date )
                             data[i]+=1;
                 }
                     

@@ -52,7 +52,7 @@ namespace projecten2.Data
                 Ticket ticket;
                 for (int j = 1; j < 6; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.First(), DateTime.Today.AddDays(-j - 14));
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.First(), DateTime.Today.AddDays(-j  ), DateTime.Today.AddDays(-j +5));
                     contract.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);
                     
@@ -63,7 +63,7 @@ namespace projecten2.Data
                 Contract contract2 = new Contract(ContractStatus.LOPEND, "contract2", 2, _dbContext.ContractTypes.First());
                 for (int j = 6; j < 11; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j-7));
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j), DateTime.Today.AddDays(-j +5));
                      contract2.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);
                 }
@@ -72,7 +72,7 @@ namespace projecten2.Data
                 Contract contract3 = new Contract(ContractStatus.LOPEND, "contract3", 3, _dbContext.ContractTypes.First());
                 for (int j = 11; j < 16; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(3), DateTime.Today.AddDays(-j - 21));
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(3), DateTime.Today.AddDays(-j ), DateTime.Today.AddDays(-j +5));
                      contract3.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);
                 }
@@ -87,7 +87,7 @@ namespace projecten2.Data
 
                 for (int j = 16; j < 21; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.First() , DateTime.Today.AddDays(-j - 14)) ;
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.First() , DateTime.Today.AddDays(-j + 15 ), DateTime.Today.AddDays(-j + 20)) ;
                     contract4.VoegTicketToe(ticket);
                    _dbContext.Tickets.Add(ticket);
                 }
@@ -97,7 +97,7 @@ namespace projecten2.Data
                 Contract contract5 = new Contract(ContractStatus.LOPEND, "contract2", 2, _dbContext.ContractTypes.First());
                 for (int j = 21; j < 26; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j - 7));
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j +10 ), DateTime.Today.AddDays(-j + 15));
                   contract5.VoegTicketToe(ticket);
                       _dbContext.Tickets.Add(ticket);
                 }
@@ -106,7 +106,7 @@ namespace projecten2.Data
                 Contract contract6 = new Contract(ContractStatus.LOPEND, "contract3", 3, _dbContext.ContractTypes.First());
                 for (int j = 26; j < 31; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(3), DateTime.Today.AddDays(-j - 21));
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(3), DateTime.Today.AddDays(-j +5 ), DateTime.Today.AddDays(-j + 10));
                   contract6.VoegTicketToe(ticket);
                    _dbContext.Tickets.Add(ticket);
                 }

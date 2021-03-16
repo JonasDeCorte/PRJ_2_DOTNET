@@ -16,6 +16,7 @@ namespace projecten2.Models.Domain
         public string Titel { get; set; }
         public DateTime AanmaakDatum { get; set; }
         public DateTime LaatstGewijzigd { get; set; }
+        public DateTime DatumAfgewerkt { get; set; }
         public string Omschrijving { get; set; }
         public string Opmerkingen { get; set; }
 
@@ -48,7 +49,7 @@ namespace projecten2.Models.Domain
             this.LaatstGewijzigd = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
         }  
-        public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype,DateTime aanmaakDatum)
+        public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype,DateTime aanmaakDatum,DateTime DatumAfgewerkt)
         {
             this.Gebruiker = klant;
             this.Opmerkingen = opmerkingen;
@@ -56,6 +57,7 @@ namespace projecten2.Models.Domain
             this.Omschrijving = omschrijving;
             this.TicketType = tickettype;
             this.AanmaakDatum = aanmaakDatum;
+            this.DatumAfgewerkt = DatumAfgewerkt;
             this.LaatstGewijzigd = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
             this.Bijlages = new List<Bijlage>();
