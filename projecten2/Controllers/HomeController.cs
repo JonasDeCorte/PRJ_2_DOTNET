@@ -22,11 +22,12 @@ namespace projecten2.Controllers
         [Authorize]
         public IActionResult Index(Klant klant)
          {
-            int[] aantal = new int[2];
+            ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
+            ViewBag.TotaalAantalTickets = klant.GetAllTickets().Count();
 
-            aantal[0] = klant.GetAantalActieveContracten();
-            aantal[1] = klant.GetAllTickets().Count();            
-            return View(aantal);
+            List<Ticket> tickets = klant.GetAllTickets();
+
+            return View(tickets.OrderByDescending(x => x.LaatstGewijzigd).Take(5));
         }
 
         [ServiceFilter(typeof(KlantFilter))]
