@@ -21,5 +21,9 @@ namespace projecten2.Data.Repositories
         {
             return _contractTypes.ToList();
         }
+        public ContractType GetContractType(int id)
+        {
+            return _contractTypes.SingleOrDefault(x => x.ContractTypeId.Equals(id));
+        }
     }
 }

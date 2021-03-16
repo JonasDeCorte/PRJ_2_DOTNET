@@ -16,7 +16,7 @@ namespace projecten2.Data.Mappers
             builder.HasKey(x => x.ContractTypeId);
             builder.Property(x => x.Naam).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Status).HasMaxLength(50).IsRequired();
-           
+            
         }
     }
 }

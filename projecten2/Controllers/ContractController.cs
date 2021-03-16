@@ -24,7 +24,7 @@ namespace projecten2.Controllers
         [ServiceFilter(typeof(KlantFilter))]
         public IActionResult Index(Klant klant)
         {
-            IEnumerable<Contract> contracten = klant.Contracten;
+            List<Contract> contracten = klant.Contracten;
             if (contracten == null)
             {
                 return NotFound();
@@ -33,17 +33,18 @@ namespace projecten2.Controllers
         }
 
         // GET: ContractController/Details 
-        public IActionResult Details(int id)
+        [ServiceFilter(typeof(KlantFilter))]
+        public IActionResult Details(int id, Klant klant)
         {
-            Contract contract = _gebruikerRepository.GetByContractNr(id);
+            Contract contract = klant.GetContractById(id); 
+                //_gebruikerRepository.GetByContractNr(id);
             if (contract == null) { return NotFound(); }
             return View(contract);
         }
 
         // GET: ContractController/Create
-        [Authorize]
-        [ServiceFilter(typeof(KlantFilter))]
-        public IActionResult Create(Klant klant)
+        [Authorize]    
+        public IActionResult Create()
         {
             ViewData["contractTypes"] = GetContractTypesAsSelectList();
             return View(new ContractEditViewModel());
@@ -60,14 +61,16 @@ namespace projecten2.Controllers
                 try
                 {
                     Contract contract = new Contract();
+                    ContractType type = _contractTypeRepository.GetContractType(cevm.ContractTypeId);
                     MapContractEditViewModelToContract(cevm, contract);
+                    contract.ContractType = type;
                     klant.VoegContractToe(contract);
-                        
-                    TempData["message"] = $"Het contract ${contract.ContractTitel} is aangemaakt.";
+                    _gebruikerRepository.SaveChanges();
+                    TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol aangemaakt.";
                 }
                 catch
                 {
-                    TempData["error"] = "Sorry, er is iets fout gelopen en het contract is niet aangemaakt...";
+                    TempData["error"] = "Sorry, er is iets fout gelopen. Het contract is niet aangemaakt...";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -93,11 +96,11 @@ namespace projecten2.Controllers
                 contract.StopzettenContract(contract);
                 _gebruikerRepository.SaveChanges();
 
-                TempData["message"] = $"Je verwijderde succesvol contract {contract.ContractTitel}.";
+                TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol stop gezet.";
             }
             catch
             {
-                TempData["error"] = $"Sorry, iets ging mis, contract  {contract?.ContractTitel} werd niet verwijderd..";
+                TempData["error"] = $"Sorry, er is iets fout gelopen. Contract {contract?.ContractTitel} werd niet stop gezet.";
             }
             return RedirectToAction(nameof(Index));
         }
@@ -106,8 +109,7 @@ namespace projecten2.Controllers
         {
             contract.ContractTitel = contractEditViewModel.ContractTitel;
             contract.StartDatum = contractEditViewModel.StartDatum;
-            contract.Doorlooptijd = contractEditViewModel.DoorloopTijd;
-            contract.ContractTypeId = contractEditViewModel.ContractTypeId;
+            contract.Doorlooptijd = contractEditViewModel.DoorloopTijd;  
             contract.EindDatum = contractEditViewModel.StartDatum.AddYears(contractEditViewModel.DoorloopTijd);
         }
 

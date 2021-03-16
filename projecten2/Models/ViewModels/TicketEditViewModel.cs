@@ -28,8 +28,8 @@ namespace projecten2.Models.ViewModels
         public TicketEditViewModel(Ticket ticket)
         {
             Titel = ticket.Titel;
-            ContractId = ticket.ContractId;
-            TicketTypeId = ticket.TicketTypeId;
+            //Contract = ticket.Contract;
+           // TicketType = ticket.TicketType;
             Omschrijving = ticket.Omschrijving;
             Opmerkingen = ticket.Opmerkingen;
         }

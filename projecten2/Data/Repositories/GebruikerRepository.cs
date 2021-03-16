@@ -31,7 +31,7 @@ namespace projecten2.Data.Repositories
 
         public Gebruiker GetByEmail(string email)
         {
-            return _gebruikers.Include(x => x.Contracten).FirstOrDefault(x => x.Email == email);
+            return _gebruikers.Include(x => x.Contracten).Include(x => x.Tickets).ThenInclude(x => x.TicketType).FirstOrDefault(x => x.Email == email);
         }
         #endregion
 
@@ -39,12 +39,12 @@ namespace projecten2.Data.Repositories
 
         public IEnumerable<Contract> GetAllContracten()
         {
-            return _contracten.Include(x => x.Tickets).ToList();
+            return _contracten.Include(x => x.Tickets).ThenInclude(x => x.TicketType).ToList();
         }
 
         public Contract GetByContractNr(int contractNr)
         {
-            return _contracten.Include(x => x.Tickets).FirstOrDefault(x => x.ContractNr == contractNr);
+            return _contracten.Include(x => x.Tickets).ThenInclude(x => x.TicketType).FirstOrDefault(x => x.ContractNr == contractNr);
         }
 
         public void AddContract(Contract contract)

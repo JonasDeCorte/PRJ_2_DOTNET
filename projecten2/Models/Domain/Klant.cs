@@ -14,8 +14,8 @@ namespace projecten2.Models.Domain
         public int KlantNummer { get; set; }
         public string GegevensContactPersonen { get; set; }
         public DateTime DatumRegistratie { get; set; }
-       
-        
+
+     
         public List<Bedrijf> bedrijven { get; set; }
        
         #endregion
@@ -26,7 +26,6 @@ namespace projecten2.Models.Domain
             bedrijven = new List<Bedrijf>();
             Contracten = new List<Contract>();
             DatumRegistratie = DateTime.Now;
-            
         }
 
         #endregion
@@ -35,12 +34,48 @@ namespace projecten2.Models.Domain
         {
             return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
-        public void VoegContractToe(Contract contract)
+
+        public List<Ticket> GetAllTickets()
         {
-            Contracten.Add(contract);
+            return Contracten.SelectMany(x => x.Tickets).ToList();
         }
 
-      
+        public List<Ticket> GetAllTicketsByContractId(int contractId)
+        {
+            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
+        }
+
+        public Contract GetContractById(int id)
+        {
+            return Contracten.FirstOrDefault(x => x.ContractNr.Equals(id));
+        }
+
+        public Ticket AddTicketByContractId(int contractId, Ticket ticket)
+        {
+            Contract contract = Contracten.FirstOrDefault(x => x.ContractNr.Equals(contractId));
+            if(ticket != null)
+            {
+                contract.VoegTicketToe(ticket);
+                VoegTicketToe(ticket);
+            }
+            return ticket;
+        }
+         
+        public void VoegTicketToe(Ticket ticket)
+        {
+            if(ticket != null)
+            {
+                 Tickets.Add(ticket);
+            }
+           
+        }
+        public void VoegContractToe(Contract contract)
+        {
+            if(contract != null)
+            {              
+                Contracten.Add(contract);
+            }         
+        }      
         #endregion
 
     }
