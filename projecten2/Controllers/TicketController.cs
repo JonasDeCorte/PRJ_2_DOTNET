@@ -101,6 +101,10 @@ namespace projecten2.Controllers
           public IActionResult Edit(int id)
         {
             Ticket ticket =  _gebruikerRepository.GetByTicketNr(id);
+            if(ticket.TicketStatus.Equals(TicketStatus.AFGEHANDELD) || ticket.TicketStatus.Equals(TicketStatus.GEANNULEERD)){
+                TempData["message"] = $"Het ticket {ticket.Titel} kan niet worden gewijzigd want de status is: {(ticket.TicketStatus == TicketStatus.AFGEHANDELD? "Afgehandeld" : "Geannuleerd")}.";
+                return RedirectToAction(nameof(Index));
+            }
             if (ticket == null)
             {
                 return NotFound();
