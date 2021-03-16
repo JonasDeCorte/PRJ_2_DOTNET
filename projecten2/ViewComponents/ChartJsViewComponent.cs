@@ -35,18 +35,18 @@ namespace projecten2.ViewComponents
             string[] dataLabels2 = new string[6];
             int[] data = { 0, 0, 0, 0, 0, 0 };
             DateTime date = DateTime.Today;
-            string.Format("dd mm `yy");
-            DateTime date2 = new DateTime();
+            DateTime date2;
             for(int i = 5; i >= 0; i--)
             {
                 date2 = date.AddDays(-7);
                 dataLabels2[i] = string.Format("{0:dd/MM/yy}", date2) + "-" + string.Format("{0:dd/MM/yy}", date);
                 foreach(Contract c in klant.Contracten)
-                    foreach(Ticket t in c.Tickets)
-                    {
+                {
+                        foreach(Ticket t in c.Tickets)
                         if (t.AanmaakDatum < date2)
                             data[i]+=1;
-                    };
+                }
+                    
                 date = date2.AddDays(-1);
             }
             
