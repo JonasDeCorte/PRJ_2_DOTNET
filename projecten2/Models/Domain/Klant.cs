@@ -30,10 +30,12 @@ namespace projecten2.Models.Domain
 
         #endregion
         #region Methods
+
         public int GetAantalActieveContracten()
         {
             return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
+
 
         public List<Ticket> GetAllTickets()
         {
