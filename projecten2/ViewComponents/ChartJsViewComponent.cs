@@ -7,6 +7,7 @@ using projecten2.filter;
 using Microsoft.AspNetCore.Authorization;
 using projecten2.Models.Domain;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace projecten2.ViewComponents
 {
@@ -27,9 +28,10 @@ namespace projecten2.ViewComponents
         {
             // Ref: https://www.chartjs.org/docs/latest/
 
-            Klant klant = (Klant)_klantenRepo.GetByEmail("jan@gmail.com");
+            Klant klant = (Klant)_klantenRepo.GetByEmail(HttpContext.User.Identity.Name);
 
-       
+
+
             string[] dataLabels2 = new string[6];
             int[] data = { 0, 0, 0, 0, 0, 0 };
             DateTime date = DateTime.Today;

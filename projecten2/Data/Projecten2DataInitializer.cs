@@ -85,7 +85,7 @@ namespace projecten2.Data
 
                 for (int j = 16; j < 21; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1, DateTime.Today.AddDays(-j - 14));
                     _dbContext.Tickets.Add(ticket);
                     contract4.VoegTicketToe(ticket);
                 }
@@ -95,7 +95,7 @@ namespace projecten2.Data
                 Contract contract5 = new Contract(ContractStatus.LOPEND, "contract2", 2, _dbContext.ContractTypes.First().ContractTypeId);
                 for (int j = 21; j < 26; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1, DateTime.Today.AddDays(-j - 7));
                     _dbContext.Tickets.Add(ticket);
                     contract5.VoegTicketToe(ticket);
                 }
@@ -104,7 +104,7 @@ namespace projecten2.Data
                 Contract contract6 = new Contract(ContractStatus.LOPEND, "contract3", 3, _dbContext.ContractTypes.First().ContractTypeId);
                 for (int j = 26; j < 31; j++)
                 {
-                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1);
+                    ticket = new Ticket(peter, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", 1, DateTime.Today.AddDays(-j - 21));
                     _dbContext.Tickets.Add(ticket);
                     contract6.VoegTicketToe(ticket);
                 }
