@@ -42,7 +42,7 @@ namespace projecten2.Models.Domain
 
         public List<Ticket> GetAllTicketsByContractId(int contractId)
         {
-            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
+            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).Where(x => x.TicketStatus.Equals(TicketStatus.AANGEMAAKT) || x.TicketStatus.Equals(TicketStatus.INBEHANDELING)).ToList();
         }
 
         public Contract GetContractById(int id)
