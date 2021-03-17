@@ -68,7 +68,7 @@ namespace projecten2.Controllers
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
                 ModelState.AddModelError("File",
-                    $"The request couldn't be processed (Error 1).");
+                    $"Het verzoek kon niet worden verwerkt (Error 1).");
                 // Log error
 
                 return BadRequest(ModelState);
@@ -125,7 +125,7 @@ namespace projecten2.Controllers
                         if (encoding == null)
                         {
                             ModelState.AddModelError("File",
-                                $"The request couldn't be processed (Error 2).");
+                                $"Het verzoek kon niet worden verwerkt (Error 2).");
                             // Log error
 
                             return BadRequest(ModelState);
@@ -157,7 +157,7 @@ namespace projecten2.Controllers
                                 // _defaultFormOptions.ValueCountLimit 
                                 // is exceeded.
                                 ModelState.AddModelError("File",
-                                    $"The request couldn't be processed (Error 3).");
+                                    $"Het verzoek kon niet worden verwerkt (Error 3).");
                                 // Log error
 
                                 return BadRequest(ModelState);
@@ -183,7 +183,7 @@ namespace projecten2.Controllers
             if (!bindingSuccessful)
             {
                 ModelState.AddModelError("File",
-                    "The request couldn't be processed (Error 5).");
+                    "Het verzoek kon niet worden verwerkt (Error 5).");
                 // Log error
 
                 return BadRequest(ModelState);

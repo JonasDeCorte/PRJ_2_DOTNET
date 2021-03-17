@@ -91,7 +91,7 @@ namespace projecten2.Utilities
             if (formFile.Length == 0)
             {
                 modelState.AddModelError(formFile.Name, 
-                    $"{fieldDisplayName}({trustedFileNameForDisplay}) is empty.");
+                    $"{fieldDisplayName}({trustedFileNameForDisplay}) is leeg.");
 
                 return new byte[0];
             }
@@ -118,7 +118,7 @@ namespace projecten2.Utilities
                     if (memoryStream.Length == 0)
                     {
                         modelState.AddModelError(formFile.Name,
-                            $"{fieldDisplayName}({trustedFileNameForDisplay}) is empty.");
+                            $"{fieldDisplayName}({trustedFileNameForDisplay}) is leeg.");
                     }
 
                     if (!IsValidFileExtensionAndSignature(
@@ -126,8 +126,8 @@ namespace projecten2.Utilities
                     {
                         modelState.AddModelError(formFile.Name,
                             $"{fieldDisplayName}({trustedFileNameForDisplay}) file " +
-                            "type isn't permitted or the file's signature " +
-                            "doesn't match the file's extension.");
+                            "type niet is toegestaan of de handtekening van het bestand " +
+                            "niet overeenkomt met de extensie van het bestand.");
                     }
                     else
                     {
@@ -139,7 +139,7 @@ namespace projecten2.Utilities
             {
                 modelState.AddModelError(formFile.Name,
                     $"{fieldDisplayName}({trustedFileNameForDisplay}) upload failed. " +
-                    $"Please contact the Help Desk for support. Error: {ex.HResult}");
+                    $"Neem contact op met de Help Desk voor ondersteuning.Fout Het bestand is leeg: { ex.HResult}");
                 // Log the exception
             }
 
@@ -159,7 +159,7 @@ namespace projecten2.Utilities
                     // Check if the file is empty or exceeds the size limit.
                     if (memoryStream.Length == 0)
                     {
-                        modelState.AddModelError("File", "The file is empty.");
+                        modelState.AddModelError("File", "Het bestand is leeg.");
                     }
                     else if (memoryStream.Length > sizeLimit)
                     {

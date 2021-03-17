@@ -15,10 +15,10 @@ namespace projecten2.Models.Domain
         [Display(Name = "File Name")]
         public string UntrustedName { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Omschrijving")]
         public string Note { get; set; }
 
-        [Display(Name = "Size (bytes)")]
+        [Display(Name = "grootte (bytes)")]
         [DisplayFormat(DataFormatString = "{0:N0}")]
         public long Size { get; set; }
 

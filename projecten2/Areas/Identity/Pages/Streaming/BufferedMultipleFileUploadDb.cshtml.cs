@@ -18,7 +18,7 @@ namespace projecten2.Areas.Identity.Pages.Streaming
     {
         private readonly ApplicationDbContext _context;
         private readonly long _fileSizeLimit;
-        private readonly string[] _permittedExtensions = { ".txt", ".png", ".jpg"};
+        private readonly string[] _permittedExtensions = { ".txt", ".png", ".jpg", ".jpeg", ".gif" };
         private readonly IGebruikerRepository _gebruikerRepository;
         public BufferedMultipleFileUploadDbModel(ApplicationDbContext context,
             IConfiguration config, IGebruikerRepository gebruikerRepository)
@@ -47,7 +47,7 @@ namespace projecten2.Areas.Identity.Pages.Streaming
             // attribute violations.
             if (!ModelState.IsValid)
             {
-                Result = "Please correct the form.";
+                Result = "Gelieve het formulier te corrigeren.";
 
                 return Page();
             }
@@ -64,7 +64,7 @@ namespace projecten2.Areas.Identity.Pages.Streaming
                 // page.
                 if (!ModelState.IsValid)
                 {
-                    Result = "Please correct the form.";
+                    Result = "Gelieve het formulier te corrigeren.";
 
                     return Page();
                 }
@@ -101,7 +101,7 @@ namespace projecten2.Areas.Identity.Pages.Streaming
         [Display(Name = "File")]
         public List<IFormFile> FormFiles { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Omschrijving")]
         [StringLength(50, MinimumLength = 0)]
         public string Note { get; set; }
     }
