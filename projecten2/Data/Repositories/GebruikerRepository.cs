@@ -57,12 +57,12 @@ namespace projecten2.Data.Repositories
         #region Tickets
         public Ticket GetByTicketNr(int ticketNr)
         {
-            return _tickets.Include(x => x.Contract).Include(x => x.TicketType).FirstOrDefault(x => x.TicketNr == ticketNr);
+            return _tickets.Include(x => x.Gebruiker).Include(x => x.Contract).Include(x => x.TicketType).FirstOrDefault(x => x.TicketNr == ticketNr);
         }
 
         public IEnumerable<Ticket> GetAllTickets()
         {
-            return _tickets.Include(x => x.Contract).Include(x => x.TicketType).OrderBy(x => x.TicketNr).ToList();
+            return _tickets.Include(x => x.Gebruiker).Include(x => x.Contract).Include(x => x.TicketType).OrderBy(x => x.TicketNr).ToList();
         }
 
         public void AddTicket(Ticket ticket)

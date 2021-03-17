@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using projecten2.Data;
 using projecten2.Data.Repositories;
@@ -38,6 +40,29 @@ namespace projecten2
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
             });
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions
+                        .AddPageApplicationModelConvention("/StreamedSingleFileUploadDb",
+                            model =>
+                            {
+                                model.Filters.Add(
+                                    new GenerateAntiforgeryTokenCookieAttribute());
+                                model.Filters.Add(
+                                    new DisableFormValueModelBindingAttribute());
+                            });
+                    options.Conventions
+                        .AddPageApplicationModelConvention("/StreamedSingleFileUploadPhysical",
+                            model =>
+                            {
+                                model.Filters.Add(
+                                    new GenerateAntiforgeryTokenCookieAttribute());
+                                model.Filters.Add(
+                                    new DisableFormValueModelBindingAttribute());
+                            });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
@@ -56,8 +81,6 @@ namespace projecten2
                  // This pushes users to login if not authenticated
                  options.Filters.Add(new AuthorizeFilter());
              });
-           
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

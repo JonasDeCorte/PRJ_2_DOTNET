@@ -23,7 +23,7 @@ namespace projecten2.Data
         public DbSet<GebruikerLogin> GebruikerLogins { get; set; }
         public DbSet<Gebruiker> Gebruikers { get; set; }    
         public DbSet<TicketType> TicketTypes { get; set; }
-
+        public DbSet<AppFile> File { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
         }

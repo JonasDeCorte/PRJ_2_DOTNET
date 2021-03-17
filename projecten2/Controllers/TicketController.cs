@@ -58,6 +58,7 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Details/5
+        [Authorize]
         [ServiceFilter(typeof(KlantFilter))]
         public IActionResult Details(int id, Klant klant)
         {
