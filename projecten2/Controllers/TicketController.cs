@@ -33,24 +33,24 @@ namespace projecten2.Controllers
         {
 
             List<Ticket> tickets = new List<Ticket>();
-            
+
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
        
             if (contractid.HasValue && contractid.Value != 0)
-           
+            {
                 tickets = _ticketRepository.GetAll().Where(x => x.ContractId == contractid.Value).OrderBy(x => x.AanmaakDatum).ToList();
-           else
-
+            }
+            else
+            {
                 tickets = _ticketRepository.GetAll().OrderBy(x => x.AanmaakDatum).ToList();
-
-
+            }
 
             ViewData["selectedcontract"] = contractid;
             if (tickets == null) {
                 return NotFound();
             }
-            
-            return View(tickets.OrderBy(x => x.AanmaakDatum));
+
+            return View(tickets.OrderByDescending(x => x.LaatstGewijzigd));
         }
 
         // GET: TicketController/Details/5
@@ -181,7 +181,7 @@ namespace projecten2.Controllers
             ticket.TicketTypeId = TicketEditViewModel.TicketTypeId;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;
-        }   
-       
+            ticket.LaatstGewijzigd = DateTime.Now;
+        }        
     }
 }

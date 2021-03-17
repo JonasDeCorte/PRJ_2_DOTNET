@@ -43,6 +43,9 @@
                 Aangemaakt op
             </th>
             <th>
+                Laatst gewijzigd
+            </th>
+            <th>
                 Ticket status
             </th>
             <th></th>
@@ -60,7 +63,9 @@
     </td>
     <td>
         @String.Format("{0:dd/MM/yyyy}", item.AanmaakDatum)
-
+    </td>
+    <td>
+        @String.Format("{0:dd/MM/yyyy}", item.LaatstGewijzigd)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.TicketStatus)
