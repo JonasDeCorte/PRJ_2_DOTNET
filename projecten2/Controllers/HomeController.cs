@@ -25,9 +25,7 @@ namespace projecten2.Controllers
             ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
             ViewBag.TotaalAantalTickets = klant.GetAllTickets().Count();
 
-            List<Ticket> tickets = klant.GetAllTickets();
-
-            return View(tickets.OrderByDescending(x => x.LaatstGewijzigd).Take(5));
+            return View(klant.GetAllTickets2().OrderBy(x => x.LaatstGewijzigd).Take(5));
         }
 
         [ServiceFilter(typeof(KlantFilter))]

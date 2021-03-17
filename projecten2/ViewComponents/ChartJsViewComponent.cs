@@ -41,11 +41,10 @@ namespace projecten2.ViewComponents
                 date2 = date.AddDays(-7);
                 dataLabels2[i] = string.Format("{0:dd/MM/yy}", date2) + "-" + string.Format("{0:dd/MM/yy}", date);
                 foreach(Contract c in klant.Contracten)
-                {
                         foreach(Ticket t in c.Tickets)
-                        if (t.AanmaakDatum <= date &&  t.DatumAfgewerkt <= date )
+                        if (t.AanmaakDatum <= date   )
+                            if(t.DatumAfgewerkt.Equals(null) || t.DatumAfgewerkt >=date2 )
                             data[i]+=1;
-                }
                     
                 date = date2.AddDays(-1);
             }

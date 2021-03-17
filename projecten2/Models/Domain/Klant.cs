@@ -41,10 +41,18 @@ namespace projecten2.Models.Domain
         {
             return Contracten.SelectMany(x => x.Tickets).Where(x => x.TicketStatus.Equals(TicketStatus.AANGEMAAKT) || x.TicketStatus.Equals(TicketStatus.INBEHANDELING)).ToList();
         }
+        public List<Ticket> GetAllTickets2()
+        {
+            return Contracten.SelectMany(x => x.Tickets).ToList();
+        }
 
         public List<Ticket> GetAllTicketsByContractId(int contractId)
         {
             return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).Where(x => x.TicketStatus.Equals(TicketStatus.AANGEMAAKT) || x.TicketStatus.Equals(TicketStatus.INBEHANDELING)).ToList();
+        }
+        public List<Ticket> GetAllTicketsByContractId2(int contractId)
+        {
+            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
         }
 
         public Contract GetContractById(int id)

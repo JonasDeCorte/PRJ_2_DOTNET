@@ -63,12 +63,28 @@ namespace projecten2.Models.Domain
             this.Bijlages = new List<Bijlage>();
 
         }
+        public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype, DateTime aanmaakDatum)
+        {
+            this.Gebruiker = klant;
+            this.Opmerkingen = opmerkingen;
+            this.Titel = titel;
+            this.Omschrijving = omschrijving;
+            this.TicketType = tickettype;
+            this.AanmaakDatum = aanmaakDatum;
+            this.DatumAfgewerkt = DateTime.Today;
+            this.LaatstGewijzigd = DateTime.Now;
+            this.TicketStatus = TicketStatus.AANGEMAAKT;
+            this.Bijlages = new List<Bijlage>();
+
+        }
         #endregion
 
         #region Methods
         public void AnnulerenTicket(Ticket ticket)
         {
             ticket.TicketStatus = TicketStatus.GEANNULEERD;
+            ticket.DatumAfgewerkt = DateTime.Today;
+            this.LaatstGewijzigd = DateTime.Today;
         }
         #endregion
 
