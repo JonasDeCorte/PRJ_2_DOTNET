@@ -28,7 +28,7 @@ namespace projecten2.Controllers
         private readonly ApplicationDbContext _context;
         private readonly long _fileSizeLimit;
         private readonly ILogger<StreamingController> _logger;
-        private readonly string[] _permittedExtensions = { ".txt", ".docx", ".png", ".jpg" };
+        private readonly string[] _permittedExtensions = { ".txt", ".png", ".jpg" };
         private readonly string _targetFilePath;
 
         // Get the default form options so that we can use them to set the default 
