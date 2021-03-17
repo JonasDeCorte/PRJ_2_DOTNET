@@ -18,7 +18,7 @@ namespace projecten2.Areas.Identity.Pages.Streaming
     {
         private readonly ApplicationDbContext _context;
         private readonly long _fileSizeLimit;
-        private readonly string[] _permittedExtensions = { ".txt" };
+        private readonly string[] _permittedExtensions = { ".txt", ".docx", ".png", ".jpg"};
         private readonly IGebruikerRepository _gebruikerRepository;
         public BufferedMultipleFileUploadDbModel(ApplicationDbContext context,
             IConfiguration config, IGebruikerRepository gebruikerRepository)
