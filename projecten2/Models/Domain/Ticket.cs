@@ -37,7 +37,8 @@ namespace projecten2.Models.Domain
         public Ticket()
         {
             this.AanmaakDatum = DateTime.Now;
-            this.LaatstGewijzigd = DateTime.Now;
+            this.LaatstGewijzigd = DateTime.Today;
+            this.DatumAfgewerkt = DateTime.Today;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
             this.Bijlages = new List<Bijlage>();
             

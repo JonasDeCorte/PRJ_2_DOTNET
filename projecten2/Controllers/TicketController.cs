@@ -25,7 +25,7 @@ namespace projecten2.Controllers
         // GET: TicketController
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
-        public IActionResult Index(Klant klant, int? contractid, Boolean? ticketstatus = false)
+        public IActionResult Index(Klant klant, int? contractid, bool ticketstatus)
         {
 
             List<Ticket> tickets = new List<Ticket>();
@@ -48,7 +48,9 @@ namespace projecten2.Controllers
                     tickets = klant.GetAllTickets2();
 
             }
-            ViewData["selectedcontract"] = contractid;
+            if(contractid.HasValue)
+            ViewData["selectedcontract"] = "t";
+            ViewData["ticketstatus"] = ticketstatus;
             if (tickets == null)
             {
                 return NotFound();
