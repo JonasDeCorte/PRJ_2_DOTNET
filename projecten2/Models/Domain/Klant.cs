@@ -41,22 +41,29 @@ namespace projecten2.Models.Domain
         }
 
 
-        public List<Ticket> GetAllActiveTickets()
+        public List<Ticket> GetAllActiveTickets(bool status = false)
         {
-            return Contracten.SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
+            if (status)
+            {
+                return Contracten.SelectMany(x => x.Tickets).ToList();
+            }
+            else
+            {
+                 return Contracten.SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
+            }
         }
-        public List<Ticket> GetAllTickets()
+      
+        public List<Ticket> GetAllActiveTicketsByContractId(int contractId, bool status = false)
         {
-            return Contracten.SelectMany(x => x.Tickets).ToList();
-        }
-
-        public List<Ticket> GetAllActiveTicketsByContractId(int contractId)
-        {
+            if (status)
+            {
+                return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
+            }
+            else
+            {
             return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
-        }
-        public List<Ticket> GetAllTicketsByContractId(int contractId)
-        {
-            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
+            }
+           
         }
 
         public Contract GetContractById(int id)

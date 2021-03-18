@@ -34,23 +34,12 @@ namespace projecten2.Controllers
 
             if (contractid.HasValue && contractid.Value != 0)
             {
-                if(ticketstatus == false)
-                tickets = klant.GetAllActiveTicketsByContractId(contractid.Value);   
-                else
-                tickets = klant.GetAllTicketsByContractId(contractid.Value);
-
+                tickets = klant.GetAllActiveTicketsByContractId(contractid.Value, ticketstatus);
             }
             else
             {
-                if (ticketstatus == false)
-                    tickets = klant.GetAllActiveTickets();  
-                else
-                    tickets = klant.GetAllTickets();
-
-            }
-            if(contractid.HasValue)
-            ViewData["selectedcontract"] = "t";
-            ViewData["ticketstatus"] = ticketstatus;
+                tickets = klant.GetAllActiveTickets(ticketstatus);
+            }     
             if (tickets == null)
             {
                 return NotFound();
