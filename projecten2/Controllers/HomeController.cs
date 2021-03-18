@@ -23,9 +23,9 @@ namespace projecten2.Controllers
         public IActionResult Index(Klant klant)
          {
             ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
-            ViewBag.TotaalAantalTickets = klant.GetAllTickets().Count();
+            ViewBag.TotaalAantalTickets = klant.GetAantalActieveTickets();
 
-            return View(klant.GetAllTickets2().OrderBy(x => x.LaatstGewijzigd).Take(5));
+            return View(klant.GetAllActiveTickets().OrderBy(x => x.LaatstGewijzigd).Take(5));
         }
 
         [ServiceFilter(typeof(KlantFilter))]

@@ -52,7 +52,7 @@ namespace projecten2.Models.Domain
             }
         }
 
-
+       
         public void StopzettenContract(Contract contract)
         {
             if (contract != null)

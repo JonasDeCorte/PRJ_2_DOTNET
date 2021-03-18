@@ -35,17 +35,17 @@ namespace projecten2.Controllers
             if (contractid.HasValue && contractid.Value != 0)
             {
                 if(ticketstatus == false)
-                tickets = klant.GetAllTicketsByContractId(contractid.Value);   
+                tickets = klant.GetAllActiveTicketsByContractId(contractid.Value);   
                 else
-                tickets = klant.GetAllTicketsByContractId2(contractid.Value);
+                tickets = klant.GetAllTicketsByContractId(contractid.Value);
 
             }
             else
             {
                 if (ticketstatus == false)
-                    tickets = klant.GetAllTickets();  
+                    tickets = klant.GetAllActiveTickets();  
                 else
-                    tickets = klant.GetAllTickets2();
+                    tickets = klant.GetAllTickets();
 
             }
             if(contractid.HasValue)
@@ -62,7 +62,7 @@ namespace projecten2.Controllers
         // GET: TicketController/Details/5
         [Authorize]
         [ServiceFilter(typeof(KlantFilter))]
-        public IActionResult Details(int id, Klant klant)
+        public IActionResult Details(int id)
         {
             Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
 
@@ -120,8 +120,9 @@ namespace projecten2.Controllers
           public IActionResult Edit(int id)
         {
             Ticket ticket =  _gebruikerRepository.GetByTicketNr(id);
-            if(ticket.TicketStatus.Equals(TicketStatus.AFGEHANDELD) || ticket.TicketStatus.Equals(TicketStatus.GEANNULEERD)){
-                TempData["message"] = $"Het ticket {ticket.Titel} kan niet worden gewijzigd want de status is: {(ticket.TicketStatus == TicketStatus.AFGEHANDELD? "Afgehandeld" : "Geannuleerd")}.";
+            if(ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) || ticket.IsTicketStatus(TicketStatus.GEANNULEERD))
+            { 
+                TempData["message"] = $"Het ticket {ticket.Titel} kan niet worden gewijzigd want de status is: {(ticket.IsTicketStatus(TicketStatus.AFGEHANDELD)? "Afgehandeld" : "Geannuleerd")}.";
                 return RedirectToAction(nameof(Index));
             }
             if (ticket == null)

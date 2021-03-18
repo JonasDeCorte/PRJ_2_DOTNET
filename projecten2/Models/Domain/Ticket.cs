@@ -87,6 +87,10 @@ namespace projecten2.Models.Domain
             ticket.DatumAfgewerkt = DateTime.Today;
             this.LaatstGewijzigd = DateTime.Today;
         }
+        public bool IsTicketStatus(TicketStatus ticketStatus)
+        {
+            return this.TicketStatus.Equals(ticketStatus) ? true : false;
+        }
         #endregion
 
     }

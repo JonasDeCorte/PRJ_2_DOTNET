@@ -35,22 +35,26 @@ namespace projecten2.Models.Domain
         {
             return Contracten.Count(x => x.ContractStatus.Equals(ContractStatus.LOPEND));
         }
-
-
-        public List<Ticket> GetAllTickets()
+        public int GetAantalActieveTickets()
         {
-            return Contracten.SelectMany(x => x.Tickets).Where(x => x.TicketStatus.Equals(TicketStatus.AANGEMAAKT) || x.TicketStatus.Equals(TicketStatus.INBEHANDELING)).ToList();
+            return GetAllActiveTickets().Count();
         }
-        public List<Ticket> GetAllTickets2()
+
+
+        public List<Ticket> GetAllActiveTickets()
+        {
+            return Contracten.SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
+        }
+        public List<Ticket> GetAllTickets()
         {
             return Contracten.SelectMany(x => x.Tickets).ToList();
         }
 
-        public List<Ticket> GetAllTicketsByContractId(int contractId)
+        public List<Ticket> GetAllActiveTicketsByContractId(int contractId)
         {
-            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).Where(x => x.TicketStatus.Equals(TicketStatus.AANGEMAAKT) || x.TicketStatus.Equals(TicketStatus.INBEHANDELING)).ToList();
+            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
         }
-        public List<Ticket> GetAllTicketsByContractId2(int contractId)
+        public List<Ticket> GetAllTicketsByContractId(int contractId)
         {
             return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
         }
