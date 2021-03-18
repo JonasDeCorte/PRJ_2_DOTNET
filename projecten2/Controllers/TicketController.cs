@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using projecten2.filter;
@@ -33,13 +32,10 @@ namespace projecten2.Controllers
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
 
             if (contractid.HasValue && contractid.Value != 0)
-            {
                 tickets = klant.GetAllActiveTicketsByContractId(contractid.Value, ticketstatus);
-            }
             else
-            {
                 tickets = klant.GetAllActiveTickets(ticketstatus);
-            }     
+
             if (tickets == null)
             {
                 return NotFound();
@@ -55,9 +51,9 @@ namespace projecten2.Controllers
         {
             Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
 
-            if (ticket == null) 
-            { 
-                return NotFound(); 
+            if (ticket == null)
+            {
+                return NotFound();
             }
 
             return View(ticket);
@@ -106,12 +102,12 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Edit/5
-          public IActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            Ticket ticket =  _gebruikerRepository.GetByTicketNr(id);
-            if(ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) || ticket.IsTicketStatus(TicketStatus.GEANNULEERD))
-            { 
-                TempData["message"] = $"Het ticket {ticket.Titel} kan niet worden gewijzigd want de status is: {(ticket.IsTicketStatus(TicketStatus.AFGEHANDELD)? "Afgehandeld" : "Geannuleerd")}.";
+            Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
+            if (ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) || ticket.IsTicketStatus(TicketStatus.GEANNULEERD))
+            {
+                TempData["message"] = $"Het ticket {ticket.Titel} kan niet worden gewijzigd want de status is: {(ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) ? "Afgehandeld" : "Geannuleerd")}.";
                 return RedirectToAction(nameof(Index));
             }
             if (ticket == null)
@@ -134,7 +130,7 @@ namespace projecten2.Controllers
                 Ticket ticket = null;
                 try
                 {
-                    ticket = _gebruikerRepository.GetByTicketNr(id);                 
+                    ticket = _gebruikerRepository.GetByTicketNr(id);
                     MapTicketEditViewModelToTicket(tevm, ticket);
                     TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
                     ticket.TicketType = ticketType;
@@ -154,7 +150,7 @@ namespace projecten2.Controllers
         }
 
         // GET: TicketController/Delete/5
-       public IActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             ViewData[nameof(Ticket.Titel)] = _gebruikerRepository.GetByTicketNr(id).Titel;
             return View();
@@ -196,7 +192,7 @@ namespace projecten2.Controllers
 
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
         {
-           
+
             ticket.Titel = TicketEditViewModel.Titel;
             ticket.Omschrijving = TicketEditViewModel.Omschrijving;
             ticket.Opmerkingen = TicketEditViewModel.Opmerkingen;

@@ -89,7 +89,7 @@ namespace projecten2.Models.Domain
         }
         public bool IsTicketStatus(TicketStatus ticketStatus)
         {
-            return this.TicketStatus.Equals(ticketStatus) ? true : false;
+            return TicketStatus.Equals(ticketStatus) ? true : false;
         }
         #endregion
 

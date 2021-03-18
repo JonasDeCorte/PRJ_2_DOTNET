@@ -39,30 +39,26 @@ namespace projecten2.Models.Domain
         {
             return GetAllActiveTickets().Count();
         }
-
-
+        public List<Contract> GetContracten()
+        {
+            return Contracten;
+        }
         public List<Ticket> GetAllActiveTickets(bool status = false)
         {
-            if (status)
-            {
+            if (status)        
                 return Contracten.SelectMany(x => x.Tickets).ToList();
-            }
-            else
-            {
-                 return Contracten.SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
-            }
+            else      
+                return Contracten.SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
+            
         }
       
         public List<Ticket> GetAllActiveTicketsByContractId(int contractId, bool status = false)
         {
             if (status)
-            {
-                return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
-            }
-            else
-            {
+            return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).ToList();
+             else   
             return Contracten.Where(x => x.ContractNr.Equals(contractId)).SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
-            }
+            
            
         }
 
