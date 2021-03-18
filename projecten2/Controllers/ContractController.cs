@@ -24,7 +24,7 @@ namespace projecten2.Controllers
         [ServiceFilter(typeof(KlantFilter))]
         public IActionResult Index(Klant klant)
         {
-            List<Contract> contracten = klant.GetContracts();
+            List<Contract> contracten = klant.GetContracten();
             if (contracten == null)
             {
                 return NotFound();
