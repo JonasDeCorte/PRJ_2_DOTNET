@@ -32,7 +32,10 @@ namespace projecten2.Controllers
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant, contractid);
 
             if  (contractid != 0)
+            {
                 tickets = klant.GetAllActiveTicketsByContractId(contractid, ticketstatus);
+                ViewBag.ContractNaam = "van " + klant.GetContractById(contractid).ContractTitel;
+            }         
             else
                 tickets = klant.GetAllActiveTickets(ticketstatus);
 
@@ -40,6 +43,8 @@ namespace projecten2.Controllers
             {
                 return NotFound();
             }
+
+            
 
             return View(tickets.OrderByDescending(x => x.LaatstGewijzigd));
         }
