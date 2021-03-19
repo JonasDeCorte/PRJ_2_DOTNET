@@ -4,29 +4,22 @@
 
 <link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
 
-<ul id="right-side">
-    <div class="myCreateButton">
-        <p>
-            <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Nieuw ticket aanmaken</a>
-        </p>
-    </div>
-</ul>
 
 <h2>Overzicht van mijn tickets @ViewBag.ContractNaam</h2>
 
 <form>
     <div class="form-group">
-        <label for="contractid" class="control-label">Geef de tickets van contract </label>
+        <label for="contractid" class="control-label">Geef tickets van </label>
         <select name="contractid" id="contractid" value="@(ViewData["selectedcontract"])" asp-items="@(ViewData["contractenKlant"]  as SelectList)">
             <option value="">Alle contracten </option>
         </select>
+        |
         <input type="checkbox" name="ticketstatus" id="ticketstatus" value=true>
-        <label for="ticketstatus"> Alle tickets weergeven</label><br>
-        <input style='background: #cad50c' type="submit" value="zoek" class="btn btn-secondary" />
+        <label for="ticketstatus"> Geannuleerde en afgehandelde tickets weergeven</label><br>
+        <input style='background: #cad50c' type="submit" value="zoek" class="btn btn-secondary"/>
+        <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Nieuw ticket aanmaken</a>
     </div>
 </form>
-
-
 
 
 <table class="table table-hover table-striped table-responsive">
