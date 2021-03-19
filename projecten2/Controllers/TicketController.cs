@@ -24,15 +24,15 @@ namespace projecten2.Controllers
         // GET: TicketController
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
-        public IActionResult Index(Klant klant, int? contractid, bool ticketstatus)
+        public IActionResult Index(Klant klant, bool ticketstatus, int contractid = 0)
         {
 
             List<Ticket> tickets = new List<Ticket>();
 
-            ViewData["contractenKlant"] = GetContractenAsSelectList(klant);
+            ViewData["contractenKlant"] = GetContractenAsSelectList(klant, contractid);
 
-            if (contractid.HasValue && contractid.Value != 0)
-                tickets = klant.GetAllActiveTicketsByContractId(contractid.Value, ticketstatus);
+            if  (contractid != 0)
+                tickets = klant.GetAllActiveTicketsByContractId(contractid, ticketstatus);
             else
                 tickets = klant.GetAllActiveTickets(ticketstatus);
 
@@ -183,11 +183,11 @@ namespace projecten2.Controllers
                 nameof(TicketType.Naam));
         }
 
-        private SelectList GetContractenAsSelectList(Klant klant)
+        private SelectList GetContractenAsSelectList(Klant klant, int selected = 0)
         {
-            return new SelectList(klant.Contracten,
+            return new SelectList(klant.GetContracten(),
                 nameof(Contract.ContractNr),
-                nameof(Contract.ContractTitel));
+                nameof(Contract.ContractTitel), selected);
         }
 
         private void MapTicketEditViewModelToTicket(TicketEditViewModel TicketEditViewModel, Ticket ticket)
