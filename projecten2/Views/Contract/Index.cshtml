@@ -6,13 +6,6 @@
 
 <link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
 <ul id="right-side">
-    <!--<div id="profile-pic">
-        <img src="https://i.stack.imgur.com/34AD2.jpg" id="profilepic">
-    </div>
-    <div id="profile-name">
-        User Name
-    </div>-->
-
     <div class="myCreateButton">
         <p>
             <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Contract" asp-action="Create">Nieuw contract afsluiten</a>
@@ -22,7 +15,8 @@
 
 <h2>Overzicht van mijn contracten</h2>
 
-<table class="table">
+<table class="table table-hover table-striped table-responsive">
+    <caption>Lijst van contracten</caption>
     <thead>
         <tr>
             <th>
@@ -43,28 +37,27 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContractTitel)
-                  
-                </td>
-                <td>
-                    @String.Format("{0:dd/MM/yyyy}", item.StartDatum)
-                   
-                </td>
-                <td>
-                    @String.Format("{0:dd/MM/yyyy}", item.EindDatum)
-                   
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContractStatus)
-                </td>
-                <td>
-                    <a asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">details</a>
-                    |
-                    <a asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractNr">stopzetten</a>
-                </td>
-            </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ContractTitel)
+
+    </td>
+    <td>
+        @String.Format("{0:dd/MM/yyyy}", item.StartDatum)
+
+    </td>
+    <td>
+        @String.Format("{0:dd/MM/yyyy}", item.EindDatum)
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ContractStatus)
+    </td>
+    <td>
+        <a asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">details</a>
+        |
+        <a asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractNr">stopzetten</a>
+    </td>
+</tr>}
     </tbody>
 </table>

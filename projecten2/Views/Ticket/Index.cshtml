@@ -36,7 +36,8 @@
 
 
 
-<table class="table">
+<table class="table table-hover table-striped table-responsive">
+    <caption>Lijst van tickets</caption>
     <thead>
         <tr>
             <th>
@@ -89,7 +90,8 @@
         |
         <a asp-controller="Ticket" asp-action="Delete" asp-route-id="@item.TicketNr">annuleer</a>
     </td>
-</tr>}
+</tr>
+}
     </tbody>
 </table>
 
