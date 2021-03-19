@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using projecten2.filter;
@@ -14,11 +15,13 @@ namespace projecten2.Controllers
     {
         private readonly ITicketTypeRepository _ticketTypeRepository;
         private readonly IGebruikerRepository _gebruikerRepository;
+        private readonly INotyfService _notyf;
 
-        public TicketController(ITicketTypeRepository ticketTypeRepository, IGebruikerRepository gebruikerRepository)
+        public TicketController(ITicketTypeRepository ticketTypeRepository, IGebruikerRepository gebruikerRepository, INotyfService notyf)
         {
             _ticketTypeRepository = ticketTypeRepository;
             _gebruikerRepository = gebruikerRepository;
+            _notyf = notyf;
         }
 
         // GET: TicketController
@@ -92,10 +95,12 @@ namespace projecten2.Controllers
                     ticket.TicketType = ticketType;
                     klant.AddTicketByContractId(tevm.ContractId, ticket);
                     _gebruikerRepository.SaveChanges();
+                    _notyf.Success("Ticket succesvol aangemaakt", 5);
                     TempData["message"] = $"Je hebt het ticket {ticket.Titel} aangemaakt.";
                 }
                 catch
                 {
+                    _notyf.Error("Er is iets misgelopen. Probeer opnieuw.", 5);
                     TempData["error"] = "Sorry, er is iets fout gelopen waardoor het ticket niet is aangemaakt.";
                 }
                 return RedirectToAction(nameof(Index));
@@ -140,11 +145,13 @@ namespace projecten2.Controllers
                     TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
                     ticket.TicketType = ticketType;
                     _gebruikerRepository.SaveChanges();
+                    _notyf.Success("Ticket is succesvol bewerkt");
                     TempData["message"] = $"Het ticket {ticket.Titel} is succesvol gewijzigd.";
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
+                    _notyf.Error("Ticket is niet bewerkt. Probeer opnieuw");
                     TempData["error"] = $"Sorry, er is iets fout gelopen waardoor ticket {ticket?.Titel} niet is gewijzigd.";
                 }
                 return RedirectToAction(nameof(Index));
@@ -172,10 +179,12 @@ namespace projecten2.Controllers
                 ticket = _gebruikerRepository.GetByTicketNr(id);
                 ticket.AnnulerenTicket(ticket);
                 _gebruikerRepository.SaveChanges();
+                _notyf.Success("Uw ticket annuleren is gelukt.");
                 TempData["message"] = $"U annuleerde succesvol ticket {ticket.Titel}.";
             }
             catch
             {
+                _notyf.Error("Oops... er is iets misgegaan. Probeer opnieuw");
                 TempData["error"] = $"Sorry, er is iets fout gelopen waardoor ticket {ticket?.Titel} niet geannuleerd werd.";
             }
             return RedirectToAction(nameof(Index));

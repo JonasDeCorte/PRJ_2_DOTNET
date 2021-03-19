@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using projecten2.filter;
@@ -12,11 +13,12 @@ namespace projecten2.Controllers
     {
         private readonly IGebruikerRepository _gebruikerRepository;
         private readonly IContractTypeRepository _contractTypeRepository;
-
-        public ContractController(IGebruikerRepository gebruikerRepository, IContractTypeRepository contractTypeRepository)
+        private readonly INotyfService _notyf;
+        public ContractController(IGebruikerRepository gebruikerRepository, IContractTypeRepository contractTypeRepository, INotyfService notyf)
         {
             _gebruikerRepository = gebruikerRepository;
             _contractTypeRepository = contractTypeRepository;
+            _notyf = notyf;
         }
 
         // GET: ContractController
@@ -24,6 +26,7 @@ namespace projecten2.Controllers
         [ServiceFilter(typeof(KlantFilter))]
         public IActionResult Index(Klant klant)
         {
+            _notyf.Information("Kies hier een contract en onderneem een actie.");
             List<Contract> contracten = klant.GetContracten();
             if (contracten == null)
             {
@@ -37,7 +40,6 @@ namespace projecten2.Controllers
         public IActionResult Details(int id, Klant klant)
         {
             Contract contract = klant.GetContractById(id); 
-                //_gebruikerRepository.GetByContractNr(id);
             if (contract == null) { return NotFound(); }
             return View(contract);
         }
@@ -66,10 +68,12 @@ namespace projecten2.Controllers
                     contract.ContractType = type;
                     klant.VoegContractToe(contract);
                     _gebruikerRepository.SaveChanges();
+                    _notyf.Success($"Succesvol {contract.ContractTitel} aangemaakt!");
                     TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol aangemaakt.";
                 }
                 catch
                 {
+                    _notyf.Error("Oops.. contract is niet aangemaakt. Probeer opnieuw.");
                     TempData["error"] = "Sorry, er is iets fout gelopen. Het contract is niet aangemaakt...";
                 }
                 return RedirectToAction(nameof(Index));
@@ -95,11 +99,12 @@ namespace projecten2.Controllers
                 contract = _gebruikerRepository.GetByContractNr(id);
                 contract.StopzettenContract(contract);
                 _gebruikerRepository.SaveChanges();
-
+                _notyf.Success($"Succesvol {contract.ContractTitel} stop gezet!");
                 TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol stop gezet.";
             }
             catch
             {
+                _notyf.Error("Oops.. contract is niet stop gezet. Probeer opnieuw.");
                 TempData["error"] = $"Sorry, er is iets fout gelopen. Contract {contract?.ContractTitel} werd niet stop gezet.";
             }
             return RedirectToAction(nameof(Index));

@@ -19,20 +19,20 @@
     @if (SignInManager.IsSignedIn(User))
     {
 
-                <nav class="navbar  navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 py-1">
-                    <div class="container ml-0">
-                        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                            @if (SignInManager.IsSignedIn(User))
-                            {
-                <partial name="_LoginPartial" />}
-                            <ul class="navbar-nav flex-grow-1">
-                                <li><img src="~/images/Actemium-sidebar.png" alt="logo bedrijf" width="100" /></li>
+<nav class="navbar  navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 py-1">
+    <div class="container ml-0">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            @if (SignInManager.IsSignedIn(User))
+            {
+<partial name="_LoginPartial" />}
+            <ul class="navbar-nav flex-grow-1">
+                <li><img src="~/images/Actemium-sidebar.png" alt="logo bedrijf" width="100" /></li>
 
 
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+            </ul>
+        </div>
+    </div>
+</nav>
                 <nav class="flex-column border-right float-left vh-100">
                     <a class="nav-item nav-link active text-dark" data-toggle="tooltip" title="Dashboard" asp-area="" asp-controller="Home" asp-action="Index">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -77,12 +77,10 @@
         <main role="main" class="pb-3  ">
             @if (TempData["message"] != null)
             {
-                <div class="alert alert-success"> @TempData["message"]</div>
-            }
+<div class="alert alert-success"> @TempData["message"]</div>            }
             @if (TempData["error"] != null)
             {
-                <div class="alert alert-warning">@TempData["error"]</div>
-            }
+<div class="alert alert-warning">@TempData["error"]</div>            }
             @RenderBody()
         </main>
     </div>
@@ -99,6 +97,7 @@
     <script src="~/lib/font-awesome/js/all.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/chart.js/dist/Chart.min.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

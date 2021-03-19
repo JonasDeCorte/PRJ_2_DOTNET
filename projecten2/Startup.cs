@@ -1,3 +1,5 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -76,6 +78,7 @@ namespace projecten2
             services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
             services.AddScoped<Projecten2DataInitializer>();
             services.AddScoped<KlantFilter>();
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
             services.AddMvc(options =>
              {
                  // This pushes users to login if not authenticated
@@ -101,7 +104,7 @@ namespace projecten2
             app.UseStaticFiles();
             app.UseStatusCodePages();
             app.UseRouting();
-
+            app.UseNotyf();
             app.UseAuthentication();
             app.UseAuthorization();
 

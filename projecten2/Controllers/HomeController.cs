@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using projecten2.filter;
@@ -13,10 +14,12 @@ namespace projecten2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger )
+        private readonly INotyfService _notyf;
+        public HomeController(ILogger<HomeController> logger, INotyfService notyf)
         {
             _logger = logger;
-            
+            _notyf = notyf;
+
         }
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
@@ -24,6 +27,7 @@ namespace projecten2.Controllers
          {
             ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
             ViewBag.TotaalAantalTickets = klant.GetAantalActieveTickets();
+            _notyf.Success("Logged in succesful", 5);
 
             return View(klant.GetAllActiveTickets().OrderBy(x => x.LaatstGewijzigd).Take(5));
         }
