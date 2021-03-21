@@ -29,6 +29,7 @@ namespace projecten2.Models.Domain
         }
 
         #endregion
+
         #region Methods
 
         public int GetAantalActieveContracten()

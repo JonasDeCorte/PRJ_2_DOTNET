@@ -29,10 +29,7 @@ namespace projecten2.Controllers
         [Authorize]
         public IActionResult Index(Klant klant, bool ticketstatus, int contractid = 0)
         {
-
             List<Ticket> tickets = new List<Ticket>();
-
-            ViewData["contractenKlant"] = GetContractenAsSelectList(klant, contractid);
 
             if  (contractid != 0)
             {
@@ -46,8 +43,6 @@ namespace projecten2.Controllers
             {
                 return NotFound();
             }
-
-            
 
             return View(tickets.OrderByDescending(x => x.LaatstGewijzigd));
         }
@@ -96,12 +91,10 @@ namespace projecten2.Controllers
                     klant.AddTicketByContractId(tevm.ContractId, ticket);
                     _gebruikerRepository.SaveChanges();
                     _notyf.Success("Ticket succesvol aangemaakt", 5);
-                    TempData["message"] = $"Je hebt het ticket {ticket.Titel} aangemaakt.";
                 }
                 catch
                 {
                     _notyf.Error("Er is iets misgelopen. Probeer opnieuw.", 5);
-                    TempData["error"] = "Sorry, er is iets fout gelopen waardoor het ticket niet is aangemaakt.";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -117,7 +110,7 @@ namespace projecten2.Controllers
             Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
             if (ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) || ticket.IsTicketStatus(TicketStatus.GEANNULEERD))
             {
-                TempData["message"] = $"Het ticket {ticket.Titel} kan niet worden gewijzigd want de status is: {(ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) ? "Afgehandeld" : "Geannuleerd")}.";
+                _notyf.Error("Een ticket met status " + (ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) ? "Afgehandeld" : "Geannuleerd") + " kan niet worden gewijzigd.", 5);
                 return RedirectToAction(nameof(Index));
             }
             if (ticket == null)
@@ -146,13 +139,11 @@ namespace projecten2.Controllers
                     ticket.TicketType = ticketType;
                     _gebruikerRepository.SaveChanges();
                     _notyf.Success("Ticket is succesvol bewerkt");
-                    TempData["message"] = $"Het ticket {ticket.Titel} is succesvol gewijzigd.";
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
                     _notyf.Error("Ticket is niet bewerkt. Probeer opnieuw");
-                    TempData["error"] = $"Sorry, er is iets fout gelopen waardoor ticket {ticket?.Titel} niet is gewijzigd.";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -180,12 +171,10 @@ namespace projecten2.Controllers
                 ticket.AnnulerenTicket(ticket);
                 _gebruikerRepository.SaveChanges();
                 _notyf.Success("Uw ticket annuleren is gelukt.");
-                TempData["message"] = $"U annuleerde succesvol ticket {ticket.Titel}.";
             }
             catch
             {
                 _notyf.Error("Oops... er is iets misgegaan. Probeer opnieuw");
-                TempData["error"] = $"Sorry, er is iets fout gelopen waardoor ticket {ticket?.Titel} niet geannuleerd werd.";
             }
             return RedirectToAction(nameof(Index));
         }

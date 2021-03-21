@@ -9,18 +9,18 @@ using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace projecten2.Tests.Controllers
 {
     public class ContractControllerTest
-
-        
     {
         private readonly ContractController _controller;
         private readonly Mock<IContractTypeRepository> _ContractTypeRepository;
         private readonly Mock<IGebruikerRepository> _GebruikerRepository;
         private readonly Mock<ITicketTypeRepository> _TicketTypeRepository;
-
+        private readonly Mock<INotyfService> _notyf;
+        private readonly ContractEditViewModel model;
         private readonly DummyDbContext _dummyContext;
 
         public ContractControllerTest()
@@ -29,12 +29,24 @@ namespace projecten2.Tests.Controllers
             _ContractTypeRepository = new Mock<IContractTypeRepository>();
             _GebruikerRepository = new Mock<IGebruikerRepository>();
             _TicketTypeRepository = new Mock<ITicketTypeRepository>();
-            _controller = new ContractController(_GebruikerRepository.Object, _ContractTypeRepository.Object)
+            _notyf = new Mock<INotyfService>();
+            
+            _controller = new ContractController(_GebruikerRepository.Object, _ContractTypeRepository.Object, _notyf.Object)
             {
                 TempData = new Mock<ITempDataDictionary>().Object
             };
+
+            model = new ContractEditViewModel(_dummyContext.ContractPiet1)
+            {
+                ContractTitel = "",
+                StartDatum = _dummyContext.Dag.AddDays(14),
+                DoorloopTijd = 1,
+                ContractTypeId = 1
+            };         
         }
-        
+    }
+}
+
                     /*    #region -- Index --
                         [Fact]
                         public void {
@@ -82,7 +94,7 @@ namespace projecten2.Tests.Controllers
 
                         #endregion
 
-                        */
+
 
     #region -- Delete GET --
     [Fact]
@@ -110,3 +122,4 @@ namespace projecten2.Tests.Controllers
         #endregion
     }
 }
+*/

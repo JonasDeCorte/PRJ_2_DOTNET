@@ -38,40 +38,7 @@ namespace projecten2.Models.Domain
             #endregion
 
         #region Methods
-        public void TicketAanmaken()
-        {
 
-        }
-
-        public void TicketStopzetten()
-        {
-
-        } 
-
-        public void TicketWijzigen()
-        {
-
-        }
-
-        public void ContractAanmaken()
-        {
-
-        }
-
-        public void ContractStopzetten()
-        {
-
-        }
-
-        public void ContractRaadplegen()
-        {
-
-        }
-
-        public void RapportRaadplegen()
-        {
-
-        }
         #endregion
 
     }

@@ -6,7 +6,6 @@ using projecten2.filter;
 using projecten2.Models;
 using projecten2.Models.Domain;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -25,11 +24,11 @@ namespace projecten2.Controllers
         [ServiceFilter(typeof(KlantFilter))]
         [Authorize]
         public IActionResult Index(Klant klant)
-         {
+        {
             ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
             ViewBag.TotaalAantalTickets = klant.GetAantalActieveTickets();
-            string datum = DateTime.Now.Hour > 12 ? DateTime.Now.Hour > 18 ? "Goedenavond ":"Goeiemiddag ": "Goeiemorgen ";
-            ViewBag.Begroeting = datum + klant.Naam;
+            string datum = DateTime.Now.Hour > 12 ? DateTime.Now.Hour > 18 ? "Goedenavond " : "Goedemiddag " : "Goedemorgen ";
+            ViewBag.Begroeting = datum + klant.Voornaam;
             _notyf.Success("Logged in succesful", 5);
 
             return View(klant.GetAllActiveTickets().OrderBy(x => x.LaatstGewijzigd).Take(5));

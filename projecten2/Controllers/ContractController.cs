@@ -69,12 +69,10 @@ namespace projecten2.Controllers
                     klant.VoegContractToe(contract);
                     _gebruikerRepository.SaveChanges();
                     _notyf.Success($"Succesvol {contract.ContractTitel} aangemaakt!");
-                    TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol aangemaakt.";
                 }
                 catch
                 {
                     _notyf.Error("Oops.. contract is niet aangemaakt. Probeer opnieuw.");
-                    TempData["error"] = "Sorry, er is iets fout gelopen. Het contract is niet aangemaakt...";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -100,12 +98,10 @@ namespace projecten2.Controllers
                 contract.StopzettenContract(contract);
                 _gebruikerRepository.SaveChanges();
                 _notyf.Success($"Succesvol {contract.ContractTitel} stop gezet!");
-                TempData["message"] = $"Het contract {contract.ContractTitel} is succesvol stop gezet.";
             }
             catch
             {
                 _notyf.Error("Oops.. contract is niet stop gezet. Probeer opnieuw.");
-                TempData["error"] = $"Sorry, er is iets fout gelopen. Contract {contract?.ContractTitel} werd niet stop gezet.";
             }
             return RedirectToAction(nameof(Index));
         }
