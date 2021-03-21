@@ -2,16 +2,16 @@
 @model projecten2.Areas.Identity.Pages.Streaming.IndexModel
 @{ ViewData["Title"] = "Upload bestanden"; }
 
-<h1>Bestanden in de database</h1>
+<h1 class=" display-4 font-weight-normal" >Bestanden in de database</h1>
 
 @if (Model.DatabaseFiles.Count == 0)
 {
-<p>
+<p class="lead font-weight-normal">
     Er zijn geen bestanden beschikbaar. Bezoek een van de pagina's met scenario's voor het uploaden van bestanden om een of meer bestanden te uploaden.
 </p> }
             else
             {
-<table>
+<table class="table table-hover table-striped table-responsive">
     <thead>
         <tr>
             <th></th>
@@ -28,9 +28,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DatabaseFiles[0].ticket)
             </th>
-            <th>
-                <code>FileStreamResult</code> from database
-            </th>
         </tr>
     </thead>
     <tbody>
@@ -38,7 +35,7 @@
         {
         <tr>
             <td>
-                <a asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
+                <a role="button" class="btn btn-danger btn-sm" asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
             </td>
             <td>
                 <b>@file.UntrustedName</b><br>
@@ -54,9 +51,10 @@
                 @Html.DisplayFor(modelItem => file.ticket.Titel)
             </td>
             <td class="text-center">
-                <a asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
-            </td>
-        </tr>}
+                <a role="button" class="btn btn-info btn-sm" asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
+            </td>           
+        </tr> 
+        }
     </tbody>
 </table>}
 

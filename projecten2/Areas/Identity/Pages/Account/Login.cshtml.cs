@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using projecten2.Models.Domain;
 using projecten2.Data;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace projecten2.Areas.Identity.Pages.Account
 {
@@ -24,18 +25,20 @@ namespace projecten2.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _dbContext;
-
+        private readonly INotyfService _notyf;
         public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             IEmailSender emailSender,
-            ApplicationDbContext context)
+            ApplicationDbContext context,
+            INotyfService notyf)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _dbContext = context ;
+            _notyf = notyf;
         }
 
         [BindProperty]
@@ -98,7 +101,8 @@ namespace projecten2.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User ingelogd.");
-                     _dbContext.GebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.Email });
+                    _notyf.Success("Logged in succesful", 3);
+                    _dbContext.GebruikerLogins.Add(new GebruikerLogin { Datum_TijdStip = DateTime.UtcNow, LoginResult = LoginResult.GELUKT, Username = currentUser.Email });
                     _dbContext.SaveChanges();
                     return LocalRedirect(returnUrl);
                 }

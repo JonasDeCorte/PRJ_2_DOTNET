@@ -14,11 +14,10 @@ namespace projecten2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly INotyfService _notyf;
-        public HomeController(ILogger<HomeController> logger, INotyfService notyf)
+        
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _notyf = notyf;
 
         }
         [ServiceFilter(typeof(KlantFilter))]
@@ -27,9 +26,9 @@ namespace projecten2.Controllers
         {
             ViewBag.TotaalAantalContracten = klant.GetAantalActieveContracten();
             ViewBag.TotaalAantalTickets = klant.GetAantalActieveTickets();
+
             string datum = DateTime.Now.Hour > 12 ? DateTime.Now.Hour > 18 ? "Goedenavond " : "Goedemiddag " : "Goedemorgen ";
             ViewBag.Begroeting = datum + klant.Voornaam;
-            _notyf.Success("Logged in succesful", 5);
 
             return View(klant.GetAllActiveTickets().OrderBy(x => x.LaatstGewijzigd).Take(5));
         }
