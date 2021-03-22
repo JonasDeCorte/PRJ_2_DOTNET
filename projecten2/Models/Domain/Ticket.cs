@@ -29,7 +29,7 @@ namespace projecten2.Models.Domain
         public Rapport Rapport { get; set; }
         public Contract Contract { get; set; }
         public TicketType TicketType { get; set; }
-        public List<Bijlage> Bijlages { get; set; }
+        public List<AppFile> bijlages { get; set; }
         public Bijlage Oplossing { get; set; }
         #endregion
 
@@ -40,7 +40,7 @@ namespace projecten2.Models.Domain
             this.LaatstGewijzigd = DateTime.Today;
             this.DatumAfgewerkt = DateTime.Today;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
-            this.Bijlages = new List<Bijlage>();
+            this.bijlages = new List<AppFile>();
             
         }
         public Ticket(string titel)

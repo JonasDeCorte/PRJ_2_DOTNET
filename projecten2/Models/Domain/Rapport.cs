@@ -15,9 +15,9 @@ namespace projecten2.Models.Domain
         public int RapportNr { get; set; }
         public string RapportNaam { get; set; }
         public string Beschrijving { get; set; }
-       public int TicketId { get; set; }
-
+        public string Oplossing { get; set; }
         public Ticket Ticket { get; set; }
+        public List<AppFile> bijlages { get; set; }
         #endregion
 
         #region Constructors
