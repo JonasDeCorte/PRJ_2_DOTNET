@@ -30,7 +30,7 @@ namespace projecten2.Controllers
         public IActionResult Index(Klant klant, bool ticketstatus, int contractid = 0)
         {
             List<Ticket> tickets = new List<Ticket>();
-
+            ViewData["contractenKlant"] = GetContractenAsSelectList(klant, contractid);
             if  (contractid != 0)
             {
                 tickets = klant.GetAllActiveTicketsByContractId(contractid, ticketstatus);
