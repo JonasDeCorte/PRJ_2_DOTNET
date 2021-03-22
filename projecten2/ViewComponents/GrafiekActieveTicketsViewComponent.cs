@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace projecten2.ViewComponents
 {
     
-    [ViewComponent(Name = "chartjs")]
-    public class ChartJsViewComponent : ViewComponent
+    [ViewComponent(Name = "grafiekactievetickets")]
+    public class GrafiekActieveTicketsViewComponent : ViewComponent
     {
         private readonly IGebruikerRepository _klantenRepo;
 
-        public ChartJsViewComponent(IGebruikerRepository klantenrepo)
+        public GrafiekActieveTicketsViewComponent(IGebruikerRepository klantenrepo)
         {
             _klantenRepo = klantenrepo;
         }

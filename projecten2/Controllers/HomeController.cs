@@ -30,7 +30,7 @@ namespace projecten2.Controllers
             string datum = DateTime.Now.Hour > 12 ? DateTime.Now.Hour > 18 ? "Goedenavond " : "Goedemiddag " : "Goedemorgen ";
             ViewBag.Begroeting = datum + klant.Voornaam;
 
-            return View(klant.GetAllActiveTickets().OrderBy(x => x.LaatstGewijzigd).Take(5));
+            return View(klant.GetAllActiveTickets(true).OrderBy(x => x.LaatstGewijzigd).Take(5));
         }
 
         [ServiceFilter(typeof(KlantFilter))]
