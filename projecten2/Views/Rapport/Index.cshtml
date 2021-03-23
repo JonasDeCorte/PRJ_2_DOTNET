@@ -1,0 +1,45 @@
+﻿@model projecten2.Models.Domain.Rapport
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-capitalize ">Rapport van: @ViewBag.ticketnaam</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2 ">
+            @Html.DisplayNameFor(model => model.RapportNaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RapportNaam)
+        </dd>
+        <dt class="col-sm-2 ">
+            @Html.DisplayNameFor(model => model.Beschrijving)
+        </dt>
+        <dd class="col-sm-10">
+            <p>
+             @Html.DisplayFor(model => model.Beschrijving)
+            </p>
+        </dd>
+        <dt class="col-sm-2 ">
+                @Html.DisplayNameFor(model => model.Oplossing)
+        </dt>
+        <dd class="col-sm-10">
+            <p>
+            @Html.DisplayFor(model => model.Oplossing)
+            </p>
+        </dd>
+        <dt class="col-sm-2 ">
+            @Html.DisplayNameFor(model => model.Ticket)
+        </dt>
+        <dd class="col-sm-10">
+            <p >
+            @Html.DisplayFor(model => model.Ticket.Omschrijving)
+            </p>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a  asp-controller="Ticket" asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
