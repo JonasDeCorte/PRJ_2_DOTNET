@@ -5,16 +5,17 @@
 <link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
 
 <div class="w-75 mx-auto">
-    <h2 class="display-4 font-weight-normal">Overzicht van mijn tickets @ViewBag.ContractNaam</h2>
+    <h2>Overzicht van mijn tickets @ViewBag.ContractNaam</h2>
     <form>
         <div class="form-group">
             <label for="contractid" class="control-label">Geef tickets van </label>
             <select name="contractid" id="contractid" value="@(ViewData["selectedcontract"])" asp-items="@(ViewData["contractenKlant"]  as SelectList)">
                 <option value="">Alle contracten </option>
             </select>
+            |
             <input type="checkbox" name="ticketstatus" id="ticketstatus" value=true>
             <label for="ticketstatus"> Geannuleerde en afgehandelde tickets weergeven</label><br>
-            <input style='background: #cad50c' type="submit" value="zoek" class="btn btn-secondary" />
+            <input style='background: #cad50c' type="submit" value="Zoek" class="btn btn-secondary" />
             <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Nieuw ticket aanmaken</a>
         </div>
     </form>
@@ -72,7 +73,7 @@
             </svg>
         </a>
         |
-        <a data-toggle="tooltip" data-placement="top" title="details" asp-controller="Ticket" asp-action="Details" asp-route-id="@item.TicketNr">
+        <a data-toggle="tooltip" data-placement="top" title="Details" asp-controller="Ticket" asp-action="Details" asp-route-id="@item.TicketNr">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
             </svg>

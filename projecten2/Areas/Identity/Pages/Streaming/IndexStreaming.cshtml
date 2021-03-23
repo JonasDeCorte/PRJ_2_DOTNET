@@ -2,12 +2,12 @@
 @model projecten2.Areas.Identity.Pages.Streaming.IndexModel
 @{ ViewData["Title"] = "Upload bestanden"; }
 
-<h1 class=" display-4 font-weight-normal" >Bestanden in de database</h1>
+<h2>Uw bestanden</h2>
 
 @if (Model.DatabaseFiles.Count == 0)
 {
 <p class="lead font-weight-normal">
-    Er zijn geen bestanden beschikbaar. Bezoek een van de pagina's met scenario's voor het uploaden van bestanden om een of meer bestanden te uploaden.
+    U heeft nog geen bestanden. U kan één of meerdere bestanden uploaden door 'details' te selecteren bij het relevante ticket in uw ticketoverzicht.
 </p> }
             else
             {
