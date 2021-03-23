@@ -23,8 +23,9 @@ namespace projecten2.Controllers
         // GET: ContractController
         [Authorize]
         [ServiceFilter(typeof(KlantFilter))]
-        public IActionResult Index()
+        public IActionResult Index(Klant klant)
         {
+            ViewBag.GemiddeldAantalUrenAlleTickets = klant.GetGemiddeldAantalUurPerTicket();
             return View();
         }
     }

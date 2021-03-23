@@ -64,6 +64,14 @@ namespace projecten2.Models.Domain
             this.Bijlages = new List<Bijlage>();
 
         }
+
+        public double berekenAantaluren()
+        {
+            TimeSpan tijdTussenDatums = DatumAfgewerkt.Subtract(AanmaakDatum);
+            double aantalUren = tijdTussenDatums.TotalHours;
+            return aantalUren;
+        }
+
         public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype, DateTime aanmaakDatum)
         {
             this.Gebruiker = klant;

@@ -52,7 +52,7 @@ namespace projecten2.Data
                 Ticket ticket;
                 for (int j = 1; j < 6; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.First(), DateTime.Today.AddDays(-j  ));
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.First(), DateTime.Today.AddDays(-j  ), DateTime.Today.AddDays(-j +1));
                     contract.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);
                     
@@ -63,7 +63,7 @@ namespace projecten2.Data
                 Contract contract2 = new Contract(ContractStatus.LOPEND, "contract2", 2, _dbContext.ContractTypes.First());
                 for (int j = 6; j < 11; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j - 7), DateTime.Today.AddDays(-j +5));
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j - 7), DateTime.Today.AddDays(-j -6));
                     ticket.TicketStatus = TicketStatus.GEANNULEERD; 
                     contract2.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);
@@ -73,7 +73,7 @@ namespace projecten2.Data
                 Contract contract3 = new Contract(ContractStatus.LOPEND, "contract3", 3, _dbContext.ContractTypes.First());
                 for (int j = 11; j < 16; j++)
                 {
-                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(3), DateTime.Today.AddDays(-j -14), DateTime.Today.AddDays(-j +5));
+                    ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(3), DateTime.Today.AddDays(-j -14), DateTime.Today.AddDays(-j -13));
                     ticket.TicketStatus = TicketStatus.AFGEHANDELD;
                     contract3.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);

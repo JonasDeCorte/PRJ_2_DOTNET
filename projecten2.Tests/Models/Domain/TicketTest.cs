@@ -21,5 +21,13 @@ namespace projecten2.Tests.Models.Domain
             dag = _context.Dag;
         }
         #endregion
+        [Fact]
+        public void BerekenAantalUrenTicket_TicketMet2Uren_berekenAantalUren()
+        {
+            Ticket t = new Ticket();
+            t.AanmaakDatum = new DateTime(2021, 1, 1, 12, 0, 0);
+            t.DatumAfgewerkt = new DateTime(2021, 1, 2, 12, 0, 0);
+            Assert.Equal(24, t.berekenAantaluren());
+        }
     }
 }
