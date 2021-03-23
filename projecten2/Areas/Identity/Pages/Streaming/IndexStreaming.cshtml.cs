@@ -28,9 +28,9 @@ namespace projecten2.Areas.Identity.Pages.Streaming
         public IList<AppFile> DatabaseFiles { get; private set; }
       
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int id)
         {
-            DatabaseFiles = await _context.File.Include(x => x.ticket).AsNoTracking().ToListAsync();
+            DatabaseFiles = await _context.File.Include(x => x.ticket).Where(x => x.ticket.TicketNr == id).AsNoTracking().ToListAsync();
           
         }
 
