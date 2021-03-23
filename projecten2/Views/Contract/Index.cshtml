@@ -5,97 +5,34 @@
 <link href="~/css/TicketCSS/IndexSS.css" rel="stylesheet" type="text/css" />
 
 <h2>Overzicht van mijn contracten</h2>
+<div class="form-group">
+    <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Contract" asp-action="Create">Nieuw contract afsluiten</a>
+</div>
 <hr />
 
 <div class="card-deck">
     @foreach (var item in Model)
     {
-
-<div class="card">
+    <div class="card">
     <img src="~/images/Actemium-sidebar.png" class="card-img-top" alt="Actemium">
-    <div class="card-body text-center">
+        <div class="card-body text-center">
         <h5 class="card-title text-uppercase">@Html.DisplayFor(modelItem => item.ContractTitel) </h5>
-        <p class="card-text font-weight-normal">StartDatum: @String.Format("{0:dd/MM/yyyy}", item.StartDatum)</p>
-        <p class="card-text font-weight-normal">EindDatum: @String.Format("{0:dd/MM/yyyy}", item.EindDatum)</p>
+        <p class="card-text font-weight-normal">Startdatum: @String.Format("{0:dd/MM/yyyy}", item.StartDatum)</p>
+        <p class="card-text font-weight-normal">Einddatum: @String.Format("{0:dd/MM/yyyy}", item.EindDatum)</p>
         <p class="card-text font-weight-bold">@Html.DisplayFor(modelItem => item.ContractStatus)</p>
         <p class="card-footer text-center">
-        <a data-toggle="tooltip" data-placement="top" title="Details" asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-            </svg>
-        </a>
-        <a data-toggle="tooltip" data-placement="top" title="Annuleer" asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractNr">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-            </svg>
-        </a>
-            </p>
-    </div>
-</div>            }
-</div>
-
-
-    <!--
-
-    <div class="w-75 mx-auto">
-        <h2 class="display-4 font-weight-normal">Overzicht van mijn contracten</h2>
-
-        <div class="form-group">
-            <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Contract" asp-action="Create">Nieuw contract afsluiten</a>
-        </div>
-
-
-        <table class="table table-hover table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th>
-                        Titel
-                    </th>
-                    <th>
-                        Start datum
-                    </th>
-                    <th>
-                        Eind datum
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                foreach (var item in Model)
-                {
-    <tr>
-        <td>
-            Html.DisplayFor(modelItem => item.ContractTitel)
-
-        </td>
-        <td>
-            String.Format("{0:dd/MM/yyyy}", item.StartDatum)
-
-        </td>
-        <td>
-            String.Format("{0:dd/MM/yyyy}", item.EindDatum)
-
-        </td>
-        <td>
-            Html.DisplayFor(modelItem => item.ContractStatus)
-        </td>
-        <td>
-            <a data-toggle="tooltip" data-placement="top" title="Details" asp-controller="Contract" asp-action="Details" asp-route-id="item.ContractNr">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <a data-toggle="tooltip" data-placement="top" title="Details" asp-controller="Contract" asp-action="Details" asp-route-id="@item.ContractNr">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
                 </svg>
             </a>
-            |
-            <a data-toggle="tooltip" data-placement="top" title="Annuleer" asp-controller="Contract" asp-action="Delete" asp-route-id="item.ContractNr"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-    </svg></a>
-        </td>
-    </tr>}
-
-            </tbody>
-        </table>
+            <a data-toggle="tooltip" data-placement="top" title="Annuleer" asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractNr">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                </svg>
+            </a>
+        </p>
         </div>
-        -->
+    </div>      
+    }
+</div>

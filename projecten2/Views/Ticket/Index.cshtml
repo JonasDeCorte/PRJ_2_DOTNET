@@ -19,25 +19,25 @@
             <a style='background: #4591c6' class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Nieuw ticket aanmaken</a>
         </div>
     </form>
-    <table class="table table-hover table-striped table-responsive">
+    <table style=" width:60em" class="table table-sm table-bordered">
         <thead>
-            <tr>
-                <th>
+            <tr style='background: #f4f093'>
+                <th style="text-align: center">
                     Titel
                 </th>
-                <th>
+                <th style="text-align: center">
                     Prioriteit
                 </th>
-                <th>
+                <th style="text-align: center">
                     Aangemaakt op
                 </th>
-                <th>
+                <th style="text-align: center">
                     Laatst gewijzigd
                 </th>
-                <th>
+                <th style="text-align: center">
                     Status
                 </th>
-                <th>
+                <th style="text-align: center">
                     Contract
                 </th>
                 <th></th>
@@ -46,52 +46,52 @@
         <tbody>
             @foreach (var item in Model)
             {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Titel)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TicketType.Naam)
-    </td>
-    <td>
-        @String.Format("{0:dd/MM/yyyy}", item.AanmaakDatum)
-    </td>
-    <td>
-        @String.Format("{0:dd/MM/yyyy}", item.LaatstGewijzigd)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TicketStatus)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Contract.ContractTitel)
-    </td>
-    <td>
-        <a data-toggle="tooltip" data-placement="top" title="Wijzig" asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-            </svg>
-        </a>
-        |
-        <a data-toggle="tooltip" data-placement="top" title="Details" asp-controller="Ticket" asp-action="Details" asp-route-id="@item.TicketNr">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-            </svg>
-        </a>
-        |
-        <a data-toggle="tooltip" data-placement="top" title="Annuleer" asp-controller="Ticket" asp-action="Delete" asp-route-id="@item.TicketNr">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-            </svg>
-        </a>
-        |
-        <a data-toggle="tooltip" data-placement="top" title="Rapport" asp-controller="Rapport" asp-action="Index" asp-route-id="@item.TicketNr">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
-                <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-            </svg>
-        </a>
-    </td>
-</tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.DisplayFor(modelItem => item.Titel)
+                </td>
+                <td style="text-align: center">
+                    @Html.DisplayFor(modelItem => item.TicketType.Naam)
+                </td>
+                <td style="text-align: center">
+                    @String.Format("{0:dd/MM/yyyy}", item.AanmaakDatum)
+                </td>
+                <td style="text-align: center">
+                    @String.Format("{0:dd/MM/yyyy}", item.LaatstGewijzigd)
+                </td>
+                <td style="text-align: center">
+                    @Html.DisplayFor(modelItem => item.TicketStatus)
+                </td>
+                <td style="text-align: center">
+                    @Html.DisplayFor(modelItem => item.Contract.ContractTitel)
+                </td>
+                <td style="text-align: center">
+                    <a data-toggle="tooltip" data-placement="top" title="Wijzig" asp-controller="Ticket" asp-action="Edit" asp-route-id="@item.TicketNr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                    </a>
+                    |
+                    <a data-toggle="tooltip" data-placement="top" title="Details" asp-controller="Ticket" asp-action="Details" asp-route-id="@item.TicketNr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        </svg>
+                    </a>
+                    |
+                    <a data-toggle="tooltip" data-placement="top" title="Rapport" asp-controller="Rapport" asp-action="Index" asp-route-id="@item.TicketNr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
+                            <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
+                        </svg>
+                    </a>
+                    |
+                    <a data-toggle="tooltip" data-placement="top" title="Annuleer" asp-controller="Ticket" asp-action="Delete" asp-route-id="@item.TicketNr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                        </svg>
+                    </a>
+                </td>
+            </tr>
 }
         </tbody>
     </table>

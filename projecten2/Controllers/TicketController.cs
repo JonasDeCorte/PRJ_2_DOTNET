@@ -29,6 +29,7 @@ namespace projecten2.Controllers
         [Authorize]
         public IActionResult Index(Klant klant, bool ticketstatus, int contractid = 0)
         {
+            _notyf.Information("Kies hier een ticket en onderneem een actie.");
             List<Ticket> tickets = new List<Ticket>();
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant, contractid);
             if  (contractid != 0)
