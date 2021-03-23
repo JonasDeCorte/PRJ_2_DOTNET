@@ -64,7 +64,7 @@ namespace projecten2.Data
                 for (int j = 6; j < 11; j++)
                 {
                     ticket = new Ticket(jan, $"ticket{j}", $"Omschijving test{j}", $"Opmerking test{j} ", _dbContext.TicketTypes.Find(2), DateTime.Today.AddDays(-j - 7), DateTime.Today.AddDays(-j -6));
-                    ticket.TicketStatus = TicketStatus.GEANNULEERD; 
+                    ticket.TicketStatus = TicketStatus.INBEHANDELING; 
                     contract2.VoegTicketToe(ticket);
                     _dbContext.Tickets.Add(ticket);
                 }

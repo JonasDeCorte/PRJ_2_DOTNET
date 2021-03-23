@@ -52,6 +52,11 @@ namespace projecten2.Models.Domain
                 return Contracten.SelectMany(x => x.Tickets).Where(x => x.IsTicketStatus(TicketStatus.AANGEMAAKT) || x.IsTicketStatus(TicketStatus.INBEHANDELING)).ToList();
             
         }
+        public int getAantalActiveTicketsByTicketType(string ticketType)
+        {
+            return GetAllActiveTickets().Where(t => t.TicketType.Naam == ticketType).Count();
+            
+        }
         public double GetGemiddeldAantalUurPerTicket()
         {
             double aantalUren = 0;

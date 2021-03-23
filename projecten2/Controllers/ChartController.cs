@@ -26,6 +26,9 @@ namespace projecten2.Controllers
         public IActionResult Index(Klant klant)
         {
             ViewBag.GemiddeldAantalUrenAlleTickets = klant.GetGemiddeldAantalUurPerTicket();
+            ViewBag.AantalUrenTypeLaag = klant.getAantalActiveTicketsByTicketType("Laag");
+            ViewBag.AantalUrenTypeMedium = klant.getAantalActiveTicketsByTicketType("Medium");
+            ViewBag.AantalUrenTypeHoog = klant.getAantalActiveTicketsByTicketType("Hoog");
             return View();
         }
     }

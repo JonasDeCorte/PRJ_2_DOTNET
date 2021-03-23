@@ -1,32 +1,44 @@
 ﻿@{ ViewData["Title"] = "Statistieken"; }
 <div class="container">
     <div class="row">
-        <div class="col">
-            <h3>Aantal actieve tickets per week</h3>
-            <hr />
-            <vc:grafiekactievetickets></vc:grafiekactievetickets>
-        </div>
 
-    </div>
-    <br></br>
-    <div class="row">
-        <div class="col">
-            <h3>Totale tickets per week</h3>
-            <hr />
-            <vc:grafiektotaletickets></vc:grafiektotaletickets>
-        </div></div>
-    <div class="row">
-        <div class="col">
-            
-            <hr />
-            <div style='background: #4591c6' class="container my-3 w-25 border rounded py-2">
-                <h4 class="text-white">Gemiddelde oplostijd:<br>@ViewBag.GemiddeldAantalUrenAlleTickets uur</h4>
+        
+            <div style='background: #cad50c' class="container col-lg-3 w-75 mx-0  my-4 border rounded py-2">
+                <h5 class="text-white">Gemiddelde oplostijd:<br>@ViewBag.GemiddeldAantalUrenAlleTickets uur</h5>
+            </div>
+            <div style='background: #4591c6' class="container col-lg-3 w-75 mx-0  my-4 border rounded py-2">
+                <h5 class="text-white">Actieve Tickets <br> Lage Prioriteit:<br>@ViewBag.AantalUrenTypeLaag Tickets</h5>
+            </div>
+            <div style='background: #4591c6' class="container col-lg-3 w-75 mx-0  my-4 border rounded py-2">
+                <h5 class="text-white">Actieve Tickets <br> Medium Prioriteit:<br>@ViewBag.AantalUrenTypeMedium Tickets</h5>
+            </div>
+            <div style='background: #4591c6' class="container col-lg-3 w-75 mx-0  my-4 border rounded py-2">
+                <h5 class="text-white">Actieve Tickets <br> Hoge Prioriteit:<br>@ViewBag.AantalUrenTypeHoog Tickets</h5>
+            </div>
+        
+
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Aantal actieve tickets per week</h3>
+                <hr />
+                <vc:grafiekactievetickets></vc:grafiekactievetickets>
+            </div>
+
+        </div>
+        <br></br>
+        <div class="row">
+            <div class="col">
+                <h3>Totale tickets per week</h3>
+                <hr />
+                <vc:grafiektotaletickets></vc:grafiektotaletickets>
             </div>
         </div>
+
+
+
     </div>
-    
-    
-</div>
         
 
 
