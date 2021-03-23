@@ -30,7 +30,6 @@ namespace projecten2.Models.Domain
         public Contract Contract { get; set; }
         public TicketType TicketType { get; set; }
         public List<AppFile> bijlages { get; set; }
-        public Bijlage Oplossing { get; set; }
         #endregion
 
         #region Constructors
@@ -61,7 +60,8 @@ namespace projecten2.Models.Domain
             this.DatumAfgewerkt = DatumAfgewerkt;
             this.LaatstGewijzigd = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
-            this.Bijlages = new List<Bijlage>();
+            this.bijlages = new List<AppFile>();
+
 
         }
         public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype, DateTime aanmaakDatum)
@@ -75,7 +75,8 @@ namespace projecten2.Models.Domain
             this.DatumAfgewerkt = DateTime.Today;
             this.LaatstGewijzigd = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
-            this.Bijlages = new List<Bijlage>();
+            this.bijlages = new List<AppFile>();
+
 
         }
         #endregion

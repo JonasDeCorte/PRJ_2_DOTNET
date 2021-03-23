@@ -15,7 +15,6 @@ namespace projecten2.Data
         // refactoring nodig
         public DbSet<Bedrijf> Bedrijven { get; set; }
         
-        public DbSet<Bijlage> Bijlagen { get; set; }
         public DbSet<Contract> Contracten { get; set; }
         public DbSet<ContractType> ContractTypes { get; set; }  
         public DbSet<Rapport> Rapporten { get; set; }     
@@ -41,7 +40,6 @@ namespace projecten2.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new BedrijfConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());
-            modelBuilder.ApplyConfiguration(new BijlageConfiguration());
             modelBuilder.ApplyConfiguration(new ContractConfiguration());
             modelBuilder.ApplyConfiguration(new ContractTypeConfiguration());
             modelBuilder.ApplyConfiguration(new RapportConfiguration());

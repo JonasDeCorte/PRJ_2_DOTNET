@@ -17,6 +17,7 @@ namespace projecten2.Models.Domain
         public string Beschrijving { get; set; }
         public string Oplossing { get; set; }
         public Ticket Ticket { get; set; }
+        public int Ticketid { get; set; }
         public List<AppFile> bijlages { get; set; }
         #endregion
 
