@@ -27,35 +27,45 @@ namespace projecten2.Tests.Models.Domain
         }
 
         #region Constructor
-       /* [Fact]
-        public void NewContract_ValidData_CreatesContract()
-        {
-            Contract contract = new Contract(5);
-            Assert.Equal(5, contract.ContractNr);
-        }*/
 
-       /* [Theory]
-        [InlineData(0)]
-        [InlineData(-5)]
-        public void NewContract_InvalidQuantity_ThrowsArgumentException(int contractNr)
+        [Fact]
+        public void NewContract_CorrectName_CreatesContract()
         {
-            Assert.Throws<ArgumentException>(() => new Contract( contractNr));
-        }*/
+            ContractStatus contractStatus = new ContractStatus();
+            ContractType contractType = new ContractType();
+            Contract contract = new Contract(contractStatus, "Conctract1", 10, contractType);
+            Assert.Equal("Conctract1", contract.ContractTitel);
+            Assert.Equal(10, contract.Doorlooptijd);
+        }
+
+      
 
         #endregion
 
+
         [Fact]
-        #region VoegTicketToe
-        public void VoegTicketToe_ContractMetTweeTickets_voegtTicketToe()
+        #region methodes
+        public void VoegTicketToe_ContractMetNulTickets_voegtTicketToe()
         {
-            int aantalTicketsVoorhand = _alpha.NrOfTickets;
-            Ticket ticketContractDrie = null;
+            Contract contract = new Contract();
+            Ticket ticket = new Ticket();
+            int aantalTicketsVoorhand = contract.NrOfTickets;
+           
+            contract.VoegTicketToe(ticket);
 
-            _alpha.VoegTicketToe(ticketContractDrie);
+            Assert.Equal(aantalTicketsVoorhand + 1, contract.NrOfTickets);
 
-            Assert.Equal(aantalTicketsVoorhand + 1, _alpha.NrOfTickets);
-
-            #endregion
+            
         }
+
+        [Fact]
+        public void ZetContractStop_AangemaaktContract_StopzettenContract()
+        {
+            DateTime datum = DateTime.Today;
+            Contract cc = new Contract();
+            cc.StopzettenContract(cc);
+            Assert.Equal(ContractStatus.BEËINDIGD, cc.ContractStatus);
+        }
+        #endregion
     }
 }
