@@ -1,8 +1,8 @@
 ﻿@page "{id:int}"
 @model projecten2.Areas.Identity.Pages.Streaming.BufferedMultipleFileUploadDbModel
-@{ ViewData["Title"] = "Meerdere bestanden Upload (Db)"; }
+@{ ViewData["Title"] = "Bijlage toevoegen"; }
 
-<h2>Laad meerdere bestanden per ticket op.</h2>
+<h2>Bijlage toevoegen</h2>
 
 <form enctype="multipart/form-data" method="post">
     <dl>
@@ -14,14 +14,15 @@
             <span asp-validation-for="FileUpload.Note"></span>
         </dd>
         <dt>
-            <label asp-for="FileUpload.FormFiles"></label>
+            <label>Bestand</label>
         </dt>
         <dd>
             <input asp-for="FileUpload.FormFiles" type="file" multiple />
             <span asp-validation-for="FileUpload.FormFiles"></span>
         </dd>
     </dl>
-    <input  asp-page-handler="Upload" class="btn btn-primary " type="submit" value="Upload" />
+    <input asp-page-handler="Upload" class="btn btn-primary border-0" type="submit" value="Upload" style='background: #cad50c'/>
+    <a asp-area="" asp-controller="Ticket" asp-action="Index" class="btn btn-secondary border-0">Terug</a>
 </form>
 
 <p class="result">

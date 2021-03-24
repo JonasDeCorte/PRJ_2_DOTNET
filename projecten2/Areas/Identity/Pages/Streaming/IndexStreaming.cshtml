@@ -2,59 +2,55 @@
 @model projecten2.Areas.Identity.Pages.Streaming.IndexModel
 @{ ViewData["Title"] = "Upload bestanden"; }
 
-<h2>Uw bestanden</h2>
+<h2>Uw bijlages</h2>
 
 @if (Model.DatabaseFiles.Count == 0)
 {
 <p class="lead font-weight-normal">
-    U heeft nog geen bestanden. U kan één of meerdere bestanden uploaden door 'details' te selecteren bij het relevante ticket in uw ticketoverzicht.
+    U heeft nog geen bijlage. U kan één of meerdere bestanden uploaden door 'details' te selecteren bij het relevante ticket in uw ticketoverzicht.
 </p> }
-            else
-            {
-<table class="table table-hover table-striped table-responsive">
+else
+{
+<table style=" width:60em" class="table table-sm table-bordered">
     <thead>
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatabaseFiles[0].UntrustedName) /
-                @Html.DisplayNameFor(model => model.DatabaseFiles[0].Note)
+        <tr style='background: #f4f093'>
+            <th style="text-align: center">
+                Bestandsnaam
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatabaseFiles[0].UploadDT)
+            <th style="text-align: center">
+                Omschrijving
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatabaseFiles[0].Size)
+            <th style="text-align: center">
+                Toegevoegd op
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatabaseFiles[0].ticket)
+            <th style="text-align: center">
+                Grootte
             </th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var file in Model.DatabaseFiles)
         {
-        <tr>
-            <td>
-                <a role="button" class="btn btn-danger btn-sm" asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
-            </td>
-            <td>
-                <b>@file.UntrustedName</b><br>
-                @Html.DisplayFor(modelItem => file.Note)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => file.UploadDT)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => file.Size)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => file.ticket.Titel)
-            </td>
-            <td class="text-center">
-                <a role="button" class="btn btn-info btn-sm" asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
-            </td>           
-        </tr> 
-        }
+<tr>
+    <td style="text-align: center">
+        @file.UntrustedName
+    </td>
+    <td style="text-align: center">
+        @Html.DisplayFor(modelItem => file.Note)
+    </td>
+    <td style="text-align: center">
+        @Html.DisplayFor(modelItem => file.UploadDT)
+    </td>
+    <td style="text-align: center">
+        @Html.DisplayFor(modelItem => file.Size) bytes
+    </td>
+    <td class="text-center">
+        <a role="button" class="btn btn-info btn-sm" asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
+        <a role="button" class="btn btn-danger btn-sm" asp-page="./DeleteDbFile" asp-route-id="@file.Id">Verwijder</a>
+    </td>
+</tr>}
     </tbody>
 </table>}
+<a asp-area="" asp-controller="Ticket" asp-action="Index" class="btn btn-secondary border-0">Terug</a>
 
