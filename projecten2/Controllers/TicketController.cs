@@ -29,7 +29,7 @@ namespace projecten2.Controllers
         [Authorize]
         public IActionResult Index(Klant klant, bool ticketstatus, int contractid = 0)
         {
-            _notyf.Information("Kies hier een ticket en onderneem een actie.");
+            _notyf.Information("Kies hier een ticket en onderneem een actie.",3);
             List<Ticket> tickets = new List<Ticket>();
             ViewData["contractenKlant"] = GetContractenAsSelectList(klant, contractid);
             if  (contractid != 0)
@@ -91,11 +91,11 @@ namespace projecten2.Controllers
                     ticket.TicketType = ticketType;
                     klant.AddTicketByContractId(tevm.ContractId, ticket);
                     _gebruikerRepository.SaveChanges();
-                    _notyf.Success("Ticket succesvol aangemaakt", 5);
+                    _notyf.Success("Ticket succesvol aangemaakt", 3);
                 }
                 catch
                 {
-                    _notyf.Error("Er is iets misgelopen. Probeer opnieuw.", 5);
+                    _notyf.Error("Er is iets misgelopen. Probeer opnieuw.", 3);
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -111,7 +111,7 @@ namespace projecten2.Controllers
             Ticket ticket = _gebruikerRepository.GetByTicketNr(id);
             if (ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) || ticket.IsTicketStatus(TicketStatus.GEANNULEERD))
             {
-                _notyf.Error("Een ticket met status " + (ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) ? "Afgehandeld" : "Geannuleerd") + " kan niet worden gewijzigd.", 5);
+                _notyf.Error($"{ticket.Titel} met status " + (ticket.IsTicketStatus(TicketStatus.AFGEHANDELD) ? "Afgehandeld" : "Geannuleerd") + " kan niet worden gewijzigd.", 3);
                 return RedirectToAction(nameof(Index));
             }
             if (ticket == null)
@@ -139,12 +139,12 @@ namespace projecten2.Controllers
                     TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
                     ticket.TicketType = ticketType;
                     _gebruikerRepository.SaveChanges();
-                    _notyf.Success("Ticket is succesvol bewerkt");
+                    _notyf.Success("Ticket is succesvol bewerkt",3);
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
-                    _notyf.Error("Ticket is niet bewerkt. Probeer opnieuw");
+                    _notyf.Error("Ticket is niet bewerkt. Probeer opnieuw",3);
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -171,11 +171,11 @@ namespace projecten2.Controllers
                 ticket = _gebruikerRepository.GetByTicketNr(id);
                 ticket.AnnulerenTicket(ticket);
                 _gebruikerRepository.SaveChanges();
-                _notyf.Success("Uw ticket annuleren is gelukt.");
+                _notyf.Success("Uw ticket annuleren is gelukt.",3);
             }
             catch
             {
-                _notyf.Error("Oops... er is iets misgegaan. Probeer opnieuw");
+                _notyf.Error("Oops... er is iets misgegaan. Probeer opnieuw",3);
             }
             return RedirectToAction(nameof(Index));
         }
