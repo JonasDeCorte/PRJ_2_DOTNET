@@ -59,9 +59,19 @@ namespace projecten2.Tests.Data
             Piet.VoegContractToe(ContractPiet1);
             Piet.VoegContractToe(ContractPiet2);
 
-            ContractPiet1.VoegTicketToe(new Ticket(Piet, "Ticket1", "Omschrijving ticket 1", "Opmerkingen ticket 1", TicketType1, DateTime.Now));
-            ContractPiet2.VoegTicketToe(new Ticket(Piet, "Ticket2", "Omschrijving ticket 2", "Opmerkingen ticket 2", TicketType1, DateTime.Now));
-            ContractPiet2.VoegTicketToe(new Ticket(Piet, "Ticket3", "Omschrijving ticket 3", "Opmerkingen ticket 3", TicketType3, DateTime.Now));
+            Ticket t = new Ticket(Piet, "Ticket1", "Omschrijving ticket 1", "Opmerkingen ticket 1", TicketType1, DateTime.Now);
+            t.AanmaakDatum = new DateTime(2021, 1, 1, 12, 0, 0);
+            t.DatumAfgewerkt = new DateTime(2021, 1, 1, 14, 0, 0);
+            Ticket t2 = new Ticket(Piet, "Ticket2", "Omschrijving ticket 2", "Opmerkingen ticket 2", TicketType1, DateTime.Now);
+            t2.AanmaakDatum = new DateTime(2021, 1, 1, 17, 0, 0);
+            t2.DatumAfgewerkt = new DateTime(2021, 1, 1, 19, 0, 0);
+            Ticket t3 = new Ticket(Piet, "Ticket3", "Omschrijving ticket 3", "Opmerkingen ticket 3", TicketType3, DateTime.Now);
+            t3.AanmaakDatum = new DateTime(2021, 1, 1, 19, 0, 0);
+            t3.DatumAfgewerkt = new DateTime(2021, 1, 1, 21, 0, 0);
+
+            ContractPiet1.VoegTicketToe(t);
+            ContractPiet2.VoegTicketToe(t2);
+            ContractPiet2.VoegTicketToe(t3);
 
             // Contract en Ticket van Sam
             ContractSam1 = new Contract(ContractStatus.LOPEND, "Contract Sam 1", 1, ContractType1);

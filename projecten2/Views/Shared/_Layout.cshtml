@@ -21,10 +21,8 @@
 
 <nav class="navbar  navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 py-1">
     <div class="container ml-0">
-        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-            @if (SignInManager.IsSignedIn(User))
-            {
-<partial name="_LoginPartial" />}
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">  
+<partial name="_LoginPartial" />
             <ul class="navbar-nav flex-grow-1">
                 <li><img src="~/images/Actemium-sidebar.png" alt="logo bedrijf" width="100" /></li>
 
@@ -65,11 +63,13 @@
                     </a>
                 </nav>}
 
-    <div class="container ">
+    
         <main role="main" class="pb-3  ">
-            @RenderBody()
-        </main>
-    </div>
+            <div class="container ">
+                @RenderBody()
+            </div>
+</main>
+    
 
 
 
