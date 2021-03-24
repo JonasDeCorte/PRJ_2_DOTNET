@@ -8,21 +8,37 @@ namespace projecten2.Models.Domain
     public class Ticket
     {
         #region Fields
-
+        private string _titel;
         #endregion
 
         #region Properties
         public int TicketNr { get; set; }
-        public string Titel { get; set; }
+        public string Titel
+        {
+            get
+            {
+                return _titel;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Een ticket moet een naam hebben");
+                _titel = value;
+            }
+        }
+
+
         public DateTime AanmaakDatum { get; set; }
         public DateTime LaatstGewijzigd { get; set; }
         public DateTime DatumAfgewerkt { get; set; }
         public string Omschrijving { get; set; }
         public string Opmerkingen { get; set; }
 
-       // public int gebruikersId { get; set; }
-         // public int TicketTypeId { get; set; }
-       // public int ContractId { get; set; }
+
+
+        // public int gebruikersId { get; set; }
+        // public int TicketTypeId { get; set; }
+        // public int ContractId { get; set; }
 
         public Gebruiker Gebruiker { get; set; }
         public TicketStatus TicketStatus { get; set; }
@@ -30,6 +46,8 @@ namespace projecten2.Models.Domain
         public Contract Contract { get; set; }
         public TicketType TicketType { get; set; }
         public List<AppFile> bijlages { get; set; }
+
+        public int NrOfBijlages => bijlages.Count;
         #endregion
 
         #region Constructors
@@ -40,7 +58,7 @@ namespace projecten2.Models.Domain
             this.DatumAfgewerkt = DateTime.Today;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
             this.bijlages = new List<AppFile>();
-            
+
         }
         public Ticket(string titel)
         {
@@ -48,8 +66,9 @@ namespace projecten2.Models.Domain
             this.AanmaakDatum = DateTime.Now;
             this.LaatstGewijzigd = DateTime.Now;
             this.TicketStatus = TicketStatus.AANGEMAAKT;
-        }  
-        public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype,DateTime aanmaakDatum,DateTime DatumAfgewerkt)
+            this.bijlages = new List<AppFile>();
+        }
+        public Ticket(Gebruiker klant, string titel, string omschrijving, string opmerkingen, TicketType tickettype, DateTime aanmaakDatum, DateTime DatumAfgewerkt)
         {
             this.Gebruiker = klant;
             this.Opmerkingen = opmerkingen;

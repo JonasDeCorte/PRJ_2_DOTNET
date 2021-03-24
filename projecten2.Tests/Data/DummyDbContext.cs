@@ -55,7 +55,9 @@ namespace projecten2.Tests.Data
 
             // Contracten en Tickets van Piet
             ContractPiet1 = new Contract(ContractStatus.LOPEND, "Contract Piet 1", 1, ContractType1);
+            ContractPiet1.ContractNr = 1;
             ContractPiet2 = new Contract(ContractStatus.LOPEND, "Contract Piet 2", 3, ContractType2);
+            ContractPiet2.ContractNr = 2;
             Piet.VoegContractToe(ContractPiet1);
             Piet.VoegContractToe(ContractPiet2);
 
@@ -68,9 +70,10 @@ namespace projecten2.Tests.Data
              t3 = new Ticket(Piet, "Ticket3", "Omschrijving ticket 3", "Opmerkingen ticket 3", TicketType3, DateTime.Now);
             t3.AanmaakDatum = new DateTime(2021, 1, 1, 19, 0, 0);
             t3.DatumAfgewerkt = new DateTime(2021, 1, 1, 21, 0, 0);
+            t3.TicketStatus = TicketStatus.AFGEHANDELD;
 
             ContractPiet1.VoegTicketToe(t);
-            ContractPiet2.VoegTicketToe(t2);
+            ContractPiet1.VoegTicketToe(t2);
             ContractPiet2.VoegTicketToe(t3);
 
             // Contract en Ticket van Sam
