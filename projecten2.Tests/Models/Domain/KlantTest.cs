@@ -32,7 +32,7 @@ namespace projecten2.Tests.Models.Domain
         [Fact]
         public void VoegContractToe_KlantMetTweeContracten_getAantalActieveTickets()
         {
-            Assert.Equal(2, _klant.GetAantalActieveTickets());
+            Assert.Equal(3, _klant.GetAantalActieveTickets());
         }
 
         [Fact]
@@ -53,10 +53,10 @@ namespace projecten2.Tests.Models.Domain
             Ticket t2 = new Ticket();
             t2.AanmaakDatum = new DateTime(2021, 1, 1, 17, 0, 0);
             t2.DatumAfgewerkt = new DateTime(2021, 1, 1, 19, 0, 0);
-            _pol.Contracten.First().VoegTicketToe(t);
-            _pol.Contracten.First().VoegTicketToe(t2);
-            Assert.Equal(2, _pol.GetGemiddeldAantalUurPerTicket());
+            _klant.Contracten.First().VoegTicketToe(t);
+            _klant.Contracten.First().VoegTicketToe(t2);
+            Assert.Equal(2, _klant.GetGemiddeldAantalUurPerTicket());
         }
-
+       
     }
 }
