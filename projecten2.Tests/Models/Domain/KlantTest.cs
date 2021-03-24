@@ -47,8 +47,15 @@ namespace projecten2.Tests.Models.Domain
         [Fact]
         public void BerekenGemiddeldAantalUrenTicket_TicketMet2Uren_berekenAantalUren()
         {
-            
-            Assert.Equal(2, _klant.GetGemiddeldAantalUurPerTicket());
+            Ticket t = new Ticket();
+            t.AanmaakDatum = new DateTime(2021, 1, 1, 12, 0, 0);
+            t.DatumAfgewerkt = new DateTime(2021, 1, 1, 14, 0, 0);
+            Ticket t2 = new Ticket();
+            t2.AanmaakDatum = new DateTime(2021, 1, 1, 17, 0, 0);
+            t2.DatumAfgewerkt = new DateTime(2021, 1, 1, 19, 0, 0);
+            _pol.Contracten.First().VoegTicketToe(t);
+            _pol.Contracten.First().VoegTicketToe(t2);
+            Assert.Equal(2, _pol.GetGemiddeldAantalUurPerTicket());
         }
 
     }
