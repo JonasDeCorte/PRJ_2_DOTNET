@@ -32,7 +32,7 @@ namespace projecten2.Tests.Models.Domain
         [Fact]
         public void getAantalActieveTickets_KlantMetTweeContracten_GeeftAantalActieveTickets()
         {
-            Assert.Equal(3, _klant.GetAantalActieveTickets());
+            Assert.Equal(2, _klant.GetAantalActieveTickets());
         }
         [Fact]
         public void getAllActiveTicketsTrue_KlantMetDrieTickets_GeeftAlleTickets()

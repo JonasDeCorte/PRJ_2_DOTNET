@@ -33,16 +33,6 @@ namespace projecten2.Tests.Controllers
             {
                 TempData = new Mock<ITempDataDictionary>().Object
             };
-            /*
-                        model = new TicketEditViewModel(_dummyContext.Piet.Tickets.First())
-                        {
-                            Titel = "Ticket1",
-                            ContractId = 1,
-                            TicketTypeId = 1,
-                            Omschrijving = "Omschrijving ticket 1",
-                            Opmerkingen = "Opmerkingen ticket 1"
-                        };
-            */
         }
 
         #region Index
@@ -73,7 +63,8 @@ namespace projecten2.Tests.Controllers
             Assert.Equal(3, ticketTypesInViewData.Count());
             Assert.Equal(2, contractenInViewData.Count());
         }
-        #endregion
+
+
         [Fact]
         public void Create_InvalidTicket_DoesNotCreateNorPersistsTicketAndRedirectToActionIndex()
         {
@@ -87,44 +78,37 @@ namespace projecten2.Tests.Controllers
             _gebruikerRepository.Verify(m => m.AddTicket(It.IsAny<Ticket>()), Times.Never());
             _gebruikerRepository.Verify(m => m.SaveChanges(), Times.Never());
         }
-       
-       
-    }
-}
+        #endregion
 
-/*
-#region POST Create
-[Fact]
-public void Create_ValidTicket_CreatesAndPersistsTicketAndRedirectsToActionIndex()
-{
-_ticketRepository.Setup(m => m.Add(It.IsAny<Ticket>()));
-var ticketEvm = new TicketEditViewModel(new Ticket("ValidTicket")
-{
- Contract = _dummyContext.Contracten.Last(),
- TicketType = _dummyContext.TicketTypes.Last(),
- Omschrijving = "Omschrijving TicketTest",
- Opmerkingen = "Opmerkingen TicketTest",
-});
-var result = Assert.IsType<RedirectToActionResult>(_controller.Create(ticketEvm));
-Assert.Equal("Index", result?.ActionName);
-_ticketRepository.Verify(m => m.Add(It.IsAny<Ticket>()), Times.Once());
-_ticketRepository.Verify(m => m.SaveChanges(), Times.Once());
-}
-
-
-#endregion
-
-#region GET Edit
-[Fact]
+        #region POST Create
+        [Fact]
+        public void Create_ValidTicket_CreatesAndPersistsTicketAndRedirectsToActionIndex()
+        {
+            _gebruikerRepository.Setup(m => m.AddTicket(It.IsAny<Ticket>()));
+            var ticketEvm = new TicketEditViewModel(new Ticket("ValidTicket")
+            {
+                Contract = _dummyContext.Contracten.Last(),
+                TicketType = _dummyContext.TicketTypes.Last(),
+                Omschrijving = "Omschrijving TicketTest",
+                Opmerkingen = "Opmerkingen TicketTest",
+            });
+            var result = Assert.IsType<RedirectToActionResult>(_controller.Create(ticketEvm, _dummyContext.Piet));
+            Assert.Equal("Index", result?.ActionName);
+            _gebruikerRepository.Verify(m => m.AddTicket(It.IsAny<Ticket>()), Times.Once());
+            _gebruikerRepository.Verify(m => m.SaveChanges(), Times.Once());
+        }
+        #endregion
+        #region GET Edit
+        [Fact]
         public void Edit_PassesTicketInEditViewModelAndReturnsSelectListsOfTicketTypesAndContracts()
         {
-            
+
             _gebruikerRepository.Setup(m => m.GetByTicketNr(1)).Returns(_dummyContext.t);
             _ticketTypeRepository.Setup(m => m.GetAll()).Returns(_dummyContext.TicketTypes);
             _gebruikerRepository.Setup(m => m.GetAllContracten()).Returns(_dummyContext.Contracten);
             var result = Assert.IsType<ViewResult>(_controller.Edit(1));
             var ticketEvm = Assert.IsType<TicketEditViewModel>(result.Model);
-            var ticketTypesInViewData = Assert.IsType<SelectList>(result.ViewData["ticketTypes"]);     
+            var ticketTypesInViewData = Assert.IsType<SelectList>(result.ViewData["ticketTypes"]);
             var contractenInViewData = Assert.IsType<SelectList>(result.ViewData["contractenKlant"]);
             Assert.Equal("Titel ticketP1", ticketEvm.Titel);
             Assert.Equal(1, ticketEvm.TicketTypeId);
@@ -132,8 +116,10 @@ _ticketRepository.Verify(m => m.SaveChanges(), Times.Once());
             Assert.Equal(1, ticketEvm.ContractId);
             Assert.Equal(3, contractenInViewData.Count());
         }
-#endregion
- [Fact]
+        #endregion
+
+        #region POST Edit
+        [Fact]
         public void Edit_InvalidEdit_DoesNotChangeNorPersistsBrewerAndRedirectsToActionIndex()
         {
             _gebruikerRepository.Setup(m => m.GetByTicketNr(1)).Returns(_dummyContext.t);
@@ -151,7 +137,7 @@ _ticketRepository.Verify(m => m.SaveChanges(), Times.Once());
 
 
 
- [Fact]
+        [Fact]
         public void Edit_ValidEdit_UpdatesAndPersistsTicketAndRedirectsToActionIndex()
         {
             _gebruikerRepository.Setup(m => m.GetByTicketNr(1)).Returns(_dummyContext.t);
@@ -166,7 +152,6 @@ _ticketRepository.Verify(m => m.SaveChanges(), Times.Once());
             Assert.Equal("nieuwe omschrijving ticket", _dummyContext.t.Omschrijving);
             _gebruikerRepository.Verify(m => m.SaveChanges(), Times.Once());
         }
-#endregion
+        #endregion
+    }
 }
-}
-*/
