@@ -25,6 +25,7 @@ namespace projecten2.Models.Domain
         {
             bedrijven = new List<Bedrijf>();
             Contracten = new List<Contract>();
+            Tickets = new List<Ticket>();
             DatumRegistratie = DateTime.Now;
         }
 
