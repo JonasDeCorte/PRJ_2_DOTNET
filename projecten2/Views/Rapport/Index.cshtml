@@ -1,7 +1,7 @@
 ﻿@model projecten2.Models.Domain.Rapport
 
 @{ ViewData["Title"] = "Index"; }
-
+<div class="w-75 mx-auto">
 <h1 class="text-capitalize ">Rapport van: @ViewBag.ticketnaam</h1>
 
 <table style=" width:60em" class="table table-sm table-bordered">
@@ -39,6 +39,8 @@
     </tbody>
 </table>
 <div>
+
  <a role="button" class="btn btn-danger btn-sm" asp-area="Identity" asp-page="/Streaming/IndexStreaming" asp-route-id="@Model.Ticket.TicketNr">bestanden</a>
  <a asp-controller="Ticket" asp-action="Index" class="btn btn-secondary">Terug naar de lijst met tickets</a>
+ </div>
  </div>

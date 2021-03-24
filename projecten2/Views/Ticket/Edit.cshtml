@@ -1,58 +1,59 @@
 ﻿@model projecten2.Models.ViewModels.TicketEditViewModel
 
 @{ ViewData["Title"] = (bool)ViewData["IsEdit"] ? "Ticket wijzigen" : "Nieuw ticket aanmaken"; }
-<h2>@ViewData["Title"]</h2>
+<div class="w-75 mx-auto">
+    <h2>@ViewData["Title"]</h2>
 
-<hr />
-<form method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="row">
+    <hr />
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
 
-        <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="Titel" class="control-label"></label>
-                <input asp-for="Titel" class="form-control" />
-                <span asp-validation-for="Titel" class="text-danger"></span>
-            </div>
-            @if (!(bool)ViewData["IsEdit"])
-            {
-<div class="form-group">
-    <label asp-for="ContractId" class="control-label"></label>
-    <select asp-for="ContractId" asp-items="@(ViewData["contractenKlant"] as SelectList)" class="form-control">
-        <option value="">-- Contract --</option>
-    </select>
-</div>}
-            <div class="form-group">
-                <label asp-for="TicketTypeId" class="control-label"></label>
-                <select asp-for="TicketTypeId" asp-items="@(ViewData["ticketTypes"] as SelectList)" class="form-control">
-                    <option value="">-- Prioriteit --</option>
-                </select>
-            </div>
-            <div>
-                @if ((bool)ViewData["IsEdit"])
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Titel" class="control-label"></label>
+                    <input asp-for="Titel" class="form-control" />
+                    <span asp-validation-for="Titel" class="text-danger"></span>
+                </div>
+                @if (!(bool)ViewData["IsEdit"])
                 {
-    <button style='background: #cad50c' id="ticketWijzigen" class="btn btn-primary border-0" type="submit">Ticket wijzigen</button>}
-else
-{
+    <div class="form-group">
+        <label asp-for="ContractId" class="control-label"></label>
+        <select asp-for="ContractId" asp-items="@(ViewData["contractenKlant"] as SelectList)" class="form-control">
+            <option value="">-- Contract --</option>
+        </select>
+    </div>}
+                <div class="form-group">
+                    <label asp-for="TicketTypeId" class="control-label"></label>
+                    <select asp-for="TicketTypeId" asp-items="@(ViewData["ticketTypes"] as SelectList)" class="form-control">
+                        <option value="">-- Prioriteit --</option>
+                    </select>
+                </div>
+                <div>
+                    @if ((bool)ViewData["IsEdit"])
+                    {
+        <button style='background: #cad50c' id="ticketWijzigen" class="btn btn-primary border-0" type="submit">Ticket wijzigen</button>}
+    else
+    {
 <button style='background: #cad50c' class="btn btn-primary border-0" type="submit">Ticket aanmaken</button>}
-                <a asp-action="Index" class="btn btn-secondary">Terug</a>
+                    <a asp-action="Index" class="btn btn-secondary">Terug</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Omschrijving" class="control-label"></label>
+                    <textarea asp-for="Omschrijving" class="form-control" cols="40" rows="3"> </textarea>
+                    <span asp-validation-for="Omschrijving" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Opmerkingen" class="control-label"></label>
+                    <textarea asp-for="Opmerkingen" class="form-control" cols="40" rows="3"> </textarea>
+                    <span asp-validation-for="Opmerkingen" class="text-danger"></span>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Omschrijving" class="control-label"></label>
-                <textarea asp-for="Omschrijving" class="form-control" cols="40" rows="3"> </textarea>
-                <span asp-validation-for="Omschrijving" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Opmerkingen" class="control-label"></label>
-                <textarea asp-for="Opmerkingen" class="form-control" cols="40" rows="3"> </textarea>
-                <span asp-validation-for="Opmerkingen" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-</form>
-
+    </form>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
