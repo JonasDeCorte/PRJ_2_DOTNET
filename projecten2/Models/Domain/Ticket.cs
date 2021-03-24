@@ -35,11 +35,6 @@ namespace projecten2.Models.Domain
         public string Opmerkingen { get; set; }
 
 
-
-        // public int gebruikersId { get; set; }
-        // public int TicketTypeId { get; set; }
-        // public int ContractId { get; set; }
-
         public Gebruiker Gebruiker { get; set; }
         public TicketStatus TicketStatus { get; set; }
         public Rapport Rapport { get; set; }

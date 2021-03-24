@@ -75,7 +75,6 @@ namespace projecten2.ViewComponents
 
             };
             
-           /* var chart = JsonConvert.DeserializeObject<ChartJs>(chartData);*/
             var chartModel = new ChartJsViewModel
             {
                 Chart = Chart,

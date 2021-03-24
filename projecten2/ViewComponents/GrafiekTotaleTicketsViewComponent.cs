@@ -22,8 +22,6 @@ namespace projecten2.ViewComponents
             _klantenRepo = klantenrepo;
         }
         
-       // [ServiceFilter(typeof(KlantFilter))]
-        // [Authorize]
         public IViewComponentResult Invoke()
         {
             // Ref: https://www.chartjs.org/docs/latest/
@@ -73,8 +71,7 @@ namespace projecten2.ViewComponents
                 },
 
             };
-            
-           /* var chart = JsonConvert.DeserializeObject<ChartJs>(chartData);*/
+
             var chartModel = new ChartJsViewModel
             {
                 Chart = Chart,
