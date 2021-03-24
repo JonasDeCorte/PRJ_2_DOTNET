@@ -10,9 +10,9 @@ namespace projecten2.Tests.Data
         public Klant Piet { get; }
         public Contract ContractPiet1 { get; }
         public Contract ContractPiet2 { get; }
-        public Ticket TicketPiet1 { get; }
-        public Ticket TicketPiet2 { get; }
-        public Ticket TicketPiet3 { get; }
+        public Ticket t { get; }
+        public Ticket t2 { get; }
+        public Ticket t3 { get; }
 
         // Klant met 1 Contract met 1 Ticket
         public Klant Sam { get; }
@@ -61,13 +61,13 @@ namespace projecten2.Tests.Data
             Piet.VoegContractToe(ContractPiet1);
             Piet.VoegContractToe(ContractPiet2);
 
-            Ticket t = new Ticket(Piet, "Ticket1", "Omschrijving ticket 1", "Opmerkingen ticket 1", TicketType1, DateTime.Now);
+             t = new Ticket(Piet, "Ticket1", "Omschrijving ticket 1", "Opmerkingen ticket 1", TicketType1, DateTime.Now);
             t.AanmaakDatum = new DateTime(2021, 1, 1, 12, 0, 0);
             t.DatumAfgewerkt = new DateTime(2021, 1, 1, 14, 0, 0);
-            Ticket t2 = new Ticket(Piet, "Ticket2", "Omschrijving ticket 2", "Opmerkingen ticket 2", TicketType1, DateTime.Now);
+             t2 = new Ticket(Piet, "Ticket2", "Omschrijving ticket 2", "Opmerkingen ticket 2", TicketType1, DateTime.Now);
             t2.AanmaakDatum = new DateTime(2021, 1, 1, 17, 0, 0);
             t2.DatumAfgewerkt = new DateTime(2021, 1, 1, 19, 0, 0);
-            Ticket t3 = new Ticket(Piet, "Ticket3", "Omschrijving ticket 3", "Opmerkingen ticket 3", TicketType3, DateTime.Now);
+             t3 = new Ticket(Piet, "Ticket3", "Omschrijving ticket 3", "Opmerkingen ticket 3", TicketType3, DateTime.Now);
             t3.AanmaakDatum = new DateTime(2021, 1, 1, 19, 0, 0);
             t3.DatumAfgewerkt = new DateTime(2021, 1, 1, 21, 0, 0);
             t3.TicketStatus = TicketStatus.AFGEHANDELD;
@@ -82,7 +82,7 @@ namespace projecten2.Tests.Data
             ContractSam1.VoegTicketToe(new Ticket(Sam, "Ticket4", "Omschrijving ticket 4", "Opmerkingen ticket 4", TicketType2, DateTime.Now));
 
             Klanten = new[] { Piet, Sam };
-            Tickets = new[] { TicketPiet1, TicketPiet2, TicketPiet3, TicketSam1 };
+            Tickets = new[] { t, t2, t3, TicketSam1 };
             Contracten = new[] { ContractPiet1, ContractPiet2, ContractSam1 };
 
             Dag = new DateTime(DateTime.Now.Year + 1, 3, 1);     // 01/03/2022

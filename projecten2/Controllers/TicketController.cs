@@ -44,8 +44,8 @@ namespace projecten2.Controllers
             {
                 return NotFound();
             }
-
-            return View(tickets.OrderByDescending(x => x.LaatstGewijzigd));
+            tickets = tickets.OrderByDescending(x => x.LaatstGewijzigd).ToList();
+            return View(tickets);
         }
 
         // GET: TicketController/Details/5
@@ -89,7 +89,7 @@ namespace projecten2.Controllers
                     MapTicketEditViewModelToTicket(tevm, ticket);
                     TicketType ticketType = _ticketTypeRepository.GetBy(tevm.TicketTypeId);
                     ticket.TicketType = ticketType;
-                    klant.AddTicketByContractId(tevm.ContractId, ticket);
+                    klant.AddTicketByContractId(tevm.ContractId, ticket);               
                     _gebruikerRepository.SaveChanges();
                     _notyf.Success("Ticket succesvol aangemaakt", 3);
                 }
@@ -141,13 +141,13 @@ namespace projecten2.Controllers
                     _gebruikerRepository.SaveChanges();
                     _notyf.Success("Ticket is succesvol bewerkt",3);
                 }
-                catch (Exception e)
+                catch
                 {
-                    ModelState.AddModelError("", e.Message);
                     _notyf.Error("Ticket is niet bewerkt. Probeer opnieuw",3);
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["IsEdit"] = true;
             ViewData["ticketTypes"] = GetTicketTypesAsSelectList();
             return View(nameof(Edit), tevm);

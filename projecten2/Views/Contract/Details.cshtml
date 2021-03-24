@@ -9,40 +9,40 @@
     <hr />
 
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Contract titel:
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.ContractTitel)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Doorloop tijd:
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Doorlooptijd) jaar
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Startdatum:
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @String.Format("{0:dd/MM/yyyy}", Model.StartDatum)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Einddatum:
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @String.Format("{0:dd/MM/yyyy}", Model.EindDatum)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Contract status:
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.ContractStatus)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Contract type:
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.ContractType.Naam)
         </dd>
     </dl>
