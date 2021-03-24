@@ -1,8 +1,6 @@
 ﻿@{ ViewData["Title"] = "Statistieken"; }
 <div class="container">
-    <div class="row">
-
-        
+    <div class="row">       
             <div style='background: #cad50c' class="container col-lg-3 w-75 mx-0  my-4 border rounded py-2">
                 <h5 class="text-white">Gemiddelde oplostijd:<br>@ViewBag.GemiddeldAantalUrenAlleTickets uur</h5>
             </div>
@@ -15,9 +13,6 @@
             <div style='background: #4591c6' class="container col-lg-3 w-75 mx-0  my-4 border rounded py-2">
                 <h5 class="text-white">Actieve Tickets <br> Hoge Prioriteit:<br>@ViewBag.AantalUrenTypeHoog Tickets</h5>
             </div>
-        
-
-
         </div>
         <div class="row">
             <div class="col">
@@ -25,7 +20,6 @@
                 <hr />
                 <vc:grafiekactievetickets></vc:grafiekactievetickets>
             </div>
-
         </div>
         <br></br>
         <div class="row">
@@ -35,9 +29,6 @@
                 <vc:grafiektotaletickets></vc:grafiektotaletickets>
             </div>
         </div>
-
-
-
     </div>
         
 

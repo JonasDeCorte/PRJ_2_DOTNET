@@ -49,9 +49,9 @@
             @Html.DisplayFor(model => model.TicketStatus)
         </dd>
     </dl>
-</div>
-<div>
-
-    <a style='background: #4591c6' asp-area="Identity" asp-page="/Streaming/BufferedMultipleFileUploadDb" asp-route-id="@Model.TicketNr" class="btn btn-primary">upload bijlage</a>
-    <a style='background: #4591c6' asp-action="Index" class="btn btn-primary">Terug naar de lijst met tickets</a>
+    <div>
+        <a style='background: #cad50c' class="btn btn-primary border-0" asp-area="Identity" asp-page="/Streaming/IndexStreaming" asp-route-id="@Model.TicketNr">Bijlages weergeven</a>
+        <a style='background: #4591c6' class="btn btn-primary border-0" asp-area="Identity" asp-page="/Streaming/BufferedMultipleFileUploadDb" asp-route-id="@Model.TicketNr">Bijlage toevoegen</a>
+        <a asp-action="Index" class="btn btn-secondary border-0">Terug</a>
+    </div>
 </div>
